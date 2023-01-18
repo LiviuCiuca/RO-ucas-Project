@@ -1,0 +1,22 @@
+import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from "typeorm";
+import { Enrollment } from "./Enrollments";
+
+@Entity( {name: 'students'} )
+export class Student {
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column( )
+    username: string;
+
+    @Column()
+    password: string;
+
+    @Column()
+    age: number;
+
+    @OneToMany(type => Enrollment, enrollment => enrollment.student)
+    enrollments: Enrollment[];
+
+  
+}

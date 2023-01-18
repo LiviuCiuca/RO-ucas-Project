@@ -1,0 +1,12 @@
+*.log
+*.tmp
+
+# Mac Cancer
+*/.DS_Store
+
+
+
+# npm/javascript Cancer
+**/node_modules
+
+/@*
