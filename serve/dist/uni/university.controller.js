@@ -8,13 +8,27 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UniversityController = void 0;
 const common_1 = require("@nestjs/common");
+const createUniDto_1 = require("../dtos/createUniDto");
+const updateUniDto_1 = require("../dtos/updateUniDto");
+const university_service_1 = require("./university.service");
 let UniversityController = class UniversityController {
-    getUniversity() {
+    constructor(uniService) {
+        this.uniService = uniService;
     }
-    postUniversity() {
+    getUniversity() {
+        return this.uniService.getUni();
+    }
+    postUniversity(uniCreate) {
+        return this.uniService.postUni(uniCreate);
+    }
+    updateUniversityById(id, uniUpdate) {
+        return this.uniService.updateUniById(id, uniUpdate);
     }
 };
 __decorate([
@@ -25,12 +39,22 @@ __decorate([
 ], UniversityController.prototype, "getUniversity", null);
 __decorate([
     (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [createUniDto_1.CreateUniDto]),
     __metadata("design:returntype", void 0)
 ], UniversityController.prototype, "postUniversity", null);
+__decorate([
+    (0, common_1.Put)(":id"),
+    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, updateUniDto_1.updateUniDto]),
+    __metadata("design:returntype", void 0)
+], UniversityController.prototype, "updateUniversityById", null);
 UniversityController = __decorate([
-    (0, common_1.Controller)('university')
+    (0, common_1.Controller)('university'),
+    __metadata("design:paramtypes", [university_service_1.UniversityService])
 ], UniversityController);
 exports.UniversityController = UniversityController;
 //# sourceMappingURL=university.controller.js.map

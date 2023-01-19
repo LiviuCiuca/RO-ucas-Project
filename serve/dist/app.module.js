@@ -7,6 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
+const enroll_module_1 = require("./enroll/enroll.module");
 const university_module_1 = require("./uni/university.module");
 const student_module_1 = require("./student/student.module");
 const common_1 = require("@nestjs/common");
@@ -20,6 +21,7 @@ let AppModule = class AppModule {
 AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            enroll_module_1.EnrollModule,
             university_module_1.UniversityModule,
             student_module_1.StudentModule,
             typeorm_1.TypeOrmModule.forRoot({

@@ -1,3 +1,4 @@
+import { EnrollModule } from './enroll/enroll.module';
 import { UniversityModule } from './uni/university.module';
 import { UniversityService } from './uni/university.service';
 import { UniversityController } from './uni/university.controller';
@@ -11,6 +12,7 @@ import { Universities } from './entities/Universities';
 
 @Module({
   imports: [
+    EnrollModule,
     UniversityModule,
     StudentModule,
     TypeOrmModule.forRoot({

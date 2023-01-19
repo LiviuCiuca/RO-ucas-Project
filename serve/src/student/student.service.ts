@@ -23,7 +23,7 @@ export class StudentService {
         const newStudent = this.studentRepository.create({...studentDetails });
 
         return this.studentRepository.save(newStudent);
-        //save is async method, returns a promise
+        //save() is async method
     }
     //get a student by id 
     getStudentById(id: number) {

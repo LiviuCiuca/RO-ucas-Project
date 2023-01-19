@@ -14,12 +14,12 @@ export class StudentController {
 
     @Get('')
     getStudents() {
-        this.studentService.getAllStudents();
+        return this.studentService.getAllStudents();
     }
 
     @Get(':id')
     getStudentById(@Param('id', ParseIntPipe) id: number) {
-        this.studentService.getStudentById(id);
+        return this.studentService.getStudentById(id);
     }
 
     @Post('')
@@ -29,7 +29,7 @@ export class StudentController {
 
     @Put(':id')
     updateStudentById(@Param('id', ParseIntPipe) id: number , @Body() studentDto: updateStudentDto) {
-        this.studentService.updateStudentById(id, studentDto);
+        return this.studentService.updateStudentById(id, studentDto);
     }
 
     @Delete(':id')

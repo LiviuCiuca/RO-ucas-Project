@@ -22,16 +22,16 @@ let StudentController = class StudentController {
         this.studentService = studentService;
     }
     getStudents() {
-        this.studentService.getAllStudents();
+        return this.studentService.getAllStudents();
     }
     getStudentById(id) {
-        this.studentService.getStudentById(id);
+        return this.studentService.getStudentById(id);
     }
     postStudent(studentDto) {
         this.studentService.postStudent(studentDto);
     }
     updateStudentById(id, studentDto) {
-        this.studentService.updateStudentById(id, studentDto);
+        return this.studentService.updateStudentById(id, studentDto);
     }
     deleteStudentById(id) {
         this.studentService.deleteStudentById(id);
