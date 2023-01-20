@@ -4,6 +4,9 @@ import { Universities } from './Universities';
 
 @Entity()
 export class Enrollment {
+    static studentId(studentId: any) {
+        throw new Error('Method not implemented.');
+    }
     @PrimaryGeneratedColumn()
     id: number;
 

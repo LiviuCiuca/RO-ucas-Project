@@ -32,6 +32,13 @@ let EnrollService = class EnrollService {
         const allEnrollments = this.enrollmentRepository.find({ where: { id } });
         return allEnrollments;
     }
+    deleteEnrollment(id) {
+        const student = this.studentService.findOne(Enrollments_1.Enrollment.studentId);
+        if (!student) {
+            throw new common_1.NotFoundException('Student not found');
+        }
+        this.enrollmentRepository.delete(id);
+    }
 };
 EnrollService = __decorate([
     (0, common_1.Injectable)(),

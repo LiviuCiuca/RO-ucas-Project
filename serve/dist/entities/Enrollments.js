@@ -14,6 +14,9 @@ const typeorm_1 = require("typeorm");
 const Student_1 = require("./Student");
 const Universities_1 = require("./Universities");
 let Enrollment = class Enrollment {
+    static studentId(studentId) {
+        throw new Error('Method not implemented.');
+    }
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
