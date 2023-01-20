@@ -6,7 +6,7 @@ export declare class StudentService {
     constructor(studentRepository: Repository<Student>);
     getAllStudents(): Promise<Student[]>;
     postStudent(studentDetails: createStudentParams): Promise<Student>;
-    getStudentById(id: number): void;
+    getStudentById(id: number): Promise<Student>;
     updateStudentById(id: number, studentDetails: updateStudentParams): void;
     deleteStudentById(id: number): void;
 }

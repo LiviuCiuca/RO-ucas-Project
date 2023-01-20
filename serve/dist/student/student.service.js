@@ -30,6 +30,7 @@ let StudentService = class StudentService {
     }
     getStudentById(id) {
         const student = this.studentRepository.findOne({ where: { id } });
+        return student;
     }
     updateStudentById(id, studentDetails) {
         this.studentRepository.update({ id }, Object.assign({}, studentDetails));

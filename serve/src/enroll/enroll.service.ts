@@ -5,37 +5,49 @@ import { Repository } from 'typeorm';
 
 @Injectable()
 export class EnrollService {
-    studentService: any;
+   
     constructor(
         @InjectRepository(Enrollment)
         private enrollmentRepository: Repository<Enrollment>,
     ) {}
 
-    //adds new enrollment to mysql
-    async apply(studentId: number, universityId: number): Promise<Enrollment> {
+        //get enrollments by university id
+        getEnrollmentsByUniversityId(universityId: number): Promise<Enrollment[]> {
+        const id = universityId;
+        const allEnrollments = this.enrollmentRepository.find({where: {id}});
+        if (!allEnrollments) {
+            throw new NotFoundException('University not found');
+        }
+        return allEnrollments;
+        }
+        //get enrollments by student id
+        getEnrollmentsByStudentId(studentId: number): Promise<Enrollment[]> {
+        const id = studentId;
+        const allEnrollments = this.enrollmentRepository.find({where: {id}});
+        if (!allEnrollments) {
+            throw new NotFoundException(`Student with ID "${studentId}" not found`);
+        }
+        return allEnrollments;
+        }
+
+        //adds new enrollment to mysql
+        apply(studentId: number, universityId: number): Promise<Enrollment> {
         const enrollment = new Enrollment();
         enrollment.student.id = studentId;
         enrollment.university.id = universityId;
 
         return this.enrollmentRepository.save(enrollment);
-    }
-
-    //get enrollments by student id
-    async getEnrollmentsByStudentId(studentId: number): Promise<Enrollment[]> {
+        } 
+   
+        //delete enrolments by student id
+        deleteEnrollmentsByStudentId(studentId: number) {
         const id = studentId;
-        const allEnrollments = this.enrollmentRepository.find({where: {id}});
-        return allEnrollments;
-    }
-
-    //delete enrollment 
-    deleteEnrollment(id: number) {
-        const student = this.studentService.findOne(Enrollment.studentId);
-        if (!student) {
-          throw new NotFoundException('Student not found');
+        const enroledStudent = this.enrollmentRepository.find({where: {id}});
+        if (!enroledStudent) {
+            throw new NotFoundException('Student not found');
         }
         this.enrollmentRepository.delete(id);
-    
-      }
+        }
 
 }
 

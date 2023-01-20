@@ -21,20 +21,32 @@ let EnrollService = class EnrollService {
     constructor(enrollmentRepository) {
         this.enrollmentRepository = enrollmentRepository;
     }
-    async apply(studentId, universityId) {
+    getEnrollmentsByUniversityId(universityId) {
+        const id = universityId;
+        const allEnrollments = this.enrollmentRepository.find({ where: { id } });
+        if (!allEnrollments) {
+            throw new common_1.NotFoundException('University not found');
+        }
+        return allEnrollments;
+    }
+    getEnrollmentsByStudentId(studentId) {
+        const id = studentId;
+        const allEnrollments = this.enrollmentRepository.find({ where: { id } });
+        if (!allEnrollments) {
+            throw new common_1.NotFoundException(`Student with ID "${studentId}" not found`);
+        }
+        return allEnrollments;
+    }
+    apply(studentId, universityId) {
         const enrollment = new Enrollments_1.Enrollment();
         enrollment.student.id = studentId;
         enrollment.university.id = universityId;
         return this.enrollmentRepository.save(enrollment);
     }
-    async getEnrollmentsByStudentId(studentId) {
+    deleteEnrollmentsByStudentId(studentId) {
         const id = studentId;
-        const allEnrollments = this.enrollmentRepository.find({ where: { id } });
-        return allEnrollments;
-    }
-    deleteEnrollment(id) {
-        const student = this.studentService.findOne(Enrollments_1.Enrollment.studentId);
-        if (!student) {
+        const enroledStudent = this.enrollmentRepository.find({ where: { id } });
+        if (!enroledStudent) {
             throw new common_1.NotFoundException('Student not found');
         }
         this.enrollmentRepository.delete(id);

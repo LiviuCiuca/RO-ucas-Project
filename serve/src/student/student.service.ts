@@ -28,6 +28,7 @@ export class StudentService {
     //get a student by id 
     getStudentById(id: number) {
         const student = this.studentRepository.findOne({where: {id}});
+        return student;
     }
     //update a student by id 
     updateStudentById(id: number ,studentDetails: updateStudentParams) {
