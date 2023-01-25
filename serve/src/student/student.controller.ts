@@ -1,7 +1,3 @@
-/*
-https://docs.nestjs.com/controllers#controllers
-*/
-
 import { Controller, Get, Post , Body, Put, Param, ParseIntPipe, Delete } from '@nestjs/common';
 import { CreateStudentDto } from 'src/dtos/createStudentDto';
 import { updateStudentDto } from 'src/dtos/updateStudentDto';

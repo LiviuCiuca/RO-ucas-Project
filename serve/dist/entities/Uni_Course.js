@@ -9,26 +9,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Enrollment = void 0;
+exports.Uni_Courses = void 0;
 const typeorm_1 = require("typeorm");
-const Student_1 = require("./Student");
 const Universities_1 = require("./Universities");
-let Enrollment = class Enrollment {
+const Courses_1 = require("./Courses");
+let Uni_Courses = class Uni_Courses {
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], Enrollment.prototype, "id", void 0);
+], Uni_Courses.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(type => Student_1.Student, student => student.enrollments),
-    __metadata("design:type", Student_1.Student)
-], Enrollment.prototype, "student", void 0);
-__decorate([
-    (0, typeorm_1.ManyToOne)(type => Universities_1.Universities, university => university.enrollments, { cascade: ["remove"] }),
+    (0, typeorm_1.ManyToOne)(type => Universities_1.Universities, university => university.uni_courses, { cascade: ["remove"] }),
     __metadata("design:type", Universities_1.Universities)
-], Enrollment.prototype, "university", void 0);
-Enrollment = __decorate([
+], Uni_Courses.prototype, "university", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(type => Courses_1.Courses, course => course.uni_courses),
+    __metadata("design:type", Courses_1.Courses)
+], Uni_Courses.prototype, "course", void 0);
+Uni_Courses = __decorate([
     (0, typeorm_1.Entity)()
-], Enrollment);
-exports.Enrollment = Enrollment;
-//# sourceMappingURL=Enrollments.js.map
+], Uni_Courses);
+exports.Uni_Courses = Uni_Courses;
+//# sourceMappingURL=Uni_Course.js.map

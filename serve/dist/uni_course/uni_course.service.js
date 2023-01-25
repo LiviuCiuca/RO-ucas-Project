@@ -12,39 +12,31 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UniversityService = void 0;
+exports.Uni_courseService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
-const Universities_1 = require("../entities/Universities");
+const Uni_Course_1 = require("../entities/Uni_Course");
 const typeorm_2 = require("typeorm");
-let UniversityService = class UniversityService {
-    constructor(universityRepository) {
-        this.universityRepository = universityRepository;
+let Uni_courseService = class Uni_courseService {
+    constructor(uni_courseRepository) {
+        this.uni_courseRepository = uni_courseRepository;
     }
-    getUni() {
-        return this.universityRepository.find();
+    getUni_CoursesByUniId(uniId) {
+        const id = uniId;
+        const allUni_Courses = this.uni_courseRepository.find({ where: { id } });
+        if (!allUni_Courses) {
+            throw new common_1.NotFoundException('University not found');
+        }
+        return allUni_Courses;
     }
-    getUniById(id) {
-        const uni = this.universityRepository.findOne({ where: { id } });
-        if (!uni)
-            throw new Error('University not found');
-        return uni;
-    }
-    postUni(uniDetails) {
-        const newUni = this.universityRepository.create(Object.assign({}, uniDetails));
-        return this.universityRepository.save(newUni);
-    }
-    updateUniById(id, uniDetails) {
-        this.universityRepository.update({ id }, Object.assign({}, uniDetails));
-    }
-    deleteUni(id) {
-        this.universityRepository.delete(id);
+    deleteUni_Course(id) {
+        this.uni_courseRepository.delete(id);
     }
 };
-UniversityService = __decorate([
+Uni_courseService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, typeorm_1.InjectRepository)(Universities_1.Universities)),
+    __param(0, (0, typeorm_1.InjectRepository)(Uni_Course_1.Uni_Courses)),
     __metadata("design:paramtypes", [typeorm_2.Repository])
-], UniversityService);
-exports.UniversityService = UniversityService;
-//# sourceMappingURL=university.service.js.map
+], Uni_courseService);
+exports.Uni_courseService = Uni_courseService;
+//# sourceMappingURL=uni_course.service.js.map

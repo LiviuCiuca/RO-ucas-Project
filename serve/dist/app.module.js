@@ -7,6 +7,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
+const uni_course_module_1 = require("./uni_course/uni_course.module");
+const course_controller_1 = require("./courses/course.controller");
+const course_service_1 = require("./courses/course.service");
+const course_module_1 = require("./courses/course.module");
 const enroll_module_1 = require("./enroll/enroll.module");
 const university_module_1 = require("./uni/university.module");
 const student_module_1 = require("./student/student.module");
@@ -16,11 +20,15 @@ const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const Student_1 = require("./entities/Student");
 const Universities_1 = require("./entities/Universities");
+const Courses_1 = require("./entities/Courses");
+const Enrollments_1 = require("./entities/Enrollments");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            uni_course_module_1.Uni_courseModule,
+            course_module_1.CourseModule,
             enroll_module_1.EnrollModule,
             university_module_1.UniversityModule,
             student_module_1.StudentModule,
@@ -31,12 +39,16 @@ AppModule = __decorate([
                 username: 'root',
                 password: 'Tastatura1!',
                 database: 'students',
-                entities: [Student_1.Student, Universities_1.Universities],
+                entities: [Student_1.Student, Universities_1.Universities, Enrollments_1.Enrollment, Courses_1.Courses],
                 synchronize: true,
             }),
         ],
-        controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService],
+        controllers: [
+            course_controller_1.CourseController, app_controller_1.AppController
+        ],
+        providers: [
+            course_service_1.CourseService, app_service_1.AppService
+        ],
     })
 ], AppModule);
 exports.AppModule = AppModule;

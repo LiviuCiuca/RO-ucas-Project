@@ -11,7 +11,7 @@ export class EnrollService {
         private enrollmentRepository: Repository<Enrollment>,
     ) {}
 
-        //get enrollments by university id
+        
         getEnrollmentsByUniversityId(universityId: number): Promise<Enrollment[]> {
         const id = universityId;
         const allEnrollments = this.enrollmentRepository.find({where: {id}});
@@ -20,7 +20,8 @@ export class EnrollService {
         }
         return allEnrollments;
         }
-        //get enrollments by student id
+        
+
         getEnrollmentsByStudentId(studentId: number): Promise<Enrollment[]> {
         const id = studentId;
         const allEnrollments = this.enrollmentRepository.find({where: {id}});
@@ -30,7 +31,6 @@ export class EnrollService {
         return allEnrollments;
         }
 
-        //adds new enrollment to mysql
         apply(studentId: number, universityId: number): Promise<Enrollment> {
         const enrollment = new Enrollment();
         enrollment.student.id = studentId;
@@ -39,7 +39,7 @@ export class EnrollService {
         return this.enrollmentRepository.save(enrollment);
         } 
    
-        //delete enrolments by student id
+      
         deleteEnrollmentsByStudentId(studentId: number) {
         const id = studentId;
         const enroledStudent = this.enrollmentRepository.find({where: {id}});

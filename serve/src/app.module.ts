@@ -1,7 +1,9 @@
+import { Uni_courseModule } from './uni_course/uni_course.module';
+import { CourseController } from './courses/course.controller';
+import { CourseService } from './courses/course.service';
+import { CourseModule } from './courses/course.module';
 import { EnrollModule } from './enroll/enroll.module';
 import { UniversityModule } from './uni/university.module';
-import { UniversityService } from './uni/university.service';
-import { UniversityController } from './uni/university.controller';
 import { StudentModule } from './student/student.module';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -9,9 +11,13 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { Student } from './entities/Student';
 import { Universities } from './entities/Universities';
+import { Courses } from './entities/Courses';
+import { Enrollment } from './entities/Enrollments';
 
 @Module({
   imports: [
+    Uni_courseModule,
+    CourseModule,
     EnrollModule,
     UniversityModule,
     StudentModule,
@@ -22,11 +28,13 @@ import { Universities } from './entities/Universities';
       username: 'root',
       password: 'Tastatura1!',
       database: 'students',
-      entities: [Student, Universities],
+      entities: [Student, Universities, Enrollment, Courses],
       synchronize: true,
     }),
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [
+    CourseController, AppController],
+  providers: [
+    CourseService, AppService],
 })
 export class AppModule { }

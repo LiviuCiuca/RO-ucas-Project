@@ -8,39 +8,38 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var Universities_1;
+var Courses_1;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Universities = void 0;
+exports.Courses = void 0;
 const typeorm_1 = require("typeorm");
-const Enrollments_1 = require("./Enrollments");
-let Universities = Universities_1 = class Universities {
+let Courses = Courses_1 = class Courses {
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], Universities.prototype, "id", void 0);
+], Courses.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Universities.prototype, "name", void 0);
+], Courses.prototype, "name", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Universities.prototype, "location", void 0);
+], Courses.prototype, "description", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
-], Universities.prototype, "fees", void 0);
+], Courses.prototype, "price", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(type => Enrollments_1.Enrollment, enrollment => enrollment.university, { onDelete: "CASCADE" }),
-    __metadata("design:type", Array)
-], Universities.prototype, "enrollments", void 0);
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], Courses.prototype, "duration", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(type => Universities_1, Universities => Universities.uni_courses, { onDelete: "CASCADE" }),
+    (0, typeorm_1.OneToMany)(type => Courses_1, Courses => Courses.uni_courses),
     __metadata("design:type", Array)
-], Universities.prototype, "uni_courses", void 0);
-Universities = Universities_1 = __decorate([
-    (0, typeorm_1.Entity)({ name: 'uni' })
-], Universities);
-exports.Universities = Universities;
-//# sourceMappingURL=Universities.js.map
+], Courses.prototype, "uni_courses", void 0);
+Courses = Courses_1 = __decorate([
+    (0, typeorm_1.Entity)()
+], Courses);
+exports.Courses = Courses;
+//# sourceMappingURL=Courses.js.map

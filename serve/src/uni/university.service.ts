@@ -11,12 +11,20 @@ import { Repository } from 'typeorm';
 @Injectable()
 export class UniversityService { 
     constructor ( 
-        @InjectRepository(Universities) private universityRepository: Repository<Universities>,
+        @InjectRepository(Universities) private universityRepository: Repository<Universities>
     ){}
 
     //get all universities
     getUni() {
       return this.universityRepository.find();
+    }
+
+    getUniById(id: number) {
+        const uni = this.universityRepository.findOne({where: {id}});
+        if(!uni)
+            throw new Error('University not found');
+            
+        return uni;
     }
 
     //post a new university to mysql database if not return status code 404 
@@ -26,16 +34,23 @@ export class UniversityService {
         return this.universityRepository.save(newUni);
     }
     
-    //get a university by course
-    getUniByCourse(courses: string) {
-        const uni = this.universityRepository.findOne({where: {courses}});
+    // //get a university by course
+    // getUniByCourse(courses: string) {
+    //     const uni = this.universityRepository.findOne({where: {courses}});
 
-        return uni;
-    }
+    //     return uni;
+    // }
 
     //update a university by id 
     updateUniById(id: number, uniDetails: createUniParams) {
         this.universityRepository.update({ id }, {...uniDetails});
     }
+
+    //delete a university by id
+    deleteUni(id: number) {
+        this.universityRepository.delete(id);
+    }
+
+
 
 }

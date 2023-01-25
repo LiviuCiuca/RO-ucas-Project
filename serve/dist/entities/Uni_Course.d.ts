@@ -1,7 +1,7 @@
-import { Student } from './Student';
 import { Universities } from './Universities';
-export declare class Enrollment {
+import { Courses } from './Courses';
+export declare class Uni_Courses {
     id: number;
-    student: Student;
     university: Universities;
+    course: Courses;
 }
