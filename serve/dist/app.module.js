@@ -8,8 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const uni_course_module_1 = require("./uni_course/uni_course.module");
-const course_controller_1 = require("./courses/course.controller");
-const course_service_1 = require("./courses/course.service");
 const course_module_1 = require("./courses/course.module");
 const enroll_module_1 = require("./enroll/enroll.module");
 const university_module_1 = require("./uni/university.module");
@@ -43,12 +41,8 @@ AppModule = __decorate([
                 synchronize: true,
             }),
         ],
-        controllers: [
-            course_controller_1.CourseController, app_controller_1.AppController
-        ],
-        providers: [
-            course_service_1.CourseService, app_service_1.AppService
-        ],
+        controllers: [app_controller_1.AppController],
+        providers: [app_service_1.AppService],
     })
 ], AppModule);
 exports.AppModule = AppModule;

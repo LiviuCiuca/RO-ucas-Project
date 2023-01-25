@@ -17,12 +17,8 @@ let EnrollModule = class EnrollModule {
 EnrollModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([Enrollments_1.Enrollment])],
-        controllers: [
-            enroll_controller_1.EnrollmentController,
-        ],
-        providers: [
-            enroll_service_1.EnrollService,
-        ],
+        controllers: [enroll_controller_1.EnrollmentController],
+        providers: [enroll_service_1.EnrollService,],
     })
 ], EnrollModule);
 exports.EnrollModule = EnrollModule;

@@ -1,6 +1,4 @@
 import { Uni_courseModule } from './uni_course/uni_course.module';
-import { CourseController } from './courses/course.controller';
-import { CourseService } from './courses/course.service';
 import { CourseModule } from './courses/course.module';
 import { EnrollModule } from './enroll/enroll.module';
 import { UniversityModule } from './uni/university.module';
@@ -32,9 +30,7 @@ import { Enrollment } from './entities/Enrollments';
       synchronize: true,
     }),
   ],
-  controllers: [
-    CourseController, AppController],
-  providers: [
-    CourseService, AppService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule { }
