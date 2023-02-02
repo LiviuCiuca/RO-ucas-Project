@@ -6,7 +6,9 @@ import { StudentService } from './student.service';
 @Controller('student')
 export class StudentController {
 
-    constructor(private studentService: StudentService) {}
+    constructor(
+        private studentService: StudentService
+        ) {}
 
     @Get('')
     getStudents() {

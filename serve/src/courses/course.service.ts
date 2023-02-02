@@ -11,7 +11,7 @@ export class CourseService {
         private courseRepository: Repository<Courses>
     ) {}
 
-    getCoursesByUniId(uniId: number){
+    getCoursesByUniId(uniId: number): Promise<Courses[]>{
         const id = uniId;
         const allCourses = this.courseRepository.find({where: {id}});
         if (!allCourses) {
@@ -21,7 +21,7 @@ export class CourseService {
     }
     
     //do i need to check uni id here? i`m logged in as uni..
-    addCourse(uniId: number, courseDetails: createCoursesParams){
+    addCourse(uniId: number, courseDetails: createCoursesParams): Promise<Courses>{
         const id = uniId;
         if(this.courseRepository.findOne({where: {id}})) {
             const course = this.courseRepository.create({...courseDetails});
@@ -32,11 +32,17 @@ export class CourseService {
         }
     }
 
-    deleteCourse(id: number){
+    deleteCourse(id: number): void{
+        if(!this.courseRepository.findOne({where: {id}})){
+            throw new NotFoundException('Course not found');
+        }
         this.courseRepository.delete(id);
     }
 
-    updateCourseById(id: number, courseDetails: createCoursesParams){
+    updateCourseById(id: number, courseDetails: createCoursesParams): void{
+        if(!this.courseRepository.findOne({where: {id}})){
+            throw new NotFoundException('Course not found');
+        }
         this.courseRepository.update({ id }, {...courseDetails});
     }
 

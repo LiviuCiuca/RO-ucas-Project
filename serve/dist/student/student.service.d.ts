@@ -1,5 +1,5 @@
 import { Student } from 'src/entities/Student';
-import { createStudentParams, updateStudentParams } from 'src/utils/types';
+import { createStudentParams, updateStudentParams } from 'src/utils/studentTypes';
 import { Repository } from 'typeorm';
 export declare class StudentService {
     private studentRepository;

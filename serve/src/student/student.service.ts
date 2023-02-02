@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Student } from 'src/entities/Student';
-import { createStudentParams, updateStudentParams } from 'src/utils/types';
+import { createStudentParams, updateStudentParams } from 'src/utils/studentTypes';
 import { Repository } from 'typeorm';
 
 @Injectable()

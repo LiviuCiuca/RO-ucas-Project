@@ -1,8 +1,13 @@
-/*
-https://docs.nestjs.com/controllers#controllers
-*/
-
 import { Controller } from '@nestjs/common';
+import { CourseService } from './course.service';
 
 @Controller()
-export class CourseController { }
+export class CourseController { 
+
+    constructor(
+        private courseService: CourseService
+        ) {}
+        
+        //get all courses
+      
+}

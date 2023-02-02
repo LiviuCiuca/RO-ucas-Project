@@ -21,7 +21,7 @@ export class Courses{
     @Column()
     duration: number;
     
-    @OneToMany(type => Courses, Courses => Courses.uni_courses)
+    @OneToMany(type => Courses, Courses => Courses.uni_courses,{onDelete: "CASCADE"})
     uni_courses: Uni_Courses[];
 
 }

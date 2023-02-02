@@ -4,6 +4,7 @@ import { Uni_Courses } from "./Uni_Course";
 
 @Entity( {name: 'uni'} )
 export class Universities {
+
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -11,15 +12,23 @@ export class Universities {
     name: string;
 
     @Column()
-    location: string;
-
+    email: string;
 
     @Column()
-    fees: number;
+    location: string;
 
-    @OneToMany(type => Enrollment, enrollment => enrollment.university,{onDelete: "CASCADE"})
-    enrollments: Enrollment[];
-    
+    @Column()
+    rating: number;
+
+    @Column()
+    description: string;
+
+    @Column()
+    image: string;
+
+    @Column()
+    website: string;
+
     @OneToMany(type => Universities, Universities => Universities.uni_courses,{onDelete: "CASCADE"})
     uni_courses: Uni_Courses[];
 

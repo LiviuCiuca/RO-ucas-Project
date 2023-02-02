@@ -19,6 +19,11 @@ export class Uni_courseService {
         return allUni_Courses;
     }
 
+    addUni_Course(uni_course: Uni_Courses): Promise<Uni_Courses> {
+        
+        return this.uni_courseRepository.save(uni_course);
+    }
+
     //This gives me more control over the deletion process, on compared to the on delete cascade
     //not sure if ill use it yet
     deleteUni_Course(id: number) {
@@ -26,4 +31,5 @@ export class Uni_courseService {
     }
 
 
+    //when i logg in as student i need to see the course i have applied 
  }
