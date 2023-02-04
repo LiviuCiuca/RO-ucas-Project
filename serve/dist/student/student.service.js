@@ -26,10 +26,6 @@ let StudentService = class StudentService {
     }
     postStudent(studentDetails) {
         const newStudent = this.studentRepository.create(Object.assign({}, studentDetails));
-        const studentExists = this.studentRepository.findOne({ where: { username: studentDetails.username } });
-        if (studentExists) {
-            throw new common_1.BadRequestException('Student already exists');
-        }
         if (!studentDetails.username || !studentDetails.password) {
             throw new common_1.BadRequestException('Missing required fields');
         }

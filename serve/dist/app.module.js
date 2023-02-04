@@ -20,6 +20,7 @@ const Student_1 = require("./entities/Student");
 const Universities_1 = require("./entities/Universities");
 const Courses_1 = require("./entities/Courses");
 const Enrollments_1 = require("./entities/Enrollments");
+const Uni_Course_1 = require("./entities/Uni_Course");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -37,7 +38,7 @@ AppModule = __decorate([
                 username: 'root',
                 password: 'Tastatura1!',
                 database: 'students',
-                entities: [Student_1.Student, Universities_1.Universities, Enrollments_1.Enrollment, Courses_1.Courses],
+                entities: [Student_1.Student, Universities_1.Universities, Enrollments_1.Enrollment, Courses_1.Courses, Uni_Course_1.Uni_Courses],
                 synchronize: true,
             }),
         ],

@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, OneToMany, JoinColumn } from "typeorm";
 import { Enrollment } from "./Enrollments";
 
 @Entity( {name: 'students'} )

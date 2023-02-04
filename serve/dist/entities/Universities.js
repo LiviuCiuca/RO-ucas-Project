@@ -12,7 +12,6 @@ var Universities_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Universities = void 0;
 const typeorm_1 = require("typeorm");
-const Enrollments_1 = require("./Enrollments");
 let Universities = Universities_1 = class Universities {
 };
 __decorate([
@@ -26,15 +25,27 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
+], Universities.prototype, "email", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
 ], Universities.prototype, "location", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
-], Universities.prototype, "fees", void 0);
+], Universities.prototype, "rating", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(type => Enrollments_1.Enrollment, enrollment => enrollment.university, { onDelete: "CASCADE" }),
-    __metadata("design:type", Array)
-], Universities.prototype, "enrollments", void 0);
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Universities.prototype, "description", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Universities.prototype, "image", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Universities.prototype, "website", void 0);
 __decorate([
     (0, typeorm_1.OneToMany)(type => Universities_1, Universities => Universities.uni_courses, { onDelete: "CASCADE" }),
     __metadata("design:type", Array)

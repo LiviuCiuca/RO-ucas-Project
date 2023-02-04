@@ -21,13 +21,8 @@ let EnrollService = class EnrollService {
     constructor(enrollmentRepository) {
         this.enrollmentRepository = enrollmentRepository;
     }
-    getEnrollmentsByUniversityId(universityId) {
-        const id = universityId;
-        const allEnrollments = this.enrollmentRepository.find({ where: { id } });
-        if (!allEnrollments) {
-            throw new common_1.NotFoundException('University not found');
-        }
-        return allEnrollments;
+    getAll() {
+        return this.enrollmentRepository.find({ relations: ['student', 'uni_course'] });
     }
     getEnrollmentsByStudentId(studentId) {
         const id = studentId;
@@ -37,10 +32,10 @@ let EnrollService = class EnrollService {
         }
         return allEnrollments;
     }
-    apply(studentId, universityId) {
+    apply(id, student, uni_course) {
         const enrollment = new Enrollments_1.Enrollment();
-        enrollment.student.id = studentId;
-        enrollment.university.id = universityId;
+        enrollment.uni_course = uni_course;
+        enrollment.student = student;
         return this.enrollmentRepository.save(enrollment);
     }
     deleteEnrollmentsByStudentId(studentId) {

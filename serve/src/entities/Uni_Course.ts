@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany, Column } from 'typeorm';
 import { Universities } from './Universities';
 import { Courses } from './Courses';
 import { Enrollment } from './Enrollments';
@@ -18,5 +18,7 @@ export class Uni_Courses{
    
     @OneToMany(type => Enrollment, enrollment => enrollment.uni_course)
     enrollments: Enrollment[];
+    
+
     
 }

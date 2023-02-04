@@ -1,10 +1,12 @@
-import { Enrollment } from "./Enrollments";
 import { Uni_Courses } from "./Uni_Course";
 export declare class Universities {
     id: number;
     name: string;
+    email: string;
     location: string;
-    fees: number;
-    enrollments: Enrollment[];
+    rating: number;
+    description: string;
+    image: string;
+    website: string;
     uni_courses: Uni_Courses[];
 }

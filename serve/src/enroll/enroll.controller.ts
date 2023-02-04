@@ -1,9 +1,10 @@
-import { Controller, Post, Body } from '@nestjs/common';
-import { Get } from '@nestjs/common/decorators';
+import { Controller, Post, Body, ParseIntPipe } from '@nestjs/common';
+import { Get, Param } from '@nestjs/common/decorators';
+import { Student } from 'src/entities/Student';
 import { Uni_Courses } from 'src/entities/Uni_Course';
 import { EnrollService } from './enroll.service';
 
-@Controller('enrollment')
+@Controller('/enrollment')
 export class EnrollmentController {
 
     constructor(
@@ -11,8 +12,8 @@ export class EnrollmentController {
         ) {}
 
     @Get()
-    getEnrollmentsByUniId(@Body('universityId') universityId: number) {
-        return this.enrollmentService.getEnrollmentsByUniversityId(universityId);
+    getEnrollmentsByUniId() {
+        return this.enrollmentService.getAll();
     }
 
     @Get()
@@ -20,9 +21,9 @@ export class EnrollmentController {
         return this.enrollmentService.getEnrollmentsByStudentId(studentId);
     }
 
-    @Post()
-    apply(@Body('uni_course') uni_course: Uni_Courses) {
-        return this.enrollmentService.apply(uni_course);
+    @Post(':id')
+    apply(@Param('id', ParseIntPipe) id: number,@Body('student') Student: Student, @Body('uni_course') uni_course: Uni_Courses ) {
+        return this.enrollmentService.apply(id ,Student, uni_course);
     }
 
 }

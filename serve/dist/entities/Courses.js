@@ -35,7 +35,7 @@ __decorate([
     __metadata("design:type", Number)
 ], Courses.prototype, "duration", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(type => Courses_1, Courses => Courses.uni_courses),
+    (0, typeorm_1.OneToMany)(type => Courses_1, Courses => Courses.uni_courses, { onDelete: "CASCADE" }),
     __metadata("design:type", Array)
 ], Courses.prototype, "uni_courses", void 0);
 Courses = Courses_1 = __decorate([

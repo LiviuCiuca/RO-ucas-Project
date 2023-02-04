@@ -12,11 +12,13 @@ const uni_course_service_1 = require("./uni_course.service");
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const Uni_Course_1 = require("../entities/Uni_Course");
+const Universities_1 = require("../entities/Universities");
+const Courses_1 = require("../entities/Courses");
 let Uni_courseModule = class Uni_courseModule {
 };
 Uni_courseModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([Uni_Course_1.Uni_Courses])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([Uni_Course_1.Uni_Courses, Universities_1.Universities, Courses_1.Courses])],
         controllers: [
             uni_course_controller_1.Uni_courseController,
         ],

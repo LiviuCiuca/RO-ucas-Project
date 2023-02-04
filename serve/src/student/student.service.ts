@@ -24,11 +24,9 @@ export class StudentService {
     * @returns Promise<Student>
     */
     postStudent(studentDetails : createStudentParams ): Promise<Student> {
+        
         const newStudent = this.studentRepository.create({...studentDetails });
-        const studentExists = this.studentRepository.findOne({where: {username: studentDetails.username}});
-        if(studentExists) {
-            throw new BadRequestException('Student already exists');
-        }
+
         if(!studentDetails.username || !studentDetails.password){
             throw new BadRequestException('Missing required fields');
         }

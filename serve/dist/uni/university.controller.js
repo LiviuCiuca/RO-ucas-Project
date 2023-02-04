@@ -53,7 +53,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UniversityController.prototype, "updateUniversityById", null);
 UniversityController = __decorate([
-    (0, common_1.Controller)('university'),
+    (0, common_1.Controller)('/university'),
     __metadata("design:paramtypes", [university_service_1.UniversityService])
 ], UniversityController);
 exports.UniversityController = UniversityController;

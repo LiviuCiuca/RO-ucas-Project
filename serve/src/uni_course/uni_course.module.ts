@@ -1,16 +1,14 @@
 import { Uni_courseController } from './uni_course.controller';
 import { Uni_courseService } from './uni_course.service';
-/*
-https://docs.nestjs.com/modules
-*/
-
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Uni_Courses } from 'src/entities/Uni_Course';
+import { Universities } from 'src/entities/Universities';
+import { Courses } from 'src/entities/Courses';
 
 
 @Module({
-    imports: [TypeOrmModule.forFeature([Uni_Courses])],
+    imports: [TypeOrmModule.forFeature([Uni_Courses, Universities, Courses])],
     controllers: [
         Uni_courseController,],
     providers: [

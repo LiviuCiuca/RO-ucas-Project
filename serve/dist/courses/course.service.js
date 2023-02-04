@@ -29,21 +29,25 @@ let CourseService = class CourseService {
         }
         return allCourses;
     }
-    addCourse(uniId, courseDetails) {
-        const id = uniId;
-        if (this.courseRepository.findOne({ where: { id } })) {
-            const course = this.courseRepository.create(Object.assign({}, courseDetails));
-            return this.courseRepository.save(course);
-        }
-        else {
-            throw new common_1.NotFoundException('University not found');
-        }
+    async addCourse(courseDetails) {
+        const course = this.courseRepository.create(courseDetails);
+        const savedCourse = this.courseRepository.save(course);
+        return savedCourse;
     }
     deleteCourse(id) {
+        if (!this.courseRepository.findOne({ where: { id } })) {
+            throw new common_1.NotFoundException('Course not found');
+        }
         this.courseRepository.delete(id);
     }
     updateCourseById(id, courseDetails) {
+        if (!this.courseRepository.findOne({ where: { id } })) {
+            throw new common_1.NotFoundException('Course not found');
+        }
         this.courseRepository.update({ id }, Object.assign({}, courseDetails));
+    }
+    getAllCourses() {
+        return this.courseRepository.find();
     }
 };
 CourseService = __decorate([

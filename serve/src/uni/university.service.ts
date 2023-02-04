@@ -11,7 +11,8 @@ import { Repository } from 'typeorm';
 @Injectable()
 export class UniversityService { 
     constructor ( 
-        @InjectRepository(Universities) private universityRepository: Repository<Universities>
+        @InjectRepository(Universities)
+        private universityRepository: Repository<Universities>
     ){}
 
     //get all universities

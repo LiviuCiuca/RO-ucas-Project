@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { Student } from './Student';
 import { Uni_Courses } from './Uni_Course';
 
@@ -13,5 +13,8 @@ export class Enrollment {
 
     @ManyToOne(type => Uni_Courses, uni_course => uni_course.enrollments)
     uni_course: Uni_Courses;
+
+    @Column()
+    status: string;
 }
  //students cannot delete their enrollments, they apply and wait for the uni to accept or reject

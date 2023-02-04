@@ -3,23 +3,19 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Enrollment } from 'src/entities/Enrollments';
 import { Uni_Courses } from 'src/entities/Uni_Course';
 import { Repository } from 'typeorm';
+import { Student } from 'src/entities/Student';
 
 @Injectable()
 export class EnrollService {
-   
+    
     constructor(
         @InjectRepository(Enrollment)
         private enrollmentRepository: Repository<Enrollment>,
     ) {}
 
-        // you should see all the students that have applied to your uni
-        getEnrollmentsByUniversityId(universityId: number): Promise<Enrollment[]> {
-            const id = universityId;
-            const allEnrollments = this.enrollmentRepository.find({where: {id}});
-            if (!allEnrollments) {
-                throw new NotFoundException('University not found');
-            }
-            return allEnrollments;
+
+        getAll(): Promise<Enrollment[]> {
+            return this.enrollmentRepository.find({relations: [ 'student','uni_course']});
         }
         
 
@@ -32,9 +28,10 @@ export class EnrollService {
             return allEnrollments;
         }
 
-        apply(uni_course: Uni_Courses): Promise<Enrollment> {
+        apply(id:number ,student:Student, uni_course: Uni_Courses): Promise<Enrollment> {
             const enrollment = new Enrollment();
             enrollment.uni_course = uni_course;
+            enrollment.student = student;
 
             return this.enrollmentRepository.save(enrollment);
         } 

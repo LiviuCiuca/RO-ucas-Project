@@ -9,6 +9,7 @@ export class CourseService {
     constructor(
         @InjectRepository(Courses)
         private courseRepository: Repository<Courses>
+       
     ) {}
 
     getCoursesByUniId(uniId: number): Promise<Courses[]>{
@@ -21,16 +22,13 @@ export class CourseService {
     }
     
     //do i need to check uni id here? i`m logged in as uni..
-    addCourse(uniId: number, courseDetails: createCoursesParams): Promise<Courses>{
-        const id = uniId;
-        if(this.courseRepository.findOne({where: {id}})) {
-            const course = this.courseRepository.create({...courseDetails});
-            return this.courseRepository.save(course);
-        }
-        else {
-            throw new NotFoundException('University not found');
-        }
+    async addCourse( courseDetails: createCoursesParams) {
+        
+            const course = this.courseRepository.create(courseDetails);
+            const savedCourse = this.courseRepository.save(course);
+            return savedCourse;
     }
+    
 
     deleteCourse(id: number): void{
         if(!this.courseRepository.findOne({where: {id}})){
@@ -44,6 +42,10 @@ export class CourseService {
             throw new NotFoundException('Course not found');
         }
         this.courseRepository.update({ id }, {...courseDetails});
+    }
+
+    getAllCourses(): Promise<Courses[]>{
+        return this.courseRepository.find();
     }
 
 

@@ -11,6 +11,7 @@ import { Student } from './entities/Student';
 import { Universities } from './entities/Universities';
 import { Courses } from './entities/Courses';
 import { Enrollment } from './entities/Enrollments';
+import { Uni_Courses } from './entities/Uni_Course';
 
 @Module({
   imports: [
@@ -26,7 +27,7 @@ import { Enrollment } from './entities/Enrollments';
       username: 'root',
       password: 'Tastatura1!',
       database: 'students',
-      entities: [Student, Universities, Enrollment, Courses],
+      entities: [Student, Universities, Enrollment, Courses, Uni_Courses],
       synchronize: true,
     }),
   ],

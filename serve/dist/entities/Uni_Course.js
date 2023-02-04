@@ -13,6 +13,7 @@ exports.Uni_Courses = void 0;
 const typeorm_1 = require("typeorm");
 const Universities_1 = require("./Universities");
 const Courses_1 = require("./Courses");
+const Enrollments_1 = require("./Enrollments");
 let Uni_Courses = class Uni_Courses {
 };
 __decorate([
@@ -27,6 +28,10 @@ __decorate([
     (0, typeorm_1.ManyToOne)(type => Courses_1.Courses, course => course.uni_courses),
     __metadata("design:type", Courses_1.Courses)
 ], Uni_Courses.prototype, "course", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(type => Enrollments_1.Enrollment, enrollment => enrollment.uni_course),
+    __metadata("design:type", Array)
+], Uni_Courses.prototype, "enrollments", void 0);
 Uni_Courses = __decorate([
     (0, typeorm_1.Entity)()
 ], Uni_Courses);
