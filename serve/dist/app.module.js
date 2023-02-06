@@ -7,7 +7,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
-const uni_course_module_1 = require("./uni_course/uni_course.module");
 const course_module_1 = require("./courses/course.module");
 const enroll_module_1 = require("./enroll/enroll.module");
 const university_module_1 = require("./uni/university.module");
@@ -20,13 +19,11 @@ const Student_1 = require("./entities/Student");
 const Universities_1 = require("./entities/Universities");
 const Courses_1 = require("./entities/Courses");
 const Enrollments_1 = require("./entities/Enrollments");
-const Uni_Course_1 = require("./entities/Uni_Course");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            uni_course_module_1.Uni_courseModule,
             course_module_1.CourseModule,
             enroll_module_1.EnrollModule,
             university_module_1.UniversityModule,
@@ -37,8 +34,8 @@ AppModule = __decorate([
                 port: 3306,
                 username: 'root',
                 password: 'Tastatura1!',
-                database: 'students',
-                entities: [Student_1.Student, Universities_1.Universities, Enrollments_1.Enrollment, Courses_1.Courses, Uni_Course_1.Uni_Courses],
+                database: 'ro_ucas',
+                entities: [Student_1.Student, Universities_1.Universities, Enrollments_1.Enrollment, Courses_1.Courses],
                 synchronize: true,
             }),
         ],

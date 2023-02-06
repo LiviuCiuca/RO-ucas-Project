@@ -31,25 +31,9 @@ __decorate([
     __metadata("design:type", String)
 ], Universities.prototype, "location", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
-], Universities.prototype, "rating", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Universities.prototype, "description", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Universities.prototype, "image", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Universities.prototype, "website", void 0);
-__decorate([
-    (0, typeorm_1.OneToMany)(type => Universities_1, Universities => Universities.uni_courses, { onDelete: "CASCADE" }),
+    (0, typeorm_1.OneToMany)(type => Universities_1, university => university.courses, { onDelete: "CASCADE" }),
     __metadata("design:type", Array)
-], Universities.prototype, "uni_courses", void 0);
+], Universities.prototype, "courses", void 0);
 Universities = Universities_1 = __decorate([
     (0, typeorm_1.Entity)({ name: 'uni' })
 ], Universities);

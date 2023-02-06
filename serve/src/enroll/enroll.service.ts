@@ -1,9 +1,9 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Enrollment } from 'src/entities/Enrollments';
-import { Uni_Courses } from 'src/entities/Uni_Course';
 import { Repository } from 'typeorm';
 import { Student } from 'src/entities/Student';
+import { Courses } from 'src/entities/Courses';
 
 @Injectable()
 export class EnrollService {
@@ -28,13 +28,24 @@ export class EnrollService {
             return allEnrollments;
         }
 
-        apply(id:number ,student:Student, uni_course: Uni_Courses): Promise<Enrollment> {
+        async apply(student: Student, course: Courses): Promise<Enrollment> {
             const enrollment = new Enrollment();
-            enrollment.uni_course = uni_course;
+            enrollment.course = course;
             enrollment.student = student;
-
-            return this.enrollmentRepository.save(enrollment);
-        } 
+        
+            switch (true) {
+                case !student:
+                    throw new NotFoundException('Student does not exist');
+                case !course:
+                    throw new NotFoundException('Course does not exist');
+                default:
+                    break;
+            }
+        
+            const savedEnrollment = await this.enrollmentRepository.save(enrollment);
+            return savedEnrollment;
+        }
+        
    
       
         deleteEnrollmentsByStudentId(studentId: number) {
@@ -46,5 +57,13 @@ export class EnrollService {
             this.enrollmentRepository.delete(id);
         }
 
+        updateStatus(studentId: number, status: string) {
+            const id = studentId;
+            const enroledStudent = this.enrollmentRepository.find({where: {id}});
+            if (!enroledStudent) {
+                throw new NotFoundException('Student not found');
+            }
+            this.enrollmentRepository.update(id, {status: status});
+        }
 }
 

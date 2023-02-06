@@ -1,5 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from "typeorm"; 
-import { Uni_Courses } from "./Uni_Course";
+import { Enrollment } from "./Enrollments";
+import { Universities } from "./Universities";
+
 
 //only unis can add courses/ delete courses
 @Entity()
@@ -19,8 +21,11 @@ export class Courses{
     @Column()
     duration: number;
     
-    @OneToMany(type => Courses, Courses => Courses.uni_courses,{onDelete: "CASCADE"})
-    uni_courses: Uni_Courses[];
+    @OneToMany(type => Enrollment, enrollment => enrollment.course, {onDelete: "CASCADE"})
+    enrollments: Enrollment[];
+
+    @ManyToOne(type => Universities, university => university.courses)
+    university: Universities[];
     
 
 }

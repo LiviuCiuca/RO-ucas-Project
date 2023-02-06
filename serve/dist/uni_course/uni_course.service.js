@@ -26,10 +26,17 @@ let Uni_courseService = class Uni_courseService {
         this.courseRepository = courseRepository;
     }
     getUni_Course() {
-        return this.uni_courseRepository.find({ relations: ["university", "course"] });
+        return this.uni_courseRepository.find({ relations: ["university", "course", "enrollments"] });
     }
-    getUni_CoursesByUniId(uniId) {
-        const id = uniId;
+    async getEnrollmentsByUniversityId(id) {
+        const enrollments = await this.uni_courseRepository
+            .createQueryBuilder("uni_course")
+            .leftJoinAndSelect("uni_course.enrollments", "enrollment")
+            .where("uni_course.university = :id", { id })
+            .getMany();
+        return enrollments;
+    }
+    getUni_CoursesByUniId(id) {
         const allUni_Courses = this.uni_courseRepository.find({ where: { id } });
         if (!allUni_Courses) {
             throw new common_1.NotFoundException('University not found');
@@ -37,20 +44,21 @@ let Uni_courseService = class Uni_courseService {
         return allUni_Courses;
     }
     async addUni_Course(id, uni_course) {
-        const university = await this.universityRepository.findOneBy({ id });
-        if (!university) {
-            throw new common_1.NotFoundException('University not found');
-        }
-        const newUni_Course = this.uni_courseRepository.create(Object.assign(Object.assign({}, uni_course), { university }));
+        const university = await this.foundUni(id);
+        const course = await this.courseRepository.create();
+        const newUni_Course = this.uni_courseRepository.create(Object.assign(Object.assign({}, uni_course), { university, course }));
         return this.uni_courseRepository.save(newUni_Course);
         ;
     }
     deleteUni_Course(id) {
         this.uni_courseRepository.delete(id);
     }
-    selectedUni_Course(id) {
-        const uni_courseId = this.uni_courseRepository.findOneBy({ id });
-        return uni_courseId;
+    foundUni(id) {
+        const University = this.universityRepository.findOneBy({ id });
+        if (!University) {
+            throw new common_1.NotFoundException('University not found');
+        }
+        return University;
     }
 };
 Uni_courseService = __decorate([

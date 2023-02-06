@@ -1,6 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { Courses } from './Courses';
 import { Student } from './Student';
-import { Uni_Courses } from './Uni_Course';
+
 
 @Entity()
 export class Enrollment {
@@ -11,8 +12,8 @@ export class Enrollment {
     @ManyToOne(type => Student, student => student.enrollments)
     student: Student;
 
-    @ManyToOne(type => Uni_Courses, uni_course => uni_course.enrollments)
-    uni_course: Uni_Courses;
+    @ManyToOne(type => Courses, course => course.enrollments)
+    course: Courses;
 
     @Column()
     status: string;

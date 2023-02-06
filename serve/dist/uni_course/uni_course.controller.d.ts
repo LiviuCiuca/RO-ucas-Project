@@ -5,4 +5,5 @@ export declare class Uni_courseController {
     constructor(uni_co: Uni_courseService);
     addUni_Course(id: number, uni_course: createUni_CoursesParams): Promise<import("../entities/Uni_Course").Uni_Courses>;
     getUni_Course(): Promise<import("../entities/Uni_Course").Uni_Courses[]>;
+    getEnrollmentsByUniversityId(id: number): Promise<import("../entities/Uni_Course").Uni_Courses[]>;
 }

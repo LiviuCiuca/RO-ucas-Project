@@ -9,8 +9,9 @@ export declare class Uni_courseService {
     private courseRepository;
     constructor(uni_courseRepository: Repository<Uni_Courses>, universityRepository: Repository<Universities>, courseRepository: Repository<Courses>);
     getUni_Course(): Promise<Uni_Courses[]>;
-    getUni_CoursesByUniId(uniId: number): Promise<Uni_Courses[]>;
+    getEnrollmentsByUniversityId(id: number): Promise<Uni_Courses[]>;
+    getUni_CoursesByUniId(id: number): Promise<Uni_Courses[]>;
     addUni_Course(id: number, uni_course: createUni_CoursesDto): Promise<Uni_Courses>;
     deleteUni_Course(id: number): void;
-    selectedUni_Course(id: number): Promise<Uni_Courses>;
+    foundUni(id: number): Promise<Universities>;
 }

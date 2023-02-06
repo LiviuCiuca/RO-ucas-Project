@@ -1,6 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from "typeorm";
-import { Enrollment } from "./Enrollments";
-import { Uni_Courses } from "./Uni_Course";
+import { Courses } from "./Courses";
 
 @Entity( {name: 'uni'} )
 export class Universities {
@@ -17,23 +16,21 @@ export class Universities {
     @Column()
     location: string;
 
-    @Column()
-    rating: number;
-
-    @Column()
-    description: string;
-
-    @Column()
-    image: string;
-
-    @Column()
-    website: string;
-
-    @OneToMany(type => Universities, Universities => Universities.uni_courses,{onDelete: "CASCADE"})
-    uni_courses: Uni_Courses[];
+    @OneToMany(type => Universities, university => university.courses,{onDelete: "CASCADE"})
+    courses: Courses[];
 
 
+// @Column()
+//     rating: number;
 
+//     @Column()
+//     description: string;
+
+//     @Column()
+//     image: string;
+
+//     @Column()
+//     website: string;
     // @Column()
     // rating: number;
 

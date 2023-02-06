@@ -25,6 +25,9 @@ let Uni_courseController = class Uni_courseController {
     getUni_Course() {
         return this.uni_co.getUni_Course();
     }
+    getEnrollmentsByUniversityId(id) {
+        return this.uni_co.getEnrollmentsByUniversityId(id);
+    }
 };
 __decorate([
     (0, common_1.Post)(':id'),
@@ -40,6 +43,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], Uni_courseController.prototype, "getUni_Course", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", void 0)
+], Uni_courseController.prototype, "getEnrollmentsByUniversityId", null);
 Uni_courseController = __decorate([
     (0, common_1.Controller)('/university/course'),
     __metadata("design:paramtypes", [uni_course_service_1.Uni_courseService])
