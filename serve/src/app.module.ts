@@ -1,7 +1,7 @@
-import { CourseModule } from './courses/course.module';
-import { EnrollModule } from './enroll/enroll.module';
-import { UniversityModule } from './uni/university.module';
-import { StudentModule } from './student/student.module';
+import { CourseModule } from './logic/courses/course.module';
+import { EnrollModule } from './logic/enroll/enroll.module';
+import { UniversityModule } from './logic/uni/university.module';
+import { StudentModule } from './logic/student/student.module';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';

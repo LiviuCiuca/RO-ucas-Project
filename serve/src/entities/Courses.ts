@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from "typeorm"; 
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, JoinColumn } from "typeorm"; 
 import { Enrollment } from "./Enrollments";
 import { Universities } from "./Universities";
 
@@ -21,11 +21,17 @@ export class Courses{
     @Column()
     duration: number;
     
-    @OneToMany(type => Enrollment, enrollment => enrollment.course, {onDelete: "CASCADE"})
+    @OneToMany(type => Enrollment, enrollment => enrollment.course, { 
+        cascade: true,
+        onDelete: 'CASCADE',
+      })
     enrollments: Enrollment[];
 
-    @ManyToOne(type => Universities, university => university.courses)
-    university: Universities[];
+    @ManyToOne(type => Universities, university => university.courses,{ 
+      cascade: true,
+      onDelete: 'CASCADE',
+    })
+    university: Universities;
     
 
 }

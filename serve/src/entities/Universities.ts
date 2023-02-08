@@ -16,8 +16,11 @@ export class Universities {
     @Column()
     location: string;
 
-    @OneToMany(type => Universities, university => university.courses,{onDelete: "CASCADE"})
+    @OneToMany(type => Universities, university => university.courses,{
+        onDelete: 'CASCADE',
+      })
     courses: Courses[];
+  
 
 
 // @Column()

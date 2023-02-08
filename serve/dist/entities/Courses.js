@@ -36,12 +36,18 @@ __decorate([
     __metadata("design:type", Number)
 ], Courses.prototype, "duration", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(type => Enrollments_1.Enrollment, enrollment => enrollment.course, { onDelete: "CASCADE" }),
+    (0, typeorm_1.OneToMany)(type => Enrollments_1.Enrollment, enrollment => enrollment.course, {
+        cascade: true,
+        onDelete: 'CASCADE',
+    }),
     __metadata("design:type", Array)
 ], Courses.prototype, "enrollments", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(type => Universities_1.Universities, university => university.courses),
-    __metadata("design:type", Array)
+    (0, typeorm_1.ManyToOne)(type => Universities_1.Universities, university => university.courses, {
+        cascade: true,
+        onDelete: 'CASCADE',
+    }),
+    __metadata("design:type", Universities_1.Universities)
 ], Courses.prototype, "university", void 0);
 Courses = __decorate([
     (0, typeorm_1.Entity)()

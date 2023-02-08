@@ -31,7 +31,7 @@ __decorate([
     __metadata("design:type", Number)
 ], Student.prototype, "age", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(type => Enrollments_1.Enrollment, enrollment => enrollment.student),
+    (0, typeorm_1.OneToMany)(type => Enrollments_1.Enrollment, enrollment => enrollment.student, { onDelete: 'CASCADE', }),
     __metadata("design:type", Array)
 ], Student.prototype, "enrollments", void 0);
 Student = __decorate([

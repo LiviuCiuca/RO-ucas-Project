@@ -7,10 +7,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
-const course_module_1 = require("./courses/course.module");
-const enroll_module_1 = require("./enroll/enroll.module");
-const university_module_1 = require("./uni/university.module");
-const student_module_1 = require("./student/student.module");
+const course_module_1 = require("./logic/courses/course.module");
+const enroll_module_1 = require("./logic/enroll/enroll.module");
+const university_module_1 = require("./logic/uni/university.module");
+const student_module_1 = require("./logic/student/student.module");
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const app_controller_1 = require("./app.controller");

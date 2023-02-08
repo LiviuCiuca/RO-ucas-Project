@@ -15,7 +15,7 @@ export class Student {
     @Column()
     age: number;
 
-    @OneToMany(type => Enrollment, enrollment => enrollment.student)
+    @OneToMany(type => Enrollment, enrollment => enrollment.student, {onDelete: 'CASCADE',})
     enrollments: Enrollment[];
 
   

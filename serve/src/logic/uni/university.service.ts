@@ -4,6 +4,7 @@ https://docs.nestjs.com/providers#services
 
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { get } from 'http';
 import { Universities } from 'src/entities/Universities';
 import { createUniParams } from 'src/utils/uniTypes';
 import { Repository } from 'typeorm';
@@ -16,11 +17,11 @@ export class UniversityService {
     ){}
 
     //get all universities
-    getUni() {
+    getUni(): Promise<Universities[]> {
       return this.universityRepository.find();
     }
 
-    getUniById(id: number) {
+    getUniById(id: number): Promise<Universities> {
         const uni = this.universityRepository.findOne({where: {id}});
         if(!uni)
             throw new Error('University not found');
@@ -29,26 +30,27 @@ export class UniversityService {
     }
 
     //post a new university to mysql database if not return status code 404 
-    postUni(uniDetails: createUniParams) {
+    postUni(uniDetails: createUniParams): Promise<Universities> {
         const newUni = this.universityRepository.create({...uniDetails});
+        if(!newUni){
+            throw new Error('University not created');
+        }
 
         return this.universityRepository.save(newUni);
     }
     
     // //get a university by course
-    // getUniByCourse(courses: string) {
-    //     const uni = this.universityRepository.findOne({where: {courses}});
+   
 
-    //     return uni;
-    // }
-
-    //update a university by id 
+   
     updateUniById(id: number, uniDetails: createUniParams) {
+        this.getUniById(id);
         this.universityRepository.update({ id }, {...uniDetails});
     }
 
-    //delete a university by id
+   
     deleteUni(id: number) {
+        this.getUniById(id);
         this.universityRepository.delete(id);
     }
 

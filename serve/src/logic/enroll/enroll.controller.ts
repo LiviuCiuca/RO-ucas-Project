@@ -12,18 +12,18 @@ export class EnrollmentController {
         ) {}
 
     @Get()
-    getEnrollmentsByUniId() {
+    getEnrollments() {
         return this.enrollmentService.getAll();
     }
 
-    @Get()
-    getEnrollmentsByStudentId(@Body('studentId') studentId: number) {
-        return this.enrollmentService.getEnrollmentsByStudentId(studentId);
+    @Get('/:id')
+    getEnrollmentsByStudentId(@Body('id') id: number) {
+        return this.enrollmentService.getEnrollmentsByStudentId(id);
     }
 
-    @Post('/post')
-    apply(@Body('student') Student: Student, @Body('uni_course') course: Courses ) {
-        return this.enrollmentService.apply(Student, course);
+    @Post()
+    apply(@Body('student') student: Student, @Body('course') course: Courses ) {
+        return this.enrollmentService.apply(student, course);
     }
 
 }

@@ -5,6 +5,6 @@ export declare class EnrollmentController {
     private enrollmentService;
     constructor(enrollmentService: EnrollService);
     getEnrollmentsByUniId(): Promise<import("../entities/Enrollments").Enrollment[]>;
-    getEnrollmentsByStudentId(studentId: number): Promise<import("../entities/Enrollments").Enrollment[]>;
+    getEnrollmentsByStudentId(id: number): Promise<import("../entities/Enrollments").Enrollment[]>;
     apply(Student: Student, course: Courses): Promise<import("../entities/Enrollments").Enrollment>;
 }

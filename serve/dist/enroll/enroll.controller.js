@@ -25,8 +25,8 @@ let EnrollmentController = class EnrollmentController {
     getEnrollmentsByUniId() {
         return this.enrollmentService.getAll();
     }
-    getEnrollmentsByStudentId(studentId) {
-        return this.enrollmentService.getEnrollmentsByStudentId(studentId);
+    getEnrollmentsByStudentId(id) {
+        return this.enrollmentService.getEnrollmentsByStudentId(id);
     }
     apply(Student, course) {
         return this.enrollmentService.apply(Student, course);
@@ -39,8 +39,8 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], EnrollmentController.prototype, "getEnrollmentsByUniId", null);
 __decorate([
-    (0, decorators_1.Get)(),
-    __param(0, (0, common_1.Body)('studentId')),
+    (0, decorators_1.Get)('/:id'),
+    __param(0, (0, common_1.Body)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)

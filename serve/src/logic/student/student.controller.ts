@@ -3,7 +3,7 @@ import { CreateStudentDto } from 'src/dtos/createStudentDto';
 import { updateStudentDto } from 'src/dtos/updateStudentDto';
 import { StudentService } from './student.service';
 
-@Controller('student')
+@Controller('/student')
 export class StudentController {
 
     constructor(

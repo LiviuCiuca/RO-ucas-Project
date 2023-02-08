@@ -7,5 +7,5 @@ export declare class Courses {
     price: number;
     duration: number;
     enrollments: Enrollment[];
-    university: Universities[];
+    university: Universities;
 }

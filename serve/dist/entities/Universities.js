@@ -31,7 +31,9 @@ __decorate([
     __metadata("design:type", String)
 ], Universities.prototype, "location", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(type => Universities_1, university => university.courses, { onDelete: "CASCADE" }),
+    (0, typeorm_1.OneToMany)(type => Universities_1, university => university.courses, {
+        onDelete: 'CASCADE',
+    }),
     __metadata("design:type", Array)
 ], Universities.prototype, "courses", void 0);
 Universities = Universities_1 = __decorate([

@@ -73,7 +73,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], StudentController.prototype, "deleteStudentById", null);
 StudentController = __decorate([
-    (0, common_1.Controller)('student'),
+    (0, common_1.Controller)('/student'),
     __metadata("design:paramtypes", [student_service_1.StudentService])
 ], StudentController);
 exports.StudentController = StudentController;

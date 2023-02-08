@@ -22,7 +22,7 @@ let EnrollService = class EnrollService {
         this.enrollmentRepository = enrollmentRepository;
     }
     getAll() {
-        return this.enrollmentRepository.find({ relations: ['student', 'uni_course'] });
+        return this.enrollmentRepository.find({ relations: ['student', 'course'] });
     }
     getEnrollmentsByStudentId(studentId) {
         const id = studentId;
@@ -47,19 +47,17 @@ let EnrollService = class EnrollService {
         const savedEnrollment = await this.enrollmentRepository.save(enrollment);
         return savedEnrollment;
     }
-    deleteEnrollmentsByStudentId(studentId) {
+    async deleteEnrollmentsByStudentId(studentId) {
         const id = studentId;
-        const enroledStudent = this.enrollmentRepository.find({ where: { id } });
-        if (!enroledStudent) {
+        const enrolledStudent = await this.enrollmentRepository.findOne({ where: { id: studentId } });
+        if (!enrolledStudent) {
             throw new common_1.NotFoundException('Student not found');
         }
         this.enrollmentRepository.delete(id);
     }
-    updateStatus(studentId, status) {
-        const id = studentId;
-        const enroledStudent = this.enrollmentRepository.find({ where: { id } });
-        if (!enroledStudent) {
-            throw new common_1.NotFoundException('Student not found');
+    updateStatus(id, status) {
+        if (!id) {
+            throw new common_1.NotFoundException('Enrollment not found');
         }
         this.enrollmentRepository.update(id, { status: status });
     }
