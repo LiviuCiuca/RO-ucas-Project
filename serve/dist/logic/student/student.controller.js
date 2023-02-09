@@ -28,13 +28,14 @@ let StudentController = class StudentController {
         return this.studentService.getStudentById(id);
     }
     postStudent(studentDto) {
-        this.studentService.postStudent(studentDto);
+        return this.studentService.postStudent(studentDto);
     }
     updateStudentById(id, studentDto) {
         return this.studentService.updateStudentById(id, studentDto);
     }
     deleteStudentById(id) {
-        this.studentService.deleteStudentById(id);
+        common_1.HttpStatus.NO_CONTENT;
+        return this.studentService.deleteStudentById(id);
     }
 };
 __decorate([

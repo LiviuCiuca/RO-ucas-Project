@@ -12,6 +12,7 @@ import { Courses } from './entities/Courses';
 import { Enrollment } from './entities/Enrollments';
 
 
+
 @Module({
   imports: [
    
@@ -34,3 +35,5 @@ import { Enrollment } from './entities/Enrollments';
   providers: [AppService],
 })
 export class AppModule { }
+
+

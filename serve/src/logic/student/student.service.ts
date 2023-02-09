@@ -1,4 +1,5 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpCode } from '@nestjs/common/decorators';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Student } from 'src/entities/Student';
 import { createStudentParams, updateStudentParams } from 'src/utils/studentTypes';
@@ -41,6 +42,9 @@ export class StudentService {
     */
     getStudentById(id: number): Promise<Student> {
         const student = this.studentRepository.findOne({where: {id}});
+        if(!student){
+            throw new BadRequestException('Student not found');
+        }
         return student;
     }
     
@@ -48,10 +52,10 @@ export class StudentService {
     * Update an existing student by id
     * @param id: number - the id of the student to update
     * @param studentDetails: updateStudentParams - the new data for the student
-    * @returns void
     */
-    updateStudentById(id: number ,studentDetails: updateStudentParams) {
-      this.studentRepository.update({ id }, {...studentDetails});
+    updateStudentById(id: number ,studentDetails: updateStudentParams){
+        this.getStudentById(id);
+        return this.studentRepository.update({ id }, {...studentDetails});
       //if user changes just one field, just that field gets updated 
     }
 
@@ -62,9 +66,13 @@ export class StudentService {
     * @returns void
     */ 
     deleteStudentById(id:number) {
-        this.studentRepository.delete({ id });
+        this.getStudentById(id);
+        const success = this.studentRepository.delete({ id });
+        if(!success){
+            throw new BadRequestException('deleted not successful');
+                }
+        return success;
     }
-
  }
 
  //curl command 

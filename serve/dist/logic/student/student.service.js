@@ -33,13 +33,22 @@ let StudentService = class StudentService {
     }
     getStudentById(id) {
         const student = this.studentRepository.findOne({ where: { id } });
+        if (!student) {
+            throw new common_1.BadRequestException('Student not found');
+        }
         return student;
     }
     updateStudentById(id, studentDetails) {
-        this.studentRepository.update({ id }, Object.assign({}, studentDetails));
+        this.getStudentById(id);
+        return this.studentRepository.update({ id }, Object.assign({}, studentDetails));
     }
     deleteStudentById(id) {
-        this.studentRepository.delete({ id });
+        this.getStudentById(id);
+        const success = this.studentRepository.delete({ id });
+        if (!success) {
+            throw new common_1.BadRequestException('deleted not successful');
+        }
+        return success;
     }
 };
 StudentService = __decorate([

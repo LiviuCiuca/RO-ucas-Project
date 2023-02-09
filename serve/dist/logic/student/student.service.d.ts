@@ -7,6 +7,6 @@ export declare class StudentService {
     getAllStudents(): Promise<Student[]>;
     postStudent(studentDetails: createStudentParams): Promise<Student>;
     getStudentById(id: number): Promise<Student>;
-    updateStudentById(id: number, studentDetails: updateStudentParams): void;
-    deleteStudentById(id: number): void;
+    updateStudentById(id: number, studentDetails: updateStudentParams): Promise<import("typeorm").UpdateResult>;
+    deleteStudentById(id: number): Promise<import("typeorm").DeleteResult>;
 }

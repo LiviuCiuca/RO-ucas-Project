@@ -1,4 +1,4 @@
-import { Controller, Get, Post , Body, Put, Param, ParseIntPipe, Delete } from '@nestjs/common';
+import { Controller, Get, Post , Body, Put, Param, ParseIntPipe, Delete, HttpStatus } from '@nestjs/common';
 import { CreateStudentDto } from 'src/dtos/createStudentDto';
 import { updateStudentDto } from 'src/dtos/updateStudentDto';
 import { StudentService } from './student.service';
@@ -22,7 +22,7 @@ export class StudentController {
 
     @Post('')
     postStudent(@Body() studentDto: CreateStudentDto) {
-        this.studentService.postStudent(studentDto);
+       return this.studentService.postStudent(studentDto);
     }
 
     @Put(':id')
@@ -32,6 +32,8 @@ export class StudentController {
 
     @Delete(':id')
     deleteStudentById(@Param('id', ParseIntPipe) id: number) {
-        this.studentService.deleteStudentById(id);
+        HttpStatus.NO_CONTENT;
+        return this.studentService.deleteStudentById(id);
+
     }
  }

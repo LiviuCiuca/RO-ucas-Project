@@ -6,7 +6,7 @@ export declare class StudentController {
     constructor(studentService: StudentService);
     getStudents(): Promise<import("../../entities/Student").Student[]>;
     getStudentById(id: number): Promise<import("../../entities/Student").Student>;
-    postStudent(studentDto: CreateStudentDto): void;
-    updateStudentById(id: number, studentDto: updateStudentDto): void;
-    deleteStudentById(id: number): void;
+    postStudent(studentDto: CreateStudentDto): Promise<import("../../entities/Student").Student>;
+    updateStudentById(id: number, studentDto: updateStudentDto): Promise<import("typeorm").UpdateResult>;
+    deleteStudentById(id: number): Promise<import("typeorm").DeleteResult>;
 }
