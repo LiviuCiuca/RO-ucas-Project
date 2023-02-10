@@ -8,5 +8,5 @@ export declare class StudentController {
     getStudentById(id: number): Promise<import("../../entities/Student").Student>;
     postStudent(studentDto: CreateStudentDto): Promise<import("../../entities/Student").Student>;
     updateStudentById(id: number, studentDto: updateStudentDto): Promise<import("typeorm").UpdateResult>;
-    deleteStudentById(id: number): Promise<import("typeorm").DeleteResult>;
+    deleteStudentById(id: number): Promise<void>;
 }

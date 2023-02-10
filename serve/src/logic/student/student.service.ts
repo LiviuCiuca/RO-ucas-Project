@@ -1,4 +1,4 @@
-import { BadRequestException, HttpStatus, Injectable } from '@nestjs/common';
+import { BadRequestException, ConflictException, HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { HttpCode } from '@nestjs/common/decorators';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Student } from 'src/entities/Student';
@@ -24,15 +24,14 @@ export class StudentService {
     * @param studentDetails : createStudentParams  - the student data to create
     * @returns Promise<Student>
     */
-    postStudent(studentDetails : createStudentParams ): Promise<Student> {
-        
+    async postStudent(studentDetails: createStudentParams): Promise<Student> {
+        // const existingStudent = await this.studentRepository.findOne({ where: {id: studentDetails.id} });
+        // if (existingStudent) {
+        //     throw new ConflictException('Student already exists');
+        // }
+    
         const newStudent = this.studentRepository.create({...studentDetails });
-
-        if(!studentDetails.username || !studentDetails.password){
-            throw new BadRequestException('Missing required fields');
-        }
         return this.studentRepository.save(newStudent);
-        //save() is async method
     }
     
     /**
@@ -40,38 +39,49 @@ export class StudentService {
     * @param id: number - the id of the student to retrieve
     * @returns Promise<Student>
     */
-    getStudentById(id: number): Promise<Student> {
-        const student = this.studentRepository.findOne({where: {id}});
-        if(!student){
-            throw new BadRequestException('Student not found');
+    async getStudentById(id: number): Promise<Student> {
+        const student = await this.studentRepository.findOne({where: {id}});
+        if(student){
+            return student;
         }
-        return student;
+        throw new HttpException('Student not found', HttpStatus.NOT_FOUND);
     }
     
+    
     /**
-    * Update an existing student by id
+    * This way, if the student is not found, the error will be propagated up the call stack and the catch block will catch it, 
+    * throwing the "Student not found" error. 
     * @param id: number - the id of the student to update
     * @param studentDetails: updateStudentParams - the new data for the student
     */
-    updateStudentById(id: number ,studentDetails: updateStudentParams){
-        this.getStudentById(id);
-        return this.studentRepository.update({ id }, {...studentDetails});
-      //if user changes just one field, just that field gets updated 
-    }
-
+    async updateStudentById(id: number ,studentDetails: updateStudentParams) {
+        try {
+          await this.getStudentById(id);
+          return await this.studentRepository.update({ id }, {...studentDetails});
+        } catch (error) {
+          if (error instanceof HttpException) {
+            throw error;
+          }
+          throw new HttpException('Could not update student', HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+      }
+      
     /**
     * Delete a student by id, this function should be used with caution 
     * as it will delete all the records associated with the student.
     * @param id: number - the student id to delete
     * @returns void
     */ 
-    deleteStudentById(id:number) {
-        this.getStudentById(id);
-        const success = this.studentRepository.delete({ id });
-        if(!success){
-            throw new BadRequestException('deleted not successful');
-                }
-        return success;
+    async deleteStudentById(id: number): Promise<void> {
+        try {
+          const student = await this.getStudentById(id);
+          await this.studentRepository.delete({ id });
+        } catch (error) {
+          if (error instanceof HttpException) {
+          throw error;
+          }
+          throw new BadRequestException('Delete not successful');
+        }
     }
  }
 

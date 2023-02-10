@@ -24,31 +24,40 @@ let StudentService = class StudentService {
     getAllStudents() {
         return this.studentRepository.find();
     }
-    postStudent(studentDetails) {
+    async postStudent(studentDetails) {
         const newStudent = this.studentRepository.create(Object.assign({}, studentDetails));
-        if (!studentDetails.username || !studentDetails.password) {
-            throw new common_1.BadRequestException('Missing required fields');
-        }
         return this.studentRepository.save(newStudent);
     }
-    getStudentById(id) {
-        const student = this.studentRepository.findOne({ where: { id } });
-        if (!student) {
-            throw new common_1.BadRequestException('Student not found');
+    async getStudentById(id) {
+        const student = await this.studentRepository.findOne({ where: { id } });
+        if (student) {
+            return student;
         }
-        return student;
+        throw new common_1.HttpException('Student not found', common_1.HttpStatus.NOT_FOUND);
     }
-    updateStudentById(id, studentDetails) {
-        this.getStudentById(id);
-        return this.studentRepository.update({ id }, Object.assign({}, studentDetails));
-    }
-    deleteStudentById(id) {
-        this.getStudentById(id);
-        const success = this.studentRepository.delete({ id });
-        if (!success) {
-            throw new common_1.BadRequestException('deleted not successful');
+    async updateStudentById(id, studentDetails) {
+        try {
+            await this.getStudentById(id);
+            return await this.studentRepository.update({ id }, Object.assign({}, studentDetails));
         }
-        return success;
+        catch (error) {
+            if (error instanceof common_1.HttpException) {
+                throw error;
+            }
+            throw new common_1.HttpException('Could not update student', common_1.HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    async deleteStudentById(id) {
+        try {
+            const student = await this.getStudentById(id);
+            await this.studentRepository.delete({ id });
+        }
+        catch (error) {
+            if (error instanceof common_1.HttpException) {
+                throw error;
+            }
+            throw new common_1.BadRequestException('Delete not successful');
+        }
     }
 };
 StudentService = __decorate([
