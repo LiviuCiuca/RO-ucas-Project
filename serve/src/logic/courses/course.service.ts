@@ -1,6 +1,6 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Any, Repository } from 'typeorm';
 import { Courses } from 'src/entities/Courses';
 import { createCoursesParams } from 'src/utils/coursesTypes';
 import { Universities } from 'src/entities/Universities';
@@ -14,12 +14,13 @@ export class CourseService {
         private uniRepository: Repository<Universities>
     ) {}
 
-    findUniById(id: number): Promise<Universities> {
-        const uni = this.uniRepository.findOne({where: {id}});
-        if(!uni){
-            throw new NotFoundException('Uni not found');
+    async findCourse(id: number): Promise<Courses> {
+        const course = await this.courseRepository.findOne({where: {id}});
+
+        if(!course){
+            throw new NotFoundException('Course not found');
         }
-        return uni;
+        return course;
     }
 
     getAllCourses(): Promise<Courses[]>{
@@ -27,37 +28,51 @@ export class CourseService {
             relations: ['university','enrollments']});
     }
 
-    getCourseByUniId(id: number): Promise<Courses[]>{
-        if(this.findUniById(id)){
-        return this.courseRepository.find({
-            where: {university: {id}},
-            relations: ['university','enrollments']});
+    async getCourseByUniId(id: number): Promise<Courses[]>{
+        const courses = await this.courseRepository.find({
+          where: {university: {id}},
+          relations: ['university','enrollments']});
+        if(courses.length === 0){
+          throw new NotFoundException('Course not found');
         }
-    }
+        return courses;
+      }
 
-    async addCourse( id: number, courseDetails: createCoursesParams): Promise<Courses>{
-        const university = await this.findUniById(id);
-
+    async addCourse(id: number, courseDetails: createCoursesParams): Promise<Courses> {
+        const university = await this.uniRepository.findOneBy({id});
+      
         const course = this.courseRepository.create({...courseDetails, university});
-        
-        const savedCourse = await this.courseRepository.save(course);
+      
+        switch (true) {
+          case (!courseDetails.name || !courseDetails.description || !courseDetails.price || !courseDetails.duration):
+            throw new HttpException('Cannot POST /course', HttpStatus.BAD_REQUEST);
+          case (!university):
+            throw new HttpException('University with the specified ID not found', HttpStatus.NOT_FOUND);
+          default:
+            const savedCourse = await this.courseRepository.save(course);
+            return {...savedCourse, id: savedCourse.id};
+        }
+      }
+      
+
+    async deleteCourse(id: number) {
+        const course = await this.courseRepository.findOne({where: {id}});
        
-        return savedCourse;
-    }
-    
-
-    deleteCourse(id: number): void{
-        if(!this.courseRepository.findOne({where: {id}})){
-            throw new NotFoundException('Course not found');
+        if(course){
+            const deleted = await this.courseRepository.delete({ id });
+            return {message: 'deleted succesfully', course: deleted};
         }
-        this.courseRepository.delete(id);
+        else {
+            throw new NotFoundException('Course not found');
+        }  
     }
 
-    updateCourseById(id: number, courseDetails: createCoursesParams): void{
-        if(!this.courseRepository.findOne({where: {id}})){
-            throw new NotFoundException('Course not found');
-        }
-        this.courseRepository.update({ id }, {...courseDetails});
+    async updateCourseById(id: number, courseDetails: createCoursesParams){
+        const course = await this.findCourse(id);
+
+        const updatedCourse = await this.courseRepository.update({ id }, {...courseDetails});
+       
+        return {message: 'updated succesfully', course: updatedCourse};
     }
 
    

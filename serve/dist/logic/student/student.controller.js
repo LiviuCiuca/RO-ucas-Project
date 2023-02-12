@@ -34,7 +34,6 @@ let StudentController = class StudentController {
         return this.studentService.updateStudentById(id, studentDto);
     }
     deleteStudentById(id) {
-        common_1.HttpStatus.NO_CONTENT;
         return this.studentService.deleteStudentById(id);
     }
 };

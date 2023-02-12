@@ -88,9 +88,7 @@ def test_get_student_by_non_existent_id():
     url, _, _ = setup()
 
     student_id = 999999
-
     url = f"{url}/{student_id}"
-
     response = requests.get(url)
 
     assert response.status_code == 404
@@ -100,9 +98,7 @@ def test_update_student_with_non_existent_id():
     url, payload, headers = setup()
 
     student_id = 999999
-
     url = f"{url}/{student_id}"
-
     response = requests.put(url, json=payload, headers=headers)
 
     assert response.status_code == 404
@@ -112,10 +108,9 @@ def test_delete_student_with_non_existent_id():
     url, _, _ = setup()
 
     student_id = 999999
-
     url = f"{url}/{student_id}"
-
     response = requests.delete(url)
 
     assert response.status_code == 404
     assert "Student not found" in response.json()["message"]
+

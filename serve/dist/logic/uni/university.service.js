@@ -24,26 +24,38 @@ let UniversityService = class UniversityService {
     getUni() {
         return this.universityRepository.find();
     }
-    getUniById(id) {
-        const uni = this.universityRepository.findOne({ where: { id } });
-        if (!uni)
-            throw new Error('University not found');
-        return uni;
+    async getUniById(id) {
+        const uni = await this.universityRepository.findOne({ where: { id } });
+        if (uni) {
+            return uni;
+        }
+        throw new common_1.HttpException('University not found', common_1.HttpStatus.NOT_FOUND);
     }
     postUni(uniDetails) {
         const newUni = this.universityRepository.create(Object.assign({}, uniDetails));
-        if (!newUni) {
-            throw new Error('University not created');
+        switch (true) {
+            case (!uniDetails.name || !uniDetails.location || !uniDetails.email):
+                throw new common_1.HttpException('Missing field(s) in request', common_1.HttpStatus.BAD_REQUEST);
+            default:
+                return this.universityRepository.save(newUni);
         }
-        return this.universityRepository.save(newUni);
     }
-    updateUniById(id, uniDetails) {
-        this.getUniById(id);
-        this.universityRepository.update({ id }, Object.assign({}, uniDetails));
+    async updateUniById(id, uniDetails) {
+        await this.universityRepository.update({ id }, Object.assign({}, uniDetails));
+        const university = await this.getUniById(id);
+        return university;
     }
-    deleteUni(id) {
-        this.getUniById(id);
-        this.universityRepository.delete(id);
+    async deleteUni(id) {
+        try {
+            const university = await this.getUniById(id);
+            await this.universityRepository.delete({ id });
+        }
+        catch (error) {
+            if (error instanceof common_1.HttpException) {
+                throw error;
+            }
+            throw new common_1.BadRequestException('Delete not successful');
+        }
     }
 };
 UniversityService = __decorate([

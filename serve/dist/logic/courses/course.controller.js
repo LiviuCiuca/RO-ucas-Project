@@ -28,10 +28,14 @@ let CourseController = class CourseController {
         return this.courseService.getCourseByUniId(id);
     }
     addCourse(id, course) {
-        return this.courseService.addCourse(id, course);
+        const posted = this.courseService.addCourse(id, course);
+        return posted;
     }
     updateCourseById(id, course) {
         return this.courseService.updateCourseById(id, course);
+    }
+    deleteCourse(id) {
+        return this.courseService.deleteCourse(id);
     }
 };
 __decorate([
@@ -63,6 +67,13 @@ __decorate([
     __metadata("design:paramtypes", [Number, createCourseDto_1.CreateCourseDto]),
     __metadata("design:returntype", void 0)
 ], CourseController.prototype, "updateCourseById", null);
+__decorate([
+    (0, decorators_1.Delete)(":id"),
+    __param(0, (0, decorators_1.Param)('id', common_1.ParseIntPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", void 0)
+], CourseController.prototype, "deleteCourse", null);
 CourseController = __decorate([
     (0, common_1.Controller)('/course'),
     __metadata("design:paramtypes", [course_service_1.CourseService])

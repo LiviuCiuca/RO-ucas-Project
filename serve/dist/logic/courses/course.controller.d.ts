@@ -6,5 +6,12 @@ export declare class CourseController {
     getAllCourses(): Promise<import("../../entities/Courses").Courses[]>;
     getCourseByUniId(id: number): Promise<import("../../entities/Courses").Courses[]>;
     addCourse(id: number, course: CreateCourseDto): Promise<import("../../entities/Courses").Courses>;
-    updateCourseById(id: number, course: CreateCourseDto): void;
+    updateCourseById(id: number, course: CreateCourseDto): Promise<{
+        message: string;
+        course: import("typeorm").UpdateResult;
+    }>;
+    deleteCourse(id: number): Promise<{
+        message: string;
+        course: import("typeorm").DeleteResult;
+    }>;
 }

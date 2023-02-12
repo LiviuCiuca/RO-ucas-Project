@@ -7,6 +7,6 @@ export declare class UniversityService {
     getUni(): Promise<Universities[]>;
     getUniById(id: number): Promise<Universities>;
     postUni(uniDetails: createUniParams): Promise<Universities>;
-    updateUniById(id: number, uniDetails: createUniParams): void;
-    deleteUni(id: number): void;
+    updateUniById(id: number, uniDetails: createUniParams): Promise<Universities>;
+    deleteUni(id: number): Promise<void>;
 }

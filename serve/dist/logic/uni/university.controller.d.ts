@@ -7,6 +7,6 @@ export declare class UniversityController {
     getUniversity(): Promise<import("../../entities/Universities").Universities[]>;
     getUniversityById(id: number): Promise<import("../../entities/Universities").Universities>;
     postUniversity(uniCreate: CreateUniDto): Promise<import("../../entities/Universities").Universities>;
-    updateUniversity(id: number, uniUpdate: updateUniDto): void;
-    deleteUniversity(id: number): void;
+    updateUniversity(id: number, uniUpdate: updateUniDto): Promise<import("../../entities/Universities").Universities>;
+    deleteUniversity(id: number): Promise<void>;
 }

@@ -23,43 +23,55 @@ let CourseService = class CourseService {
         this.courseRepository = courseRepository;
         this.uniRepository = uniRepository;
     }
-    findUniById(id) {
-        const uni = this.uniRepository.findOne({ where: { id } });
-        if (!uni) {
-            throw new common_1.NotFoundException('Uni not found');
+    async findCourse(id) {
+        const course = await this.courseRepository.findOne({ where: { id } });
+        if (!course) {
+            throw new common_1.NotFoundException('Course not found');
         }
-        return uni;
+        return course;
     }
     getAllCourses() {
         return this.courseRepository.find({
             relations: ['university', 'enrollments']
         });
     }
-    getCourseByUniId(id) {
-        if (this.findUniById(id)) {
-            return this.courseRepository.find({
-                where: { university: { id } },
-                relations: ['university', 'enrollments']
-            });
+    async getCourseByUniId(id) {
+        const courses = await this.courseRepository.find({
+            where: { university: { id } },
+            relations: ['university', 'enrollments']
+        });
+        if (courses.length === 0) {
+            throw new common_1.NotFoundException('Course not found');
         }
+        return courses;
     }
     async addCourse(id, courseDetails) {
-        const university = await this.findUniById(id);
+        const university = await this.uniRepository.findOneBy({ id });
         const course = this.courseRepository.create(Object.assign(Object.assign({}, courseDetails), { university }));
-        const savedCourse = await this.courseRepository.save(course);
-        return savedCourse;
+        switch (true) {
+            case (!courseDetails.name || !courseDetails.description || !courseDetails.price || !courseDetails.duration):
+                throw new common_1.HttpException('Cannot POST /course', common_1.HttpStatus.BAD_REQUEST);
+            case (!university):
+                throw new common_1.HttpException('University with the specified ID not found', common_1.HttpStatus.NOT_FOUND);
+            default:
+                const savedCourse = await this.courseRepository.save(course);
+                return Object.assign(Object.assign({}, savedCourse), { id: savedCourse.id });
+        }
     }
-    deleteCourse(id) {
-        if (!this.courseRepository.findOne({ where: { id } })) {
+    async deleteCourse(id) {
+        const course = await this.courseRepository.findOne({ where: { id } });
+        if (course) {
+            const deleted = await this.courseRepository.delete({ id });
+            return { message: 'deleted succesfully', course: deleted };
+        }
+        else {
             throw new common_1.NotFoundException('Course not found');
         }
-        this.courseRepository.delete(id);
     }
-    updateCourseById(id, courseDetails) {
-        if (!this.courseRepository.findOne({ where: { id } })) {
-            throw new common_1.NotFoundException('Course not found');
-        }
-        this.courseRepository.update({ id }, Object.assign({}, courseDetails));
+    async updateCourseById(id, courseDetails) {
+        const course = await this.findCourse(id);
+        const updatedCourse = await this.courseRepository.update({ id }, Object.assign({}, courseDetails));
+        return { message: 'updated succesfully', course: updatedCourse };
     }
 };
 CourseService = __decorate([

@@ -6,10 +6,16 @@ export declare class CourseService {
     private courseRepository;
     private uniRepository;
     constructor(courseRepository: Repository<Courses>, uniRepository: Repository<Universities>);
-    findUniById(id: number): Promise<Universities>;
+    findCourse(id: number): Promise<Courses>;
     getAllCourses(): Promise<Courses[]>;
     getCourseByUniId(id: number): Promise<Courses[]>;
     addCourse(id: number, courseDetails: createCoursesParams): Promise<Courses>;
-    deleteCourse(id: number): void;
-    updateCourseById(id: number, courseDetails: createCoursesParams): void;
+    deleteCourse(id: number): Promise<{
+        message: string;
+        course: import("typeorm").DeleteResult;
+    }>;
+    updateCourseById(id: number, courseDetails: createCoursesParams): Promise<{
+        message: string;
+        course: import("typeorm").UpdateResult;
+    }>;
 }

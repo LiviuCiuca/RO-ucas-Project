@@ -32,7 +32,7 @@ export class StudentController {
 
     @Delete(':id')
     deleteStudentById(@Param('id', ParseIntPipe) id: number) {
-        HttpStatus.NO_CONTENT;
+      
         return this.studentService.deleteStudentById(id);
 
     }
