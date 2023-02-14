@@ -19,5 +19,10 @@ jobs:
         pip install -r test/requirements.txt
         pip install pytest
         pip install requests
+        - name: Add pytest to PATH
+    - name: Add pytest to PATH
+      run: echo "${{ env.PYTHONPATH }}"
+    - name: Add pytest to PATH
+      run: echo "${{ env.PYTHONPATH }}" >> $GITHUB_PATH
     - name: Run pytest
       run: pytest test/test_courses_pytest.py pytest test/test_student_pytest.py pytest test/test_university_pytest.py
