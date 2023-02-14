@@ -25,6 +25,7 @@ jobs:
         npm install nestjs --save
         npm install typeorm --save
         npm install mysql --save
+        npm run start:dev
     - name: Install dependencies
       run: |
         conda install -c anaconda pytest
