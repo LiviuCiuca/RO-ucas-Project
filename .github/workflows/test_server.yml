@@ -18,6 +18,13 @@ jobs:
       run: |
         # $CONDA is an environment variable pointing to the root of the miniconda directory
         echo $CONDA/bin >> $GITHUB_PATH
+    - name: Install server dependencies
+      run: |
+        cd serve
+        npm install
+        npm install nestjs --save
+        npm install typeorm --save
+        npm install mysql --save
     - name: Install dependencies
       run: |
         conda install -c anaconda pytest
