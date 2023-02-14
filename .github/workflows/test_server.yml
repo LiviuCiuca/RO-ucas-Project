@@ -20,4 +20,4 @@ jobs:
         echo "${{ env.PYTHONPATH }}"
         echo "${{ env.PYTHONPATH }}" >> $GITHUB_PATH
     - name: Run pytest
-      run: pytest test/test_courses_pytest.py pytest test/test_student_pytest.py pytest test/test_university_pytest.py
+      run: /path/to/pytest test/test_courses_pytest.py test/test_student_pytest.py test/test_university_pytest.py
