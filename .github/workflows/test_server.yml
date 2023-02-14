@@ -32,6 +32,6 @@ jobs:
     - name: Test with pytest
       run: |
         conda install pytest
-        pytest test/test_courses_pytest.py test/test_students_pytest.py test/test_university_pytest.py
+        pytest test/test_courses_pytest.py test/test_student_pytest.py test/test_university_pytest.py
 # this code is from github actions sugestions https://github.com/LiviuCiuca/RO-ucas-Project/new/main?filename=.github%2Fworkflows%2Fpython-package-conda.yml&workflow_template=ci%2Fpython-package-conda
 #phyton package with anaconda
