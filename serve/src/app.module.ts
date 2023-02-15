@@ -22,11 +22,11 @@ import { Enrollment } from './entities/Enrollments';
     StudentModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
+      host: 'database-1.cqdl1zrwe7h3.us-east-1.rds.amazonaws.com',
       port: 3306,
       username: 'root',
       password: 'Tastatura1!',
-      database: 'ro_ucas',
+      database: 'roUcas',
       entities: [Student, Universities, Enrollment, Courses],
       synchronize: true,
     }),

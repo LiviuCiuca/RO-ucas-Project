@@ -35,7 +35,7 @@ __decorate([
     __metadata("design:type", Array)
 ], Student.prototype, "enrollments", void 0);
 Student = __decorate([
-    (0, typeorm_1.Entity)({ name: 'students' })
+    (0, typeorm_1.Entity)()
 ], Student);
 exports.Student = Student;
 //# sourceMappingURL=Student.js.map
