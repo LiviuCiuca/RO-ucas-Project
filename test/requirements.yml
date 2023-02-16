@@ -1,5 +1,0 @@
-name: my-env
-  dependencies:
-  - pytest
-  - requests
-  - other packages...

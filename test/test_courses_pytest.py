@@ -31,7 +31,7 @@ def test_get_course_by_Uni_id():
     url, _, _ = setup_courses()
 
     # get the course by uniId
-    url = f"{url}/{1}"
+    url = f"{url}/{8}"
 
     response = requests.get(url)
     courses = response.json()
@@ -40,7 +40,7 @@ def test_get_course_by_Uni_id():
     
     assert len(courses) > 0
     # i could do a for loop to check all the courses in the list
-
+    
 
 def test_update_course():
     # first, creating one course
@@ -48,7 +48,7 @@ def test_update_course():
 
 
     # then, update the course
-    url = f"{url}/{3}"
+    url = f"{url}/{1}"
     payload = {"name": "Updated Test Course", "description": "Updated Test Description", "price": 200, "duration": 24}
 
     response = requests.put(url, json=payload, headers=headers)
