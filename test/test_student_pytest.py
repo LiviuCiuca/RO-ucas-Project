@@ -33,7 +33,7 @@ def test_get_student_by_id():
     url, _, _ = setup()
 
     # then, get the student by id
-    url = f"{url}/{4}"
+    url = f"{url}/{1}"
 
     response = requests.get(url)
 

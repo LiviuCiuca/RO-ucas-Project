@@ -20,7 +20,7 @@ def test_get_all_courses():
 def test_create_course():
     
     url, payload, headers = setup_courses()
-    url = f"{url}/{8}"
+    url = f"{url}/{1}"
 
     response = requests.post(url, json=payload, headers=headers)
    
