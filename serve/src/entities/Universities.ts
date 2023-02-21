@@ -16,6 +16,21 @@ export class Universities {
     @Column()
     location: string;
 
+    @Column()
+    phone: string;
+
+    @Column()
+    website: string;
+
+    @Column()
+    description: string;
+
+    @Column()
+    image: string;
+
+    @Column()
+    rating: number;
+
     @OneToMany(type => Universities, university => university.courses,{
         onDelete: 'CASCADE',
       })

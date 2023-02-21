@@ -4,7 +4,7 @@ import json
 
 def setup_courses():
     url = "http://localhost:3000/course"
-    payload = {"name": "Test Course", "description": "Test Description", "price": 100, "duration": 12}
+    payload = {"name": "Test Course", "description": "Test Description", "price": 9000, "duration": 3}
     headers = {"Content-Type": "application/json"}
 
     return url, payload, headers

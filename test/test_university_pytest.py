@@ -4,7 +4,15 @@ import json
 
 def setup():
     url = "http://localhost:3000/university"
-    payload = {"name": "Test University of testing", "email": "test@university.com", "location": "Test City"}
+    
+    payload = {"name": "Test University of testing", 
+    "email": "test@university.com", 
+    "location": "Test City", 
+    "phone": "(555) 555-5555",
+    "website": "https://www.abcuniversity.edu",
+    "description": "A leading university in the heart of the city.",
+    "image": "https://www.abcuniversity.edu/images/logo.png",
+    "rating": 4.5}
     headers = {"Content-Type": "application/json"}
 
     return url, payload, headers
@@ -50,7 +58,14 @@ def test_update_university():
 
     # then, update the university
     url = f"{url}/{university_id}"
-    payload = {"name": "Updated Test University", "location": "Updated Test City", "email": "test@university.com"}
+    payload = {"name": "Updated Test University",
+     "location": "Updated Test City",
+     "email": "test@university.com",
+     "phone": "(555) 555-5555",
+     "website": "https://www.UPDATED.edu",
+     "description": "A leading UPDATE in the heart of the city.",
+     "image": "https://www.UPDATED.edu/images/logo.png",
+     "rating": 4.5}
 
     response = requests.put(url, json=payload, headers=headers)
 

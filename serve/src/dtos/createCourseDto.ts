@@ -20,6 +20,7 @@ export class CreateCourseDto {
   @IsNumber()
   duration: number;
 
+  
   university: any;
   enrollments: any;
 }

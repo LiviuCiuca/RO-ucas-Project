@@ -28,5 +28,30 @@ __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], updateUniDto.prototype, "email", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], updateUniDto.prototype, "phone", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], updateUniDto.prototype, "website", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], updateUniDto.prototype, "description", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], updateUniDto.prototype, "image", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsNumber)(),
+    __metadata("design:type", Number)
+], updateUniDto.prototype, "rating", void 0);
 exports.updateUniDto = updateUniDto;
 //# sourceMappingURL=updateUniDto.js.map
