@@ -1,1 +1,1 @@
-{"version":3,"file":"updateStudentDto.js","sourceRoot":"","sources":["../../src/dtos/updateStudentDto.ts"],"names":[],"mappings":";;;AAAA,MAAa,gBAAgB;CAI5B;AAJD,4CAIC"}
+{"version":3,"file":"updateStudentDto.js","sourceRoot":"","sources":["../../src/dtos/updateStudentDto.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,qDAAiE;AAEjE,MAAa,gBAAgB;CAU5B;AATG;IAAC,IAAA,4BAAU,GAAE;IACZ,IAAA,0BAAQ,GAAE;;kDACM;AACjB;IAAC,IAAA,4BAAU,GAAE;IACZ,IAAA,0BAAQ,GAAE;;kDACM;AACjB;IAAC,IAAA,4BAAU,GAAE;IACZ,IAAA,0BAAQ,GAAE;;6CACC;AAThB,4CAUC"}

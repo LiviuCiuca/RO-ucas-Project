@@ -81,7 +81,8 @@ def test_create_university_should_fail():
     response = requests.post(url, json=payload, headers=headers)
 
     assert response.status_code == 400
-    assert response.json().get("message") == "Missing field(s) in request"
+    assert "name must be a string" in response.json()["message"]
+    
 
 def test_get_university_by_non_existent_id():
     url, _, _ = setup()

@@ -1,7 +1,8 @@
-import { Controller, Get, Post , Body, Put, Param, ParseIntPipe, Delete, HttpStatus } from '@nestjs/common';
+import { Controller, Get, Post , Body, Put, Param, ParseIntPipe, Delete } from '@nestjs/common';
 import { CreateStudentDto } from 'src/dtos/createStudentDto';
 import { updateStudentDto } from 'src/dtos/updateStudentDto';
 import { StudentService } from './student.service';
+
 
 @Controller('/student')
 export class StudentController {

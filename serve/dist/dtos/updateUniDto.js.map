@@ -1,1 +1,1 @@
-{"version":3,"file":"updateUniDto.js","sourceRoot":"","sources":["../../src/dtos/updateUniDto.ts"],"names":[],"mappings":";;;AAAA,MAAa,YAAY;CAIxB;AAJD,oCAIC"}
+{"version":3,"file":"updateUniDto.js","sourceRoot":"","sources":["../../src/dtos/updateUniDto.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,qDAAuD;AAGvD,MAAa,YAAY;CAYxB;AAXG;IAAC,IAAA,4BAAU,GAAE;IACZ,IAAA,0BAAQ,GAAE;;0CACE;AAEb;IAAC,IAAA,4BAAU,GAAE;IACZ,IAAA,0BAAQ,GAAE;;8CACM;AAEjB;IAAC,IAAA,4BAAU,GAAE;IACZ,IAAA,0BAAQ,GAAE;;2CACG;AAXlB,oCAYC"}
