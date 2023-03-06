@@ -4,7 +4,7 @@
 # Mac Cancer
 */.DS_Store
 
-
+**/__pycache__
 
 # npm/javascript Cancer
 **/node_modules

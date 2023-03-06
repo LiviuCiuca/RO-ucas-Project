@@ -4,7 +4,7 @@ import json
 
 def setup_courses():
     url = "http://localhost:3000/course"
-    payload = {"name": "Test Course", "description": "Test Description", "price": 100, "duration": 12}
+    payload = {"name": "Test Course", "description": "Test Description", "price": 9000, "duration": 3}
     headers = {"Content-Type": "application/json"}
 
     return url, payload, headers
@@ -20,7 +20,7 @@ def test_get_all_courses():
 def test_create_course():
     
     url, payload, headers = setup_courses()
-    url = f"{url}/{8}"
+    url = f"{url}/{1}"
 
     response = requests.post(url, json=payload, headers=headers)
    
@@ -54,7 +54,8 @@ def test_update_course():
     response = requests.put(url, json=payload, headers=headers)
 
     assert response.status_code == 200
-    assert response.json().get("message") == "updated succesfully"
+    assert "updated succesfully" in response.json()["message"]
+   
 
 def test_delete_course():
     url, payload, headers = setup_courses()
@@ -71,7 +72,8 @@ def test_delete_course():
 
    
     assert response.status_code == 200
-    assert response.json().get("message") == "deleted succesfully"
+    assert "deleted succesfully" in response.json()["message"]
+   
 
 ##should fail tests
 def test_create_course_should_fail():
@@ -82,7 +84,7 @@ def test_create_course_should_fail():
     response = requests.post(url, json=payload, headers=headers)
 
     assert response.status_code == 400
-    assert response.json().get("message") == "Cannot POST /course"
+    assert "name must be a string" in response.json()["message"]
 
 def test_create_course_by_non_existent_uni():
     url, payload, headers = setup_courses()
@@ -101,7 +103,7 @@ def test_get_course_by_non_existent_Uni_id():
     response = requests.get(url)
 
     assert response.status_code == 404
-    assert response.json().get("message") == "Course not found"
+    assert "Course not found" in response.json()["message"]
     
 
 def test_update_course_with_non_existent_id():

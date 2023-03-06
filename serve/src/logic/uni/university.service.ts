@@ -1,7 +1,7 @@
 import { BadRequestException, HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Universities } from 'src/entities/Universities';
-import { createUniParams } from 'src/utils/uniTypes';
+import { createUniParams, updateUniParams } from 'src/utils/uniTypes';
 import { Repository } from 'typeorm';
 
 @Injectable()
@@ -42,7 +42,7 @@ export class UniversityService {
    
 
    
-    async updateUniById(id: number, uniDetails: createUniParams): Promise<Universities> {
+    async updateUniById(id: number, uniDetails: updateUniParams): Promise<Universities> {
         await this.universityRepository.update({ id }, {...uniDetails});
         const university = await this.getUniById(id);
         return university;
