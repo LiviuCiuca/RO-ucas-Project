@@ -30,11 +30,11 @@ AppModule = __decorate([
             student_module_1.StudentModule,
             typeorm_1.TypeOrmModule.forRoot({
                 type: 'mysql',
-                host: 'localhost',
+                host: 'database-1.cqdl1zrwe7h3.us-east-1.rds.amazonaws.com',
                 port: 3306,
                 username: 'root',
                 password: 'Tastatura1!',
-                database: 'ro_ucas',
+                database: 'roUcas',
                 entities: [Student_1.Student, Universities_1.Universities, Enrollments_1.Enrollment, Courses_1.Courses],
                 synchronize: true,
             }),

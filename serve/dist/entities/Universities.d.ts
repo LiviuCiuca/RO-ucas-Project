@@ -4,5 +4,10 @@ export declare class Universities {
     name: string;
     email: string;
     location: string;
+    phone: string;
+    website: string;
+    description: string;
+    image: string;
+    rating: number;
     courses: Courses[];
 }

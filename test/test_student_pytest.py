@@ -5,7 +5,21 @@ import json
 
 def setup():
     url = "http://localhost:3000/student"
-    payload = {"username": "testuser", "password": "secretpassword", "age": 25}
+    payload = { "name": "Liviu Ciuca",
+    "username": "lc874",
+    "password": "test123",
+    "age": 25,
+    "address": "123 Main St",
+    "phone": "123-456-7890",
+    "email": "LC874@example.com",
+    "contactDetails": "Available after 5pm weekdays",
+    "personalStatement": "I'm passionate about technology and love to code.",
+    "whyTheCourse": "I want to learn more about web development and improve my skills.",
+    "education": "Future Bachelor's degree in Computer Science from CCCU University",
+    "workExperience": "Internship at ABC Company where I worked on a web app using React.",
+    "skills": "JavaScript, React, HTML, CSS",
+    "interests": "Playing guitar, hiking, watching movies",
+    "references": "Available upon request"}
     headers = {"Content-Type": "application/json"}
 
     return url, payload, headers
@@ -33,7 +47,7 @@ def test_get_student_by_id():
     url, _, _ = setup()
 
     # then, get the student by id
-    url = f"{url}/{4}"
+    url = f"{url}/{1}"
 
     response = requests.get(url)
 
@@ -50,7 +64,21 @@ def test_update_student():
 
     # then, update the student
     url = f"{url}/{student_id}"
-    payload = {"username": "updatedtestuser", "age": 26, "password": "secretpassword"}
+    payload = {"name": "Liviu Ciuca UPDATED",
+     "username": "updatedtestuser", 
+     "age": 26, 
+     "password": "secretpassword",
+     "address": "123 UPDATED St",
+     "phone": "123-456-7890",
+     "email": "LC874@UPDATED.com",
+     "contactDetails": "Available after 5pm weekends",
+     "personalStatement": "I'm passionate about UPDATED technology and love to code.",
+     "whyTheCourse": "I want to learn more about web development and improve my skills.",
+     "education": "Future Bachelor's degree in Computer Science from CCCU University",
+     "workExperience": "Internship at ABC Company where I worked on a web app using React.",
+     "skills": "JavaScript, React, HTML, CSS",
+     "interests": "Playing guitar, hiking, watching movies",
+     "references": "Available upon request"}
 
     response = requests.put(url, json=payload, headers=headers)
 
