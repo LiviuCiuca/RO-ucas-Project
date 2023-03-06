@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { baseUrl } from '../urlEnv.env';
+
+
 
 const StudentById = () => {
   const [student, setStudent] = useState([]);
@@ -10,7 +11,7 @@ const StudentById = () => {
   //the id i should get from auth
   const getStudentById = async (id: number) => {
     try {
-      const response = await axios.get(`${baseUrl}/student/${id}`);
+      const response = await axios.get(`/api/student/${id}`);
       setStudent(response.data);
       setLoading(false);
     } catch (error : any) {
@@ -33,7 +34,7 @@ const StudentById = () => {
   }
 
   //here i should display the student data
-  //gotta add the rest of the columns when i update main
+  //gotta add the rest of the columns when i update main branch
   const displayStudent= student.map(s => 
     <div>
       <p>s.name</p>

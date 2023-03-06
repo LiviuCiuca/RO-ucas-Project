@@ -1,13 +1,12 @@
 const Navbar = () => {
-//set 
+
     return (
-        <nav>
-            <div className="nav-wrapper">
-                <ul id="nav">
-                    <li>Student</li>
-                    <li>Courses</li>
-                    <li>My Universities</li>
-                </ul>
+        <nav className="NavBar">
+            <h1>Ro-Ucas</h1>
+            <div className="links">
+                <a href="/">Home</a>
+                <a href="/student">Student</a>
+                <a href="/university">University</a>
             </div>
         </nav>
     )
