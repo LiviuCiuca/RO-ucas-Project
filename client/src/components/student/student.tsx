@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
-
+import { Student } from '../../util/student';
 
 const StudentById = () => {
-  const [student, setStudent] = useState([]);
+  const [student, setStudent] = useState<Student[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -12,6 +11,7 @@ const StudentById = () => {
   const getStudentById = async (id: number) => {
     try {
       const response = await axios.get(`/api/student/${id}`);
+      console.log('Response data:', response.data);
       setStudent(response.data);
       setLoading(false);
     } catch (error : any) {
@@ -26,7 +26,9 @@ const StudentById = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div>
+      <h1>Loading...</h1>
+      </div>;
   }
 
   if (error) {
@@ -35,16 +37,16 @@ const StudentById = () => {
 
   //here i should display the student data
   //gotta add the rest of the columns when i update main branch
-  const displayStudent= student.map(s => 
-    <div>
-      <p>s.name</p>
-      <p>s.email</p>
-      <p>s.age</p>
-    </div> )
+  console.log('Student data:', student);
+  // const displayStudent = student.map((student) => (
+  //   <li >
+            
+  //   </li>
+  // ));
+
   return (
     <div>
       <h1>Student</h1>
-      <h2>{displayStudent}</h2>
     </div>
   );
 };
