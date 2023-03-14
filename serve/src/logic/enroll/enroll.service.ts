@@ -26,6 +26,8 @@ export class EnrollService {
                 where: { student: { id: studentId } },
                 relations: [ 'student','course'] });
         }
+        //gotta get emnrollments by uni to show what students are enrolled in what courses
+
 
         async apply(student: createStudentParams, course: createCoursesParams): Promise<Enrollment> {
           
@@ -42,8 +44,6 @@ export class EnrollService {
                     return savedEnrollment;
                     
             }
-        
-           
         }
         
         //this not useful due to the cascade

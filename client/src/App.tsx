@@ -1,5 +1,5 @@
 import Navbar from './components/navbar';
-import Student from './components/student/student'
+import Student from './components/student/get_student'
 
 function App() {
  
