@@ -24,9 +24,7 @@ const CreateStudent = () => {
       
     const createStudent = async () => {
         try {
-          const response = await axios.post("/api/student",  {
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(student)});
+          const response = await axios.post("/api/student",student);
             
           console.log("Response data:", response.data);
         } catch (error: any) {
