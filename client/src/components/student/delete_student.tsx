@@ -3,8 +3,8 @@ import axios from "axios";
 const DeleteStudent = () => {
     const deleteStudent = async (id: number) => {
         try {
-        const response = await axios.delete(`/api/student/${id}`);
-        console.log('Response:', response.data);
+        const response = await axios.delete(`/api/student/${16}`);
+        console.log('Deleted');
         } catch (error : any) {
         console.log(error.message);
         }

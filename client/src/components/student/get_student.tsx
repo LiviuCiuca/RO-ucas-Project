@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Student } from '../../util/student';
 import CreateStudent from './create_student';
@@ -6,8 +6,8 @@ import DeleteStudent from './delete_student';
 import UpdateStudent from './update_student';
 
 const StudentById = () => {
-  const id = 4; 
-  const [studen, setStudent] = useState<Student[]>([]);
+  const id = 1; 
+  const [student, setStudent] = useState<Student[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -45,14 +45,15 @@ const StudentById = () => {
   return (
     <div>
       <h1>Student</h1>
-      <h3>{Object.keys(studen).map((key:any) => (
+      <h3>{Object.keys(student).map((key:any) => (
         <div key={key}>
-           {key}: {studen[key]}
+           {key}: {student[key]}
         </div>
       ))}</h3>
       <CreateStudent/>
       <DeleteStudent/>
-      <UpdateStudent/>
+      <UpdateStudent student={student[1]}/>
+
     </div>
   );
 };
