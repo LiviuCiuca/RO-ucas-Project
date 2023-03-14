@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Student } from '../../util/student';
 import CreateStudent from './create_student';
+import DeleteStudent from './delete_student';
+import UpdateStudent from './update_student';
 
 const StudentById = () => {
-  const [student, setStudent] = useState<Student[]>([]);
+  const id = 4; 
+  const [studen, setStudent] = useState<Student[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -22,7 +25,6 @@ const StudentById = () => {
   };
 
   useEffect(() => {
-    const id = 1; 
     getStudentById(id);
   }, []);
 
@@ -37,18 +39,20 @@ const StudentById = () => {
   }
 
   //here i should display the student data
-  //gotta add the rest of the columns when i update main branch
-  
-  // const displayStudent = student.map((student) => (
-  //   <li >
-            
-  //   </li>
-  // ));
+  //gotta separate them into specific colums to css them
 
+  
   return (
     <div>
       <h1>Student</h1>
+      <h3>{Object.keys(studen).map((key:any) => (
+        <div key={key}>
+           {key}: {studen[key]}
+        </div>
+      ))}</h3>
       <CreateStudent/>
+      <DeleteStudent/>
+      <UpdateStudent/>
     </div>
   );
 };

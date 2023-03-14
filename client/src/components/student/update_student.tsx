@@ -17,3 +17,4 @@ const UpdateStudent = () => {
         </div>
     );
 };
+export default UpdateStudent;

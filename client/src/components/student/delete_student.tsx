@@ -18,3 +18,4 @@ const DeleteStudent = () => {
         </div>
     );
 };
+export default DeleteStudent;

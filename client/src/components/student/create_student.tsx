@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Student } from "../../util/student";
 
 const CreateStudent = () => {
-    const [student, setStudent] = useState<Student>({
+    const [student, setStudent] = useState<Omit<Student,"id">>({
         name: "",
         username: "",
         password: "",
@@ -25,7 +25,6 @@ const CreateStudent = () => {
     const createStudent = async () => {
         try {
           const response = await axios.post("/api/student",  {
-            method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(student)});
             
