@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Enrollment } from "../../util/enrollment";
 
-const Enrollment = () => {
+export const Enrollments = () => {
     const [enrollment,setEnrollment] = useState<Enrollment[]>([]);
     const [loading,setLoading] = useState(true);
     const [error,setError] = useState(null);
@@ -21,7 +21,7 @@ const Enrollment = () => {
         }
     }
     useEffect(() => {
-        const studentId = 1; 
+        const studentId = 15; 
         getEnrollment(studentId);
     }, []);
     

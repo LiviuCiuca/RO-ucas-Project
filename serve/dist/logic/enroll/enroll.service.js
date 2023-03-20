@@ -35,10 +35,10 @@ let EnrollService = class EnrollService {
         enroll.studentId = student.id;
         enroll.status = 'Applied';
         switch (true) {
-            case !student:
+            case !student.id:
                 throw new common_1.NotFoundException('Student does not exist');
-            case !course:
-                throw new common_1.NotFoundException('Course ' + course + ' does not exist');
+            case !course.id:
+                throw new common_1.NotFoundException('Course id: ' + course.id + ' does not exist');
             default:
                 const savedEnrollment = await this.enrollmentRepository.save(enroll);
                 return savedEnrollment;

@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Course } from "../../util/course";
 
-const Courses = () => {
+export const CoursesById = () => {
     const [courses,setCourses] = useState<Course[]>([]);
     const [loading,setLoading] = useState(true);
     const [error,setError] = useState(null);

@@ -1,14 +1,15 @@
-const Navbar = () => {
+import "./css/navbar.css"
+import { Link } from "react-router-dom"
 
+
+function Navbar() {
     return (
-        <nav className="NavBar">
-            <h1>Ro-Ucas</h1>
-            <div className="links">
-                <a href="/">Home</a>
-                <a href="/student">Student</a>
-                <a href="/university">University</a>
-            </div>
-        </nav>
-    )
-}
+      <nav className="navbar">
+        <Link to="/student">Student</Link>
+        <Link to="/courses">Courses</Link>
+        <Link to="/enrollments">Enrollments</Link>
+      </nav>
+    );
+  }
+  
 export default Navbar;

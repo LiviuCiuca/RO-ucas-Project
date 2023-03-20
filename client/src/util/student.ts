@@ -15,5 +15,6 @@ export interface Student {
   skills: string,
   interests: string,
   references: string,
+  [key: string]: any
   }
   

@@ -16,7 +16,7 @@ export class EnrollmentController {
         return this.enrollmentService.getAll();
     }
 
-    @Get('/:id')
+    @Get(':id')
     getEnrollmentsByStudentId(@Body('id') id: number) {
         return this.enrollmentService.getEnrollmentsByStudentId(id);
     }

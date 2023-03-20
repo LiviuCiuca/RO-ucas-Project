@@ -4,7 +4,7 @@ import json
 
 
 def setup():
-    url = "http://localhost:3000/student"
+    url = "http://localhost:3000/api/student"
     payload = { "name": "Liviu Ciuca",
     "username": "lc874",
     "password": "test123",

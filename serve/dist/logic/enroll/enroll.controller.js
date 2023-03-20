@@ -39,7 +39,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], EnrollmentController.prototype, "getEnrollments", null);
 __decorate([
-    (0, decorators_1.Get)('/:id'),
+    (0, decorators_1.Get)(':id'),
     __param(0, (0, common_1.Body)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),

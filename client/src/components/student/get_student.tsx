@@ -6,12 +6,11 @@ import DeleteStudent from './delete_student';
 import UpdateStudent from './update_student';
 
 const StudentById = () => {
-  const id = 1; 
-  const [student, setStudent] = useState<Student[]>([]);
+  const id = 15; 
+  const [student, setStudent] = useState<Student>({} as Student);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  //the id i should get from auth
   const getStudentById = async (id: number) => {
     try {
       const response = await axios.get(`/api/student/${id}`);
@@ -29,30 +28,24 @@ const StudentById = () => {
   }, []);
 
   if (loading) {
-    return <div>
-      <h1>Loading...</h1>
-      </div>;
+    return <div><h1>Loading...</h1></div>;
   }
 
   if (error) {
     return <div>{error}</div>;
   }
 
-  //here i should display the student data
-  //gotta separate them into specific colums to css them
-
-  
   return (
     <div>
       <h1>Student</h1>
-      <h3>{Object.keys(student).map((key:any) => (
+      <h3>{Object.keys(student).map((key: any) => (
         <div key={key}>
            {key}: {student[key]}
         </div>
       ))}</h3>
       <CreateStudent/>
       <DeleteStudent/>
-      <UpdateStudent student={student[1]}/>
+      <UpdateStudent student={student}/>
 
     </div>
   );
