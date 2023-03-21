@@ -37,6 +37,7 @@ export const Enrollments = () => {
     return (
         <div>
             <h1>Enrollment</h1>
+            
         </div>
     );
 

@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { University } from "../../util/university";
+import { DeleteUniversity } from "./delete_uni";
 
-const University = () => {
-    const [university,setUniversity] = useState<University[]>([]);
+export const UniversityById = () => {
+    const [university,setUniversity] = useState<University>({} as University);
     const [loading,setLoading] = useState(true);
     const [error,setError] = useState(null);
 
@@ -19,7 +20,7 @@ const University = () => {
         }
     }
     useEffect(() => {
-        const id = 1; 
+        const id = 2; 
         getUniversity(id);
     }, []);
     
@@ -31,10 +32,17 @@ const University = () => {
     if (error) {
         return <div>{error}</div>;
     }
-
+    //map through the university object and display the key and value
+    const universityInfo = Object.values(university).map((key) => (
+        <div key={key}>
+              {key} 
+        </div>
+    ));
     return (
         <div>
             <h1>University</h1>
+            <h3>{universityInfo}</h3>
+            <DeleteUniversity university={university}/>
         </div>
     );
 

@@ -7,7 +7,7 @@ import { Student_formFields } from "../formFields/Student_formField";
 
   const UpdateStudent = (props: { student: Student }) => {
     const [updatedStudent, setUpdatedStudent] = useState<Student>(props.student);
-   
+  
 
     const updateStudent = async (id: number) => {
         try {

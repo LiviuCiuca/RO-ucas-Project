@@ -8,6 +8,7 @@ function Navbar() {
         <Link to="/student">Student</Link>
         <Link to="/courses">Courses</Link>
         <Link to="/enrollments">Enrollments</Link>
+        <Link to="/university">University</Link>
       </nav>
     );
   }

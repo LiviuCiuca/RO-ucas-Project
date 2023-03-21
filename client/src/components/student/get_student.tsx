@@ -44,7 +44,7 @@ const StudentById = () => {
         </div>
       ))}</h3>
       <CreateStudent/>
-      <DeleteStudent/>
+      <DeleteStudent student={student}/>
       <UpdateStudent student={student}/>
 
     </div>
