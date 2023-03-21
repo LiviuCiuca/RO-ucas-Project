@@ -7,4 +7,5 @@ export declare class EnrollmentController {
     getEnrollments(): Promise<import("../../entities/Enrollments").Enrollment[]>;
     getEnrollmentsByStudentId(id: number): Promise<import("../../entities/Enrollments").Enrollment[]>;
     apply(student: Student, course: Courses): Promise<import("../../entities/Enrollments").Enrollment>;
+    updateEnrollment(id: number, status: string): void;
 }

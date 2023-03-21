@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Enrollment } from "../../util/enrollment";
+import UpdateEnrollment from "./update_enrollment";
 
 export const Enrollments = () => {
-    const [enrollment,setEnrollment] = useState<Enrollment[]>([]);
+    const [enrollment,setEnrollment] = useState<Enrollment>({} as Enrollment);
     const [loading,setLoading] = useState(true);
     const [error,setError] = useState(null);
 
@@ -37,7 +38,7 @@ export const Enrollments = () => {
     return (
         <div>
             <h1>Enrollment</h1>
-            
+            <UpdateEnrollment enrollment={enrollment}/>
         </div>
     );
 

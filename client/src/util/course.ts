@@ -3,4 +3,5 @@ export interface Course {
     description: string;
     duration: number;
     price: number;
+    [key: string]: any;
 }

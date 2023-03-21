@@ -54,7 +54,7 @@ import { Student_formFields } from "../formFields/Student_formField";
                     </div>
                 ))}
                 <button type="button" onClick={handleSubmit}>
-                    Create
+                    Update
                 </button>
             </form>
     </div>

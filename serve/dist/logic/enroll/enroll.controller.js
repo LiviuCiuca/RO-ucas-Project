@@ -31,6 +31,9 @@ let EnrollmentController = class EnrollmentController {
     apply(student, course) {
         return this.enrollmentService.apply(student, course);
     }
+    updateEnrollment(id, status) {
+        return this.enrollmentService.updateStatus(id, status);
+    }
 };
 __decorate([
     (0, decorators_1.Get)(),
@@ -53,6 +56,14 @@ __decorate([
     __metadata("design:paramtypes", [Student_1.Student, Courses_1.Courses]),
     __metadata("design:returntype", void 0)
 ], EnrollmentController.prototype, "apply", null);
+__decorate([
+    (0, decorators_1.Put)(),
+    __param(0, (0, decorators_1.Param)('id', common_1.ParseIntPipe)),
+    __param(1, (0, common_1.Body)('status')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, String]),
+    __metadata("design:returntype", void 0)
+], EnrollmentController.prototype, "updateEnrollment", null);
 EnrollmentController = __decorate([
     (0, common_1.Controller)('/enrollment'),
     __metadata("design:paramtypes", [enroll_service_1.EnrollService])

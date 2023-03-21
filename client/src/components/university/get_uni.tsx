@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { University } from "../../util/university";
+import CreateUniversity from "./create_uni";
 import { DeleteUniversity } from "./delete_uni";
+import UpdateUniversity from "./update_uni";
 
 export const UniversityById = () => {
     const [university,setUniversity] = useState<University>({} as University);
@@ -43,6 +45,8 @@ export const UniversityById = () => {
             <h1>University</h1>
             <h3>{universityInfo}</h3>
             <DeleteUniversity university={university}/>
+            <CreateUniversity/>
+            <UpdateUniversity university={university}/>
         </div>
     );
 

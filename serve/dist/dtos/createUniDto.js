@@ -50,7 +50,6 @@ __decorate([
 ], CreateUniDto.prototype, "image", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
-    (0, class_validator_1.IsNumber)(),
     __metadata("design:type", Number)
 ], CreateUniDto.prototype, "rating", void 0);
 exports.CreateUniDto = CreateUniDto;

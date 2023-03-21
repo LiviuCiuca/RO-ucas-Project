@@ -30,7 +30,6 @@ export class CreateUniDto {
     image: string;
 
     @IsNotEmpty()
-    @IsNumber()
     rating: number;
 
    

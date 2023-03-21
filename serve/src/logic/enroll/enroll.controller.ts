@@ -1,5 +1,5 @@
 import { Controller, Post, Body, ParseIntPipe } from '@nestjs/common';
-import { Get, Param } from '@nestjs/common/decorators';
+import { Get, Param, Put } from '@nestjs/common/decorators';
 import { Courses } from 'src/entities/Courses';
 import { Student } from 'src/entities/Student';
 import { EnrollService } from './enroll.service';
@@ -24,6 +24,11 @@ export class EnrollmentController {
     @Post()
     apply(@Body('student') student: Student, @Body('course') course: Courses ) {
         return this.enrollmentService.apply(student, course);
+    }
+
+    @Put()
+    updateEnrollment(@Param('id', ParseIntPipe) id: number, @Body('status') status: string) {
+        return this.enrollmentService.updateStatus(id, status);
     }
 
 }

@@ -11,9 +11,6 @@ export const CreateCourse = () => {
         price: 0,
     });
 
-    // We need to make sure that the types for the name attribute in the input and textarea elements are properly inferred by TypeScript. 
-    type CourseKey = keyof Omit<Course, "enrollments">;
-
     const createCourse = async (id :number) => {
         try {
             const response = await axios.post(`/api/course/${id}`, course);
@@ -30,7 +27,7 @@ export const CreateCourse = () => {
 
     const handleChange = (e: any) => {
         const { name, value } = e.target;
-        setCourse((prevState) => ({ ...prevState, [name as CourseKey]: value }));
+        setCourse((prevState) => ({ ...prevState, [name ]: value }));
     };
 
     return (
@@ -43,14 +40,14 @@ export const CreateCourse = () => {
                         {field.type === "textarea" ? (
                             <textarea
                                 name={field.name}
-                                value={course[field.name as CourseKey]}
+                                value={course[field.name ]}
                                 onChange={handleChange}
                             />
                         ) : (
                             <input
                                 type={field.type}
                                 name={field.name}
-                                value={course[field.name as CourseKey]}
+                                value={course[field.name ]}
                                 onChange={handleChange}
                             />
                         )}

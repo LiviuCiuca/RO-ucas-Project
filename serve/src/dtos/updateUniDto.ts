@@ -31,7 +31,6 @@ export class updateUniDto{
     image: string;
 
     @IsNotEmpty()
-    @IsNumber()
     rating: number;
-
+//for some reason @isNumber() gives 400 status code
 }

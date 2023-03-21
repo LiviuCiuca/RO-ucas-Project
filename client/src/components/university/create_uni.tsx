@@ -1,34 +1,43 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { University } from "../../util/university";
-import { University_formFields  } from "../formFields/Univerity_formField";
+import { University_formFields } from "../formFields/Univerity_formField";
 
-const UpdateUniversity = (props: { university: University }) => {
-  const [updatedUniversity, setUpdatedUniversity] = useState<University>(props.university);
+const CreateUniversity = () => {
+  const [university, setUniversity] = useState<Omit<University, "id">>({
+    name: "",
+    location: "",
+    email: "",
+    phone: "",
+    description: "",
+    website: "",
+    image: "",
+    rating: 0,
+  });
  
-  
-  const updateUniversity = async (id: number) => {
+
+  const createUniversity = async () => {
     try {
-      const response = await axios.put(`/api/university/${id}`, updatedUniversity);
-      console.log('Response data:', response.data);
-    } catch (error : any) {
+      const response = await axios.post("/api/university", university);
+      console.log("Response data:", response.data);
+    } catch (error: any) {
       console.log(error.message);
     }
   };
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    updateUniversity(props.university.id);
+    createUniversity();
   };
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
-    setUpdatedUniversity({ ...updatedUniversity, [name]: value });
+    setUniversity({ ...university, [name]: value });
   };
 
   return (
     <div>
-      <h1>Update University</h1>
+      <h1>Create University</h1>
       <form>
         {University_formFields.map((field) => (
           <div key={field.name}>
@@ -36,25 +45,25 @@ const UpdateUniversity = (props: { university: University }) => {
             {field.type === "textarea" ? (
               <textarea
                 name={field.name}
-                value={updatedUniversity[field.name]}
+                value={university[field.name]}
                 onChange={handleChange}
               />
             ) : (
               <input
                 type={field.type}
                 name={field.name}
-                value={updatedUniversity[field.name]}
+                value={university[field.name]}
                 onChange={handleChange}
               />
             )}
           </div>
         ))}
         <button type="button" onClick={handleSubmit}>
-          Update
+          Create
         </button>
       </form>
     </div>
   );
 };
 
-export default UpdateUniversity;
+export default CreateUniversity;
