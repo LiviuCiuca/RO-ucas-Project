@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { Course } from "../../util/course";
-import { Course_formFields } from "../formFields/Course_formField";
+import { Course_formFields } from "../../util/formFields/Course_formField";
 
 export const CreateCourse = () => {
     const [course, setCourse] = useState<Omit<Course, "enrollments">>({

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { Student } from "../../util/student";
-import { Student_formFields } from "../formFields/Student_formField";
+import { Student_formFields } from "../../util/formFields/Student_formField";
 
 
 

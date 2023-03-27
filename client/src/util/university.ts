@@ -8,5 +8,6 @@ export interface University {
     description: string;
     image: string;
     rating: number;
+    [key: string]: any;
 }
 //might need courses[]

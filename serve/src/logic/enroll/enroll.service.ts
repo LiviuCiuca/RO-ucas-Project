@@ -57,7 +57,7 @@ export class EnrollService {
             this.enrollmentRepository.delete(id);
         }
 
-        //this uni should do
+        //this uni should do it
         updateStatus(id: number, status: string) {
             if(!id) {
                 throw new NotFoundException('Enrollment not found');

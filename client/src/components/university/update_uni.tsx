@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { University } from "../../util/university";
-import { University_formFields  } from "../formFields/Univerity_formField";
+import { University_formFields  } from "../../util/formFields/Univerity_formField";
 
 const UpdateUniversity = (props: { university: University }) => {
   const [updatedUniversity, setUpdatedUniversity] = useState<University>(props.university);

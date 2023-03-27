@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { University } from "../../util/university";
-import { University_formFields } from "../formFields/Univerity_formField";
+import { University_formFields } from "../../util/formFields/Univerity_formField";
 
 const CreateUniversity = () => {
   const [university, setUniversity] = useState<Omit<University, "id">>({
