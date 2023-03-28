@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Course } from "../../util/course";
 import { Course_formFields } from "../../util/formFields/Course_formField";
 
@@ -20,9 +20,12 @@ export const CreateCourse = () => {
         }
     };
 
+ 
+
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        createCourse(1);
+        const uniId = 2;
+        createCourse(uniId);   
     };
 
     const handleChange = (e: any) => {

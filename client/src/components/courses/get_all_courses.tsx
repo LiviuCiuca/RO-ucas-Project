@@ -3,7 +3,6 @@ import { JSXElementConstructor, ReactElement, ReactFragment, ReactPortal, useEff
 import { Course } from "../../util/course";
 import { CreateCourse } from "./create_course";
 import { CoursesById } from "./get_course";
-import UpdateCourse from "./update_course";
 
 export const Courses = () => {
     const [courses,setCourses] = useState<Course>({} as Course);
@@ -38,30 +37,23 @@ export const Courses = () => {
     }
 
     //function to display courses on page
-    function displayCourses() {
-        return courses.map((course: { name: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; description: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; price: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; duration: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; }) => {
-            return (
-                <div>
-                    <p>Course name: {course.name}</p>
-                    <p>Description: {course.description}</p>
-                    <p>Price: {course.price} £/year</p>
-                    <p>Duration: {course.duration} months</p>
-                    <br/>
-                    {/* here i can add delete , maybe update too ? */}
-                </div>
-            );
-        });
-    }
-
+    const displayCourses = courses.map((course: Course) => (
+        <div className="CoursesByUni"
+            key={course.id}>
+                <p>name: {course.name}</p>
+                <p>description: {course.description}</p>
+                <p>duration: {course.duration}</p>
+                <p>price: {course.price}</p>
+        </div>
+    ));
 
 
     return (
         <div>
             <h1>Courses</h1>
-            <div>{displayCourses()}</div>
-                  <CreateCourse/>
-                  <UpdateCourse course={courses}/>
-                  <CoursesById/>
+            <div>{displayCourses}</div>
+                <CreateCourse/>
+                <CoursesById/>
         </div>
     );
 

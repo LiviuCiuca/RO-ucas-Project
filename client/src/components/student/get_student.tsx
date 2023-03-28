@@ -4,6 +4,7 @@ import { Student } from '../../util/student';
 import CreateStudent from './create_student';
 import DeleteStudent from './delete_student';
 import UpdateStudent from './update_student';
+import { Students } from './get_all_students';
 
 const StudentById = () => {
   const id = 15; 
@@ -43,6 +44,7 @@ const StudentById = () => {
            {key}: {student[key]}
         </div>
       ))}</h3>
+      <Students/>
       <CreateStudent/>
       <DeleteStudent student={student}/>
       <UpdateStudent student={student}/>

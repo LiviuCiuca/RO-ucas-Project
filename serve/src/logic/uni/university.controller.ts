@@ -34,6 +34,3 @@ export class UniversityController {
     }
     
 }
-
-
-//Invoke-WebRequest -Method POST -Uri http://localhost:3000/university -Headers @{'Content-Type'='application/json'} -Body '{ "id": 1, "name": "John Doe", "email": "johndoe@example.com", "location": "New York", "rating": 5, "description": "A professional software developer", "image": "https://example.com/johndoe.jpg", "website": "https://johndoe.com" }'

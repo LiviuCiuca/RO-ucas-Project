@@ -1,14 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Course } from "../../util/course";
+import UpdateCourse from "./update_course";
 
 export const CoursesById = () => {
-    const [course,setCourse] = useState<Course>({} as Course);
+    const [course,setCourse] = useState<Course[]>([]);
     const [loading,setLoading] = useState(true);
     const [error,setError] = useState(null);
+    const [selectedCourse, setSelectedCourse] = useState<Course>({} as Course);
 
-    //gotta check if the endpoint is correct
-    // import id from a list 
     const getCourses = async (id:number) => {
         try {
             const response = await axios.get(`/api/course/${id}`);
@@ -20,11 +20,18 @@ export const CoursesById = () => {
             setLoading(false);
         }
     }
+
     useEffect(() => {
-        const id = 8; 
-        getCourses(id);
+        const uniId = 8; 
+        getCourses(uniId);
     }, []);
     
+    const handleCourseSelect = (course: Course) => {
+        setSelectedCourse(course);
+        console.log('Selected sda:', course);
+        console.log('Selected Course:', selectedCourse);
+    }
+
     if (loading) {
         return <div>
           <h1>Loading...</h1>
@@ -33,27 +40,22 @@ export const CoursesById = () => {
     if (error) {
         return <div>{error}</div>;
     }
-    const displayCourse = course.map((course: any) => (
-        <div key={course.id}>
-            {course.name}
-            {course.description}
-            {course.duration}
-            {course.price}
-            </div>
+    const displayCourse = course.map((course: Course) => (
+        <div className="CoursesByUni"
+            key={course.id}
+            onClick={() => handleCourseSelect(course)}>
+                <p>name: {course.name}</p>
+                <p>description: {course.description}</p>
+                <p>duration: {course.duration}</p>
+                <p>price: {course.price}</p>
+        </div>
     ));
-
 
     return (
         <div>
-            <h1>Course</h1>
+            <h1>My Courses</h1>
             <h3>{displayCourse}</h3>
-            
+             <UpdateCourse selectedCourse={selectedCourse}/>
         </div>
     );
-
-    //gotta do conditional rendering ? if im logged in as student i need apply button and hide delete and update button,
-    //if im logged in as uni then i gotta delete button and update button 
-    // or i do a similar component with a button to apply for the course
-    // or if it works, keep this component for displaying and an apply button that takes this id and student id 
-    // my brain is fried
 }

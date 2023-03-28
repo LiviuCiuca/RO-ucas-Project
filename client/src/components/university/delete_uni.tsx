@@ -13,7 +13,7 @@ export const DeleteUniversity = (props: {university :University}) => {
     };
     console.log(university.id);
     
-    //should import the university id from auth
+    
     return (
         <div>
         <h1>Delete University</h1>
