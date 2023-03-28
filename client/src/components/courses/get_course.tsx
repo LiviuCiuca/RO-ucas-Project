@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Course } from "../../util/course";
 
 export const CoursesById = () => {
-    const [courses,setCourses] = useState<Course[]>([]);
+    const [course,setCourse] = useState<Course>({} as Course);
     const [loading,setLoading] = useState(true);
     const [error,setError] = useState(null);
 
@@ -11,9 +11,9 @@ export const CoursesById = () => {
     // import id from a list 
     const getCourses = async (id:number) => {
         try {
-            const response = await axios.get(`/api/courses/${id}`);
+            const response = await axios.get(`/api/course/${id}`);
             console.log('Response:', response.data);
-            setCourses(response.data);
+            setCourse(response.data);
             setLoading(false);
         } catch (error : any) {
             setError(error.message);
@@ -21,7 +21,7 @@ export const CoursesById = () => {
         }
     }
     useEffect(() => {
-        const id = 1; 
+        const id = 8; 
         getCourses(id);
     }, []);
     
@@ -33,10 +33,21 @@ export const CoursesById = () => {
     if (error) {
         return <div>{error}</div>;
     }
+    const displayCourse = course.map((course: any) => (
+        <div key={course.id}>
+            {course.name}
+            {course.description}
+            {course.duration}
+            {course.price}
+            </div>
+    ));
+
 
     return (
         <div>
             <h1>Course</h1>
+            <h3>{displayCourse}</h3>
+            
         </div>
     );
 

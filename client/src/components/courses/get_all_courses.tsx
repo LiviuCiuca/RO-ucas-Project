@@ -1,10 +1,12 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { JSXElementConstructor, ReactElement, ReactFragment, ReactPortal, useEffect, useState } from "react";
 import { Course } from "../../util/course";
 import { CreateCourse } from "./create_course";
+import { CoursesById } from "./get_course";
+import UpdateCourse from "./update_course";
 
 export const Courses = () => {
-    const [courses,setCourses] = useState<Course[]>([]);
+    const [courses,setCourses] = useState<Course>({} as Course);
     const [loading,setLoading] = useState(true);
     const [error,setError] = useState(null);
 
@@ -37,10 +39,10 @@ export const Courses = () => {
 
     //function to display courses on page
     function displayCourses() {
-        return courses.map((course) => {
+        return courses.map((course: { name: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; description: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; price: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; duration: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined; }) => {
             return (
                 <div>
-                    <h3>Course name: {course.name}</h3>
+                    <p>Course name: {course.name}</p>
                     <p>Description: {course.description}</p>
                     <p>Price: {course.price} £/year</p>
                     <p>Duration: {course.duration} months</p>
@@ -58,6 +60,8 @@ export const Courses = () => {
             <h1>Courses</h1>
             <div>{displayCourses()}</div>
                   <CreateCourse/>
+                  <UpdateCourse course={courses}/>
+                  <CoursesById/>
         </div>
     );
 
