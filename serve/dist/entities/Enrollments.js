@@ -24,10 +24,6 @@ __decorate([
     __metadata("design:type", Student_1.Student)
 ], Enrollment.prototype, "student", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
-], Enrollment.prototype, "studentId", void 0);
-__decorate([
     (0, typeorm_1.ManyToOne)(type => Courses_1.Courses, course => course.enrollments),
     __metadata("design:type", Courses_1.Courses)
 ], Enrollment.prototype, "course", void 0);

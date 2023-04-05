@@ -22,6 +22,8 @@ const UpdateCourse = (props: { selectedCourse: Course }) => {
     updateCourse(props.selectedCourse.id);
   };
 
+  // issue :
+  // i have selected course, possibly i have to send uniId too even tho it should be the same 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
     console.log("target:", e.target);

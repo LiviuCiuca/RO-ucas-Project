@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Enrollment } from "../../util/enrollment";
 //this is for uni to accept or reject a student
-
+//should be on each student in the enrollent list
 const UpdateEnrollment = (props: { enrollment: Enrollment }) => {
     const [updatedEnrollment, setUpdatedEnrollment] = useState<Enrollment>(props.enrollment);
     
@@ -28,7 +28,7 @@ const UpdateEnrollment = (props: { enrollment: Enrollment }) => {
     
     return (
         <div>
-        <h1>Create Enrollment</h1>
+        <h1>Enrollment</h1>
             <div>
             <label htmlFor="status">Status: </label>
             <input

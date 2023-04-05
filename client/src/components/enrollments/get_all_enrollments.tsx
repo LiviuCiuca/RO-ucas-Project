@@ -4,15 +4,15 @@ import { Enrollment } from "../../util/enrollment";
 import UpdateEnrollment from "./update_enrollment";
 
 export const Enrollments = () => {
-    const [enrollment,setEnrollment] = useState<Enrollment>({} as Enrollment);
+    const [enrollments,setEnrollment] = useState<Enrollment>({} as Enrollment);
     const [loading,setLoading] = useState(true);
     const [error,setError] = useState(null);
 
     //this should return all enrillments of a student
-     
-    const getEnrollment = async (id:number) => {
+     //uni sees this and will accpet or reject students
+    const getEnrollment = async () => {
         try {
-            const response = await axios.get(`/api/enrollment/${id}`);
+            const response = await axios.get(`/api/enrollment`);
             console.log('Response:', response.data);
             setEnrollment(response.data);
             setLoading(false);
@@ -22,8 +22,7 @@ export const Enrollments = () => {
         }
     }
     useEffect(() => {
-        const studentId = 15; 
-        getEnrollment(studentId);
+        getEnrollment();
     }, []);
     
     if (loading) {
@@ -35,10 +34,21 @@ export const Enrollments = () => {
         return <div>{error}</div>;
     }
 
+    const displayenrollment = enrollments.map((enroll: Enrollment) => (
+        <div className="enrollments"
+            key={enroll.id}>
+                <p>student: {enroll.student.name}</p>
+                <p>course: {enroll.course.id}</p>
+                <p>status: {enroll.status}</p>
+        </div>
+    ));
+    
+
+
     return (
         <div>
             <h1>Enrollment</h1>
-            <UpdateEnrollment enrollment={enrollment}/>
+            <UpdateEnrollment enrollment={enrollments}/>
         </div>
     );
 

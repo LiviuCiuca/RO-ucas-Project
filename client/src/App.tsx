@@ -1,22 +1,34 @@
-import Navbar from './components/navbar';
-import Student from './components/student/get_student'
+
+import {Parent_studentComponent} from './components/parents/student';
 import { BrowserRouter as Router, Route, Routes  } from 'react-router-dom';
-import { Courses } from './components/courses/get_all_courses';
-import { Enrollments } from './components/enrollments/get_enrollment';
+import { Enrollments } from './components/enrollments/get_all_enrollments';
 import { UniversityById } from './components/university/get_uni';
+import { Students } from './components/student/get_all_students';
+import StudentNavbar from './components/navbars/navbar';
+import UniNavbar from './components/navbars/uni_navbar';
+import { Universities } from './components/university/get_all_unis';
+import { CoursesById } from './components/courses/get_course';
 
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <Navbar />
+
+        <StudentNavbar />
         <Routes >
-          <Route path="/student" Component={Student} />
-          <Route path="/courses" Component={Courses} />
-          <Route path="/enrollments" Component={Enrollments} />
-          <Route path="/university" Component={UniversityById} />
+          <Route path="/allstudent" element={<Students/>} />
+          <Route path="/student/*" element={<Parent_studentComponent/>} />
+          <Route path="/enrollments" element={<Enrollments/>} />
         </Routes >
+
+        <UniNavbar/>
+        <Routes>
+          <Route path='/university' element={<Universities/>}/>
+          <Route path='/profile' element={<UniversityById/>}/>
+          <Route path='/courses' element={<CoursesById/>}/>
+          <Route path='/enrollments' element={<Enrollments/>}/>
+        </Routes>
       </div>
     </Router>
   );

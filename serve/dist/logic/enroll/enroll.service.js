@@ -17,9 +17,13 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const Enrollments_1 = require("../../entities/Enrollments");
 const typeorm_2 = require("typeorm");
+const Student_1 = require("../../entities/Student");
+const Courses_1 = require("../../entities/Courses");
 let EnrollService = class EnrollService {
-    constructor(enrollmentRepository) {
+    constructor(enrollmentRepository, studentRepository, courseRepository) {
         this.enrollmentRepository = enrollmentRepository;
+        this.studentRepository = studentRepository;
+        this.courseRepository = courseRepository;
     }
     getAll() {
         return this.enrollmentRepository.find({ relations: ['student', 'course'] });
@@ -30,19 +34,22 @@ let EnrollService = class EnrollService {
             relations: ['student', 'course']
         });
     }
-    async apply(student, course) {
-        const enroll = this.enrollmentRepository.create(Object.assign(Object.assign({}, student), course));
-        enroll.studentId = student.id;
-        enroll.status = 'Applied';
-        switch (true) {
-            case !student.id:
-                throw new common_1.NotFoundException('Student does not exist');
-            case !course.id:
-                throw new common_1.NotFoundException('Course id: ' + course.id + ' does not exist');
-            default:
-                const savedEnrollment = await this.enrollmentRepository.save(enroll);
-                return savedEnrollment;
+    async create(createEnrollmentDto) {
+        console.log('Creating enrollment:', createEnrollmentDto);
+        const { student, course, status } = createEnrollmentDto;
+        console.log(createEnrollmentDto);
+        const foundStudent = await this.studentRepository.findOne({ where: { id: student } });
+        const foundCourse = await this.courseRepository.findOne({ where: { id: course } });
+        if (!foundStudent || !foundCourse) {
+            throw new common_1.NotFoundException('Student or course not found');
         }
+        const enrollment = new Enrollments_1.Enrollment();
+        enrollment.student = foundStudent;
+        enrollment.course = foundCourse;
+        enrollment.status = status;
+        const savedEnrollment = await this.enrollmentRepository.save(enrollment);
+        console.log('Enrollment created:', savedEnrollment);
+        return savedEnrollment;
     }
     async deleteEnrollmentsByStudentId(studentId) {
         const id = studentId;
@@ -62,7 +69,11 @@ let EnrollService = class EnrollService {
 EnrollService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(Enrollments_1.Enrollment)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __param(1, (0, typeorm_1.InjectRepository)(Student_1.Student)),
+    __param(2, (0, typeorm_1.InjectRepository)(Courses_1.Courses)),
+    __metadata("design:paramtypes", [typeorm_2.Repository,
+        typeorm_2.Repository,
+        typeorm_2.Repository])
 ], EnrollService);
 exports.EnrollService = EnrollService;
 //# sourceMappingURL=enroll.service.js.map

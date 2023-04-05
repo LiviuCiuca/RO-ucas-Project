@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Student } from '../../util/student';
-import CreateStudent from './create_student';
 import DeleteStudent from './delete_student';
 import UpdateStudent from './update_student';
-import { Students } from './get_all_students';
+import { Course } from '../../util/course';
+import { Enrollmen } from '../enrollments/get_enrollments';
 
-const StudentById = () => {
+export const StudentById = (props :{selectedCourse :Course}) => {
   const id = 15; 
   const [student, setStudent] = useState<Student>({} as Student);
   const [loading, setLoading] = useState(true);
@@ -26,6 +26,7 @@ const StudentById = () => {
 
   useEffect(() => {
     getStudentById(id);
+    
   }, []);
 
   if (loading) {
@@ -44,13 +45,14 @@ const StudentById = () => {
            {key}: {student[key]}
         </div>
       ))}</h3>
-      <Students/>
-      <CreateStudent/>
+      
+     
       <DeleteStudent student={student}/>
       <UpdateStudent student={student}/>
+      <Enrollmen student={student} />
+     
 
+     
     </div>
   );
 };
-
-export default StudentById;

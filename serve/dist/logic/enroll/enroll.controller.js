@@ -15,8 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.EnrollmentController = void 0;
 const common_1 = require("@nestjs/common");
 const decorators_1 = require("@nestjs/common/decorators");
-const Courses_1 = require("../../entities/Courses");
-const Student_1 = require("../../entities/Student");
+const createEnrollmentDto_1 = require("../../dtos/createEnrollmentDto");
 const enroll_service_1 = require("./enroll.service");
 let EnrollmentController = class EnrollmentController {
     constructor(enrollmentService) {
@@ -28,8 +27,9 @@ let EnrollmentController = class EnrollmentController {
     getEnrollmentsByStudentId(id) {
         return this.enrollmentService.getEnrollmentsByStudentId(id);
     }
-    apply(student, course) {
-        return this.enrollmentService.apply(student, course);
+    async create(createEnrollmentDto) {
+        console.log('Creating enrollment:', createEnrollmentDto);
+        return await this.enrollmentService.create(createEnrollmentDto);
     }
     updateEnrollment(id, status) {
         return this.enrollmentService.updateStatus(id, status);
@@ -43,19 +43,18 @@ __decorate([
 ], EnrollmentController.prototype, "getEnrollments", null);
 __decorate([
     (0, decorators_1.Get)(':id'),
-    __param(0, (0, common_1.Body)('id')),
+    __param(0, (0, decorators_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
 ], EnrollmentController.prototype, "getEnrollmentsByStudentId", null);
 __decorate([
     (0, common_1.Post)(),
-    __param(0, (0, common_1.Body)('student')),
-    __param(1, (0, common_1.Body)('course')),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Student_1.Student, Courses_1.Courses]),
-    __metadata("design:returntype", void 0)
-], EnrollmentController.prototype, "apply", null);
+    __metadata("design:paramtypes", [createEnrollmentDto_1.CreateEnrollmentDto]),
+    __metadata("design:returntype", Promise)
+], EnrollmentController.prototype, "create", null);
 __decorate([
     (0, decorators_1.Put)(),
     __param(0, (0, decorators_1.Param)('id', common_1.ParseIntPipe)),

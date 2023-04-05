@@ -1,7 +1,6 @@
 import { Controller, Post, Body, ParseIntPipe } from '@nestjs/common';
 import { Get, Param, Put } from '@nestjs/common/decorators';
-import { Courses } from 'src/entities/Courses';
-import { Student } from 'src/entities/Student';
+import { CreateEnrollmentDto } from 'src/dtos/createEnrollmentDto';
 import { EnrollService } from './enroll.service';
 
 @Controller('/enrollment')
@@ -17,13 +16,14 @@ export class EnrollmentController {
     }
 
     @Get(':id')
-    getEnrollmentsByStudentId(@Body('id') id: number) {
-        return this.enrollmentService.getEnrollmentsByStudentId(id);
+    getEnrollmentsByStudentId(@Param('id', ParseIntPipe) id: number) {
+    return this.enrollmentService.getEnrollmentsByStudentId(id);
     }
 
     @Post()
-    apply(@Body('student') student: Student, @Body('course') course: Courses ) {
-        return this.enrollmentService.apply(student, course);
+    async create(@Body() createEnrollmentDto: CreateEnrollmentDto) {
+        console.log('Creating enrollment:', createEnrollmentDto);
+      return await this.enrollmentService.create(createEnrollmentDto);
     }
 
     @Put()

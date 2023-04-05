@@ -1,13 +1,16 @@
 import { Enrollment } from 'src/entities/Enrollments';
 import { Repository } from 'typeorm';
-import { createCoursesParams } from 'src/utils/coursesTypes';
-import { createStudentParams } from 'src/utils/studentTypes';
+import { CreateEnrollmentDto } from 'src/dtos/createEnrollmentDto';
+import { Student } from 'src/entities/Student';
+import { Courses } from 'src/entities/Courses';
 export declare class EnrollService {
-    private enrollmentRepository;
-    constructor(enrollmentRepository: Repository<Enrollment>);
+    private readonly enrollmentRepository;
+    private readonly studentRepository;
+    private readonly courseRepository;
+    constructor(enrollmentRepository: Repository<Enrollment>, studentRepository: Repository<Student>, courseRepository: Repository<Courses>);
     getAll(): Promise<Enrollment[]>;
     getEnrollmentsByStudentId(studentId: number): Promise<Enrollment[]>;
-    apply(student: createStudentParams, course: createCoursesParams): Promise<Enrollment>;
+    create(createEnrollmentDto: CreateEnrollmentDto): Promise<Enrollment>;
     deleteEnrollmentsByStudentId(studentId: number): Promise<void>;
     updateStatus(id: number, status: string): void;
 }

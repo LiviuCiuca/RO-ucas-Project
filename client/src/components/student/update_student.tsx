@@ -3,8 +3,6 @@ import { useState } from "react";
 import { Student } from "../../util/student";
 import { Student_formFields } from "../../util/formFields/Student_formField";
 
-
-
   const UpdateStudent = (props: { student: Student }) => {
     const [updatedStudent, setUpdatedStudent] = useState<Student>(props.student);
   
@@ -32,7 +30,7 @@ import { Student_formFields } from "../../util/formFields/Student_formField";
 
     return (
         <div>
-          <h1>Create Student</h1>
+          <h1>Update Student</h1>
           <form>
                 {Student_formFields.map((field) => (
                     <div key={field.name}>

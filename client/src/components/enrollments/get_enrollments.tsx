@@ -1,18 +1,19 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { Enrollment } from "../../util/enrollment";
 import { Student } from "../../util/student";
-import CreateStudent from "./create_student";
 
-export const Students = () => {
-    const [students, setStudents] = useState<Student>({} as Student);
+//shows all enrollments of a student
+export const Enrollmen = (props: {student: Student}) => {
+    const [enrollments, setEnrollments] = useState<Enrollment>({} as Enrollment);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const getAllStudents = async () => {
+    const getEnrollment = async (id : number) => {
         try {
-            const response = await axios.get("/api/student");
+            const response = await axios.get(`/api/enrollment/${id}`);
             console.log("Response data:", response.data);
-            setStudents(response.data);
+            setEnrollments(response.data);
             setLoading(false);
         } catch (error: any) {
             setError(error.message);
@@ -21,7 +22,8 @@ export const Students = () => {
     };
 
     useEffect(() => {
-        getAllStudents();
+        
+        getEnrollment(15);
     }, []);
 
     if (loading) {
@@ -34,16 +36,13 @@ export const Students = () => {
 
     return (
         <div>
-            <h1>Students</h1>
-            <h3>{students.map((student:Student) => (
-                <div key={student.id}>
-                    {student.name}
+            <h1>Enrollments</h1>
+            <h3>{enrollments.map((enrollment:Enrollment) => (
+                <div key={enrollment.id}>
+                    enrollment.course.name:{enrollment.course.name}
+                    enrollment.status:{enrollment.status}
                 </div>
             ))}</h3>
-            {/* this will show up when a create button shows up  */}
-            <CreateStudent/>
-
         </div>
-        
     );
 };

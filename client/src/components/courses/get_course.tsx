@@ -2,9 +2,10 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Course } from "../../util/course";
 import UpdateCourse from "./update_course";
+import { CreateEnrollment } from '../enrollments/post_enrollment';
 
 export const CoursesById = () => {
-    const [course,setCourse] = useState<Course[]>([]);
+    const [course,setCourse] = useState<Course>({} as Course);
     const [loading,setLoading] = useState(true);
     const [error,setError] = useState(null);
     const [selectedCourse, setSelectedCourse] = useState<Course>({} as Course);
@@ -55,7 +56,11 @@ export const CoursesById = () => {
         <div>
             <h1>My Courses</h1>
             <h3>{displayCourse}</h3>
-             <UpdateCourse selectedCourse={selectedCourse}/>
+            {/* 'UpdateCourse' should be rendered conditionally only when a course is selected */}
+            {/* error */}
+            {selectedCourse && <UpdateCourse selectedCourse={selectedCourse} />}
+            
+            
         </div>
     );
 }
