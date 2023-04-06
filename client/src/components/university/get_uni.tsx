@@ -35,15 +35,16 @@ export const UniversityById = () => {
         return <div>{error}</div>;
     }
     //map through the university object and display the key and value
-    const universityInfo = Object.values(university).map((key) => (
-        <div key={key}>
-              {key} 
-        </div>
-    ));
+   
     return (
         <div>
             <h1>University</h1>
-            <h3>{universityInfo}</h3>
+            <h3>{Object.keys(university).map((key: any) => (
+        <div key={key}>
+           {key}: {university[key]}
+        </div>
+      ))}</h3>
+      
             <DeleteUniversity university={university}/>
             <CreateUniversity/>
             <UpdateUniversity university={university}/>

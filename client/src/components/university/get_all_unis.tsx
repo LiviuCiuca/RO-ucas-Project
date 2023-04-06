@@ -31,14 +31,16 @@ export const Universities = () => {
         return <div>{error}</div>;
     }
 
+    const displayUniversities = universities.map((university: University) => (
+            <div key={university.id}>
+                Name :  {university.name}
+
+            </div>
+        ));
     return (
         <div>
             <h1>Universities</h1>
-            <h3>{universities.map((university:University) => (
-                <div key={university.id}>
-                    {university.name}
-                </div>
-            ))}</h3>
+            <h3>{displayUniversities}</h3>
         </div>
     );
 };

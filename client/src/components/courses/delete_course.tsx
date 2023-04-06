@@ -1,6 +1,8 @@
 import axios from "axios";
+import { Course } from "../../util/course";
 
-const DeleteCourse = () => {
+export const DeleteCourse = (props: { selectedCourse: Course }) => {
+
     const deleteCourse = async (id: number) => {
         try {
         const response = await axios.delete(`/api/course/${id}`);
@@ -10,11 +12,13 @@ const DeleteCourse = () => {
         }
     };
     
-    //should import the course id from auth
+
     return (
         <div>
         <h1>Delete Course</h1>
-        <button onClick={() => deleteCourse(1)}>Delete</button>
+
+        <button onClick={() => deleteCourse(props.selectedCourse.id)}>Delete</button>
+        <h3>Delete succesfull</h3>
         </div>
     );
 };

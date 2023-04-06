@@ -1,11 +1,14 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Enrollment } from "../../util/enrollment";
+import { useParams } from "react-router-dom";
 import { Student } from "../../util/student";
 
 //shows all enrollments of a student
-export const Enrollmen = (props: {student: Student}) => {
+export const Enrollmen = () => {
     const [enrollments, setEnrollments] = useState<Enrollment>({} as Enrollment);
+    const { studentId } = useParams<{ studentId: string }>();
+
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -22,9 +25,8 @@ export const Enrollmen = (props: {student: Student}) => {
     };
 
     useEffect(() => {
-        
-        getEnrollment(15);
-    }, []);
+        getEnrollment(Number(studentId));
+    }, [studentId]);
 
     if (loading) {
         return <div><h1>Loading...</h1></div>;

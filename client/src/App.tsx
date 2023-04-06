@@ -4,10 +4,11 @@ import { BrowserRouter as Router, Route, Routes  } from 'react-router-dom';
 import { Enrollments } from './components/enrollments/get_all_enrollments';
 import { UniversityById } from './components/university/get_uni';
 import { Students } from './components/student/get_all_students';
-import StudentNavbar from './components/navbars/navbar';
+import StudentNavbar from './components/navbars/student_navbar';
 import UniNavbar from './components/navbars/uni_navbar';
 import { Universities } from './components/university/get_all_unis';
 import { CoursesById } from './components/courses/get_course';
+import { Enrollmen } from './components/enrollments/get_enrollments';
 
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
         <Routes >
           <Route path="/allstudent" element={<Students/>} />
           <Route path="/student/*" element={<Parent_studentComponent/>} />
-          <Route path="/enrollments" element={<Enrollments/>} />
+          <Route path="/enrollments/:studentId" Component={Enrollmen} />
         </Routes >
 
         <UniNavbar/>
@@ -35,3 +36,5 @@ function App() {
 }
 
 export default App;
+// can access the studentId route parameter in the Enrollmen component by using the useParams hook from react-router-dom
+// the alternative was to create a parent comp again

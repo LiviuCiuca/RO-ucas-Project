@@ -3,8 +3,6 @@ import { useEffect, useState } from "react";
 import { Course } from "../../util/course";
 import { Student } from "../../util/student";
 import { CreateEnrollment } from "../enrollments/post_enrollment";
-import { CreateCourse } from "./create_course";
-import { CoursesById } from "./get_course";
 
 export const Courses = (props: {student : Student}) => {
     const [courses,setCourses] = useState<Course>({} as Course);
@@ -62,8 +60,6 @@ export const Courses = (props: {student : Student}) => {
         <div>
             <h1>Courses</h1>
             <div>{displayCourses}</div>
-                <CreateCourse/>
-                <CoursesById/>
         </div>
     );
 

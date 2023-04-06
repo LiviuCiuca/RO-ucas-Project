@@ -4,7 +4,7 @@ import { Student } from '../../util/student';
 import DeleteStudent from './delete_student';
 import UpdateStudent from './update_student';
 import { Course } from '../../util/course';
-import { Enrollmen } from '../enrollments/get_enrollments';
+import { Link } from "react-router-dom";
 
 export const StudentById = (props :{selectedCourse :Course}) => {
   const id = 15; 
@@ -36,6 +36,7 @@ export const StudentById = (props :{selectedCourse :Course}) => {
   if (error) {
     return <div>{error}</div>;
   }
+ 
 
   return (
     <div>
@@ -49,8 +50,8 @@ export const StudentById = (props :{selectedCourse :Course}) => {
      
       <DeleteStudent student={student}/>
       <UpdateStudent student={student}/>
-      <Enrollmen student={student} />
-     
+      
+      <Link to={`/enrollments/${student.id}`}>View Enrollments</Link>
 
      
     </div>
