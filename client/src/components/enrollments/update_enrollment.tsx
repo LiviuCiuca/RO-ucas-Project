@@ -1,47 +1,40 @@
 import axios from "axios";
 import { useState } from "react";
 import { Enrollment } from "../../util/enrollment";
-//this is for uni to accept or reject a student
-//should be on each student in the enrollent list
+
 const UpdateEnrollment = (props: { enrollment: Enrollment }) => {
     const [updatedEnrollment, setUpdatedEnrollment] = useState<Enrollment>(props.enrollment);
-    
+    const [clickedButton, setClickedButton] = useState<string>("");
+
     const updateEnrollment = async (id: number) => {
         try {
-        const response = await axios.put(`/api/enrollment/${id}`, updatedEnrollment);
-        console.log("Response data:", response.data);
+            const response = await axios.put(`/api/enrollment/${id}`, updatedEnrollment);
+            console.log("Response data:", response.data);
         } catch (error: any) {
-        console.log(error.message);
+            console.log(error.message);
         }
     };
-    
-    const handleSubmit = (e: any) => {
-        e.default();
+
+    const handleAccept = () => {
+        setUpdatedEnrollment({ ...updatedEnrollment, status: "Accepted" });
+        setClickedButton("Accept");
         updateEnrollment(props.enrollment.id);
     };
-    
-    const handleChange = (e: any) => {
-        const { name, value } = e.target;
-        console.log("target:", e.target);
-        setUpdatedEnrollment({ ...updatedEnrollment, [name]: value });
+
+    const handleReject = () => {
+        setUpdatedEnrollment({ ...updatedEnrollment, status: "Rejected" });
+        setClickedButton("Reject");
+        updateEnrollment(props.enrollment.id);
     };
-    
+
     return (
-        <div>
-        <h1>Enrollment</h1>
-            <div>
-            <label htmlFor="status">Status: </label>
-            <input
-                type="text"
-                name="status"
-                value={updatedEnrollment.status}
-                onChange={handleChange}
-            />
-            </div>
-            <button type="button" onClick={handleSubmit}>
-            Update
+        <div className="updateEnrollment">
+            <button type="button" onClick={handleAccept} disabled={clickedButton === "Reject" || updatedEnrollment.status === "Accepted"}>
+                    Accept
             </button>
-        
+            <button type="button" onClick={handleReject} disabled={clickedButton === "Accept" || updatedEnrollment.status === "Rejected"}>
+                    Reject
+            </button>
         </div>
     );
 };

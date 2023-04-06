@@ -2,7 +2,6 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { Enrollment } from "../../util/enrollment";
 import { useParams } from "react-router-dom";
-import { Student } from "../../util/student";
 
 //shows all enrollments of a student
 export const Enrollmen = () => {
@@ -41,8 +40,8 @@ export const Enrollmen = () => {
             <h1>Enrollments</h1>
             <h3>{enrollments.map((enrollment:Enrollment) => (
                 <div key={enrollment.id}>
-                    enrollment.course.name:{enrollment.course.name}
-                    enrollment.status:{enrollment.status}
+                    <p>enrollment.course.name:{enrollment.course.name}</p>
+                    <p>enrollment.status:{enrollment.status}</p>
                 </div>
             ))}</h3>
         </div>

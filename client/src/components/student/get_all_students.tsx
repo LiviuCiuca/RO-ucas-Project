@@ -37,7 +37,7 @@ export const Students = () => {
             <h1>Students</h1>
             <h3>{students.map((student:Student) => (
                 <div key={student.id}>
-                    {student.name}
+                    Name: {student.name}
                 </div>
             ))}</h3>
             {/* this will show up when a create button shows up  */}
