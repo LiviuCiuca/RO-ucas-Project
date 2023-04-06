@@ -3,6 +3,7 @@ import { University } from "../../util/university";
 import { useState } from "react";
 
 export const DeleteUniversity = (props: {university :University}) => {
+    
     const {university} = props;
     const [deleteStatus, setDeleteStatus] = useState("");
     
@@ -14,7 +15,6 @@ export const DeleteUniversity = (props: {university :University}) => {
             setDeleteStatus(`Delete failed: ${error.message}`);
         }
     };
-    console.log(university.id);
     
     
     return (
