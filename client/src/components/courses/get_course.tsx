@@ -43,7 +43,7 @@ export const CoursesById = () => {
         return <div>{error}</div>;
     }
     const displayCourse = course.map((course: Course) => (
-        <div className="CoursesByUni"
+        <div className="unisCourses"
             key={course.id}
             onClick={() => handleCourseSelect(course)}>
                 <p>name: {course.name}</p>

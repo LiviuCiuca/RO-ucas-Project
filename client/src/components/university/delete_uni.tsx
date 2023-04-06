@@ -1,14 +1,17 @@
 import axios from "axios"
 import { University } from "../../util/university";
+import { useState } from "react";
 
 export const DeleteUniversity = (props: {university :University}) => {
     const {university} = props;
+    const [deleteStatus, setDeleteStatus] = useState("");
+    
     const deleteUniversity = async (id: number) => {
         try {
         const response = await axios.delete(`/api/university/${id}`);
-        console.log('Response:', response.data);
+            setDeleteStatus("Delete successful.");
         } catch (error : any) {
-        console.log(error.message);
+            setDeleteStatus(`Delete failed: ${error.message}`);
         }
     };
     console.log(university.id);
@@ -18,6 +21,7 @@ export const DeleteUniversity = (props: {university :University}) => {
         <div>
         <h1>Delete University</h1>
         <button onClick={() => deleteUniversity(university.id)}>Delete</button>
+        <p>{deleteStatus}</p>
         </div>
     );
 };

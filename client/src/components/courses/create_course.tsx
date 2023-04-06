@@ -38,7 +38,7 @@ export const CreateCourse = () => {
             <h1>Create Course</h1>
             <form onSubmit={handleSubmit}>
                 {Course_formFields.map((field) => (
-                    <div key={field.name}>
+                    <div className="createCourse" key={field.name}>
                         <label htmlFor={field.name}>{field.label}</label>
                         {field.type === "textarea" ? (
                             <textarea

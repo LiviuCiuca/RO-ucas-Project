@@ -35,7 +35,7 @@ const UpdateCourse = (props: { selectedCourse: Course }) => {
       <h1>Update Course</h1>
       <form onSubmit={handleSubmit}>
         {Course_formFields.map((field) => (
-          <div key={field.name}>
+          <div className="updateCourse" key={field.name}>
             <label htmlFor={field.name}>{field.label}</label>
             {field.type === "textarea" ? (
               <textarea
@@ -44,7 +44,7 @@ const UpdateCourse = (props: { selectedCourse: Course }) => {
                 onChange={handleChange}
               />
             ) : (
-              <input
+              <input 
                 type={field.type}
                 name={field.name}
                 value={formFields[field.name]}

@@ -44,7 +44,7 @@ export const Courses = (props: {student : Student}) => {
 
     //function to display courses on page
     const displayCourses = courses.map((course: Course) => (
-        <div className="CoursesByUni"
+        <div className="allCourses"
             key={course.id}
             onClick={() => handleCourseSelect(course)}>
                 <p>name: {course.name}</p>

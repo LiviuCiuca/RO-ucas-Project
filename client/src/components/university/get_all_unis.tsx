@@ -33,8 +33,7 @@ export const Universities = () => {
 
     const displayUniversities = universities.map((university: University) => (
             <div key={university.id}>
-                Name :  {university.name}
-
+                Name: {university.name}  
             </div>
         ));
     return (

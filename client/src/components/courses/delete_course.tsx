@@ -1,24 +1,27 @@
 import axios from "axios";
 import { Course } from "../../util/course";
+import { useState } from "react";
 
 export const DeleteCourse = (props: { selectedCourse: Course }) => {
 
+    const [deleteStatus, setDeleteStatus] = useState("");
+    
     const deleteCourse = async (id: number) => {
         try {
         const response = await axios.delete(`/api/course/${id}`);
-        console.log('Response:', response.data);
+            setDeleteStatus("Delete successful.");
         } catch (error : any) {
-        console.log(error.message);
+            setDeleteStatus(`Delete failed: ${error.message}`);
         }
     };
     
 
     return (
-        <div>
+        <div className="courseDelete">
         <h1>Delete Course</h1>
 
         <button onClick={() => deleteCourse(props.selectedCourse.id)}>Delete</button>
-        <h3>Delete succesfull</h3>
+        <p>{deleteStatus}</p>
         </div>
     );
 };
