@@ -3,7 +3,7 @@ import { University } from "../../util/university";
 import { useState } from "react";
 
 export const DeleteUniversity = (props: {university :University}) => {
-    
+
     const {university} = props;
     const [deleteStatus, setDeleteStatus] = useState("");
     
@@ -18,8 +18,7 @@ export const DeleteUniversity = (props: {university :University}) => {
     
     
     return (
-        <div>
-        <h1>Delete University</h1>
+        <div className="deleteUniversity">
         <button onClick={() => deleteUniversity(university.id)}>Delete</button>
         <p>{deleteStatus}</p>
         </div>

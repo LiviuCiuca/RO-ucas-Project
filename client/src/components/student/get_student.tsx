@@ -42,9 +42,11 @@ export const StudentById = (props :{selectedCourse :Course}) => {
     <div>
       <h1>Student</h1>
       <h3>{Object.keys(student).map((key: any) => (
-        <div key={key}>
-           {key}: {student[key]}
-        </div>
+          key !== "id" && (
+          <div key={key}>
+            {key}: {student[key]}
+          </div>
+          )
       ))}</h3>
       
      

@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { University } from "../../util/university";
-import CreateUniversity from "./create_uni";
 import { DeleteUniversity } from "./delete_uni";
 import UpdateUniversity from "./update_uni";
 
@@ -35,20 +34,23 @@ export const UniversityById = () => {
         return <div>{error}</div>;
     }
     //map through the university object and display the key and value
-   
+   //key !== "id" && part checks if the current key is not equal to "id", and only renders the div element if it's true.
     return (
         <div>
             <h1>University</h1>
-            <h3>{Object.keys(university).map((key: any) => (
-        <div key={key}>
-           {key}: {university[key]}
-        </div>
-      ))}</h3>
-      
+            <h3>
+                {Object.keys(university).map((key: any) => (
+                    key !== "id" && (
+                        <div key={key}>
+                            {key}: {university[key]}
+                        </div>
+                    )
+                ))}
+            </h3>
             <DeleteUniversity university={university}/>
-            <CreateUniversity/>
             <UpdateUniversity university={university}/>
         </div>
     );
+    
 
 }
