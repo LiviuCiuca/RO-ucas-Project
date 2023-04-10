@@ -18,7 +18,6 @@ const DeleteStudent = (props:{student:Student}) => {
     
     return (
         <div>
-            <h1>Delete Student</h1>
             <button onClick={() => deleteStudent(student.id)}>Delete</button>
             <p>{deleteStatus}</p>
         </div>

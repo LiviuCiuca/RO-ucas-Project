@@ -9,6 +9,7 @@ import UniNavbar from './components/navbars/uni_navbar';
 import { Universities } from './components/university/get_all_unis';
 import { CoursesById } from './components/courses/get_course';
 import { Enrollmen } from './components/enrollments/get_enrollments';
+import CreateStudent from './components/student/create_student';
 
 
 function App() {
@@ -16,11 +17,12 @@ function App() {
     <Router>
       <div className="App">
 
-        <StudentNavbar />
+        <StudentNavbar/>
         <Routes >
           <Route path="/allstudent" element={<Students/>} />
+          <Route path="/create" element={<CreateStudent/>} />
           <Route path="/student/*" element={<Parent_studentComponent/>} />
-          <Route path="/enrollments/:studentId" Component={Enrollmen} />
+          <Route path="/enrollments/:studentId" element={<Enrollmen/>} />
         </Routes >
 
         <UniNavbar/>

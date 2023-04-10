@@ -1,14 +1,14 @@
 import "../css/navbar.css"
 import { Link } from "react-router-dom"
-
+//{ studentId }: { studentId: number | null }
 
 function StudentNavbar() {
     return (
       <nav className="student_Navbar">
         <Link to="/allstudent">Student</Link>
-        <Link to="/student">Profile</Link>
+        {/* {studentId && <Link to={`/student/${studentId}`}>Profile</Link>}
         <Link to="/student/courses">Courses</Link>
-        <Link to="/enrollments/:studentId">Enrollments</Link>
+        {studentId && <Link to={`/enrollments/${studentId}`}>Enrollments</Link>} */}
       </nav>
     );
   }

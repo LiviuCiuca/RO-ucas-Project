@@ -2,10 +2,11 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { Student } from "../../util/student";
 import CreateStudent from "./create_student";
+import { Link } from "react-router-dom";
 
 export const Students = () => {
     const [students, setStudents] = useState<Student>({} as Student);
-    const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
+    const [selectedStudent, setSelectedStudent] = useState<Student>({} as Student);
     
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -33,16 +34,19 @@ export const Students = () => {
     if (error) {
         return <div>{error}</div>;
     }
-    const handleStudentSelection = (e: React.ChangeEvent<HTMLSelectElement>) => { // <-- add function to handle student selection
+    const handleStudentSelection = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const selectedId = parseInt(e.target.value);
         const selectedStudent = students.find((student: { id: number; }) => student.id === selectedId) || null;
         setSelectedStudent(selectedStudent);
+        console.log(selectedStudent);
     };
 
     return (
         <div>
-            {/* Add a dropdown to select a student */}
-            <select
+            <h1>Students Login</h1>
+            <label htmlFor="student-select">Select a student:</label>
+            {/*  a dropdown to select a student */}
+            <select 
                 value={selectedStudent ? selectedStudent.id : ""}
                 onChange={handleStudentSelection}
                 style={{ width: "200px", height: "30px", marginBottom: "10px" }}
@@ -54,8 +58,14 @@ export const Students = () => {
                     </option>
                 ))}
             </select>
-            {/* this will show up when a create button shows up  */}
-            <CreateStudent />
+            {/*  a link to create a new student and to student profile */}
+            <div className="create_student">
+            <Link to="/create"> Create Student</Link>
+            </div>
+            <div className="student_profile">
+            <Link to={`/student/${selectedStudent.id}`} >Profile Student  </Link>
+            </div>
+           
 
         </div>
 

@@ -8,7 +8,7 @@ export const Enrollments = () => {
     const [loading,setLoading] = useState(true);
     const [error,setError] = useState(null);
 
-    //this should return all enrillments of a student
+    //this should return all the students who enrolled to the uni  
      //uni sees this and will accpet or reject students
     const getEnrollment = async () => {
         try {

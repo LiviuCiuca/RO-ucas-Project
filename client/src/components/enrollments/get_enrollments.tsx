@@ -22,6 +22,7 @@ export const Enrollmen = () => {
             setLoading(false);
         }
     };
+    console.log("studentId:", studentId);
 
     useEffect(() => {
         getEnrollment(Number(studentId));
