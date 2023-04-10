@@ -3,33 +3,34 @@ import { Route, Routes } from 'react-router-dom';
 import { Course } from '../../util/course';
 import { Student } from '../../util/student';
 import { Courses } from '../courses/get_all_courses';
-import {StudentById} from '../student/get_student';
-import { Students } from '../student/get_all_students';
-import StudentNavbar from '../navbars/student_navbar';
+import { StudentById } from '../student/get_student';
+import UpdateStudent from '../student/update_student';
+import { Enrollmen } from '../enrollments/get_enrollments';
 
 
 export const Parent_studentComponent = () => {
-    const [selectedCourse, setSelectedCourse] = useState<Course>({} as Course);
-    const [student, setStudent] = useState<Student>({} as Student);
-    const [selectedStudent, setSelectedStudent] = useState<Student>({} as Student);
-    
-  console.log('Selected Course:', selectedCourse);
-  console.log('Selected Student parent:', selectedStudent);
-    return (
-      <>
-      
+  const [selectedCourse, setSelectedCourse] = useState<Course>({} as Course);
+  const [selectedStudent, setSelectedStudent] = useState<Student>({} as Student);
+
+  return (
+    <>
       <Routes>
-     
         <Route
           path="/:studentId"
-          element={ <StudentById selectedCourse={selectedCourse} />}
+          element={<StudentById selectedCourse={selectedCourse} />}
+        />
+        <Route
+          path="/courses/:studentId"
+          element={<Courses student={selectedStudent} />}
+        />
+        <Route
+          path="/update/:studentId"
+          element={<UpdateStudent student={selectedStudent} />}
         />
         <Route 
-          path="/courses"
-          element={ <Courses student={student} />}
-        />
+        path="/enrollments/:studentId" 
+        element={<Enrollmen/>} />
       </Routes>
-      </>
-    );
-  };
-  
+    </>
+  );
+};

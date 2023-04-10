@@ -2,10 +2,11 @@ import axios from "axios";
 import { useState } from "react";
 import { Student } from "../../util/student";
 import { Student_formFields } from "../../util/formFields/Student_formField";
+import { Link, useLocation, useParams } from "react-router-dom";
 
   const UpdateStudent = (props: { student: Student }) => {
     const [updatedStudent, setUpdatedStudent] = useState<Student>(props.student);
-  
+    const { studentId } = useParams<{ studentId: string }>(); 
 
     const updateStudent = async (id: number) => {
         try {
@@ -17,8 +18,9 @@ import { Student_formFields } from "../../util/formFields/Student_formField";
     };
 
     const handleSubmit = (e: any) => {
-        e.default();
-        updateStudent(props.student.id);
+      
+        updateStudent(Number(studentId));
+        
         };
 
     const handleChange = (e: any) => {
@@ -55,6 +57,9 @@ import { Student_formFields } from "../../util/formFields/Student_formField";
                     Update
                 </button>
             </form>
+            <Link to={`/student/${studentId}`}>
+                <button>Cancel</button>
+            </Link>
     </div>
   );
 };

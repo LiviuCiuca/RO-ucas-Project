@@ -3,13 +3,16 @@ import { useEffect, useState } from "react";
 import { Course } from "../../util/course";
 import { Student } from "../../util/student";
 import { CreateEnrollment } from "../enrollments/post_enrollment";
+import { Link, useParams } from "react-router-dom";
 
 export const Courses = (props: {student : Student}) => {
     const [courses,setCourses] = useState<Course>({} as Course);
     const [loading,setLoading] = useState(true);
     const [error,setError] = useState(null);
      // for student applyong for a course
-     const [selectedCourse, setSelectedCourse] = useState<Course>({} as Course);
+    const [selectedCourse, setSelectedCourse] = useState<Course>({} as Course);
+     
+    const { studentId } = useParams<{ studentId: string }>(); 
 
     // this is visible for all students , when they select one should give me course id and displays all info of that course where he can apply 
      
@@ -60,6 +63,9 @@ export const Courses = (props: {student : Student}) => {
         <div>
             <h1>Courses</h1>
             <div>{displayCourses}</div>
+            <Link to={`/student/${studentId}`}>
+                <button>Cancel</button>
+            </Link>
         </div>
     );
 

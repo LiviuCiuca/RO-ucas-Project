@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Enrollment } from "../../util/enrollment";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 //shows all enrollments of a student
 export const Enrollmen = () => {
@@ -45,6 +45,10 @@ export const Enrollmen = () => {
                     <p>enrollment.status:{enrollment.status}</p>
                 </div>
             ))}</h3>
+            <p> Here we see all the applications the student has, currently not working due to a 400 error on server</p>
+             <Link to={`/student/${studentId}`}>
+                <button>Cancel</button>
+            </Link>
         </div>
     );
 };

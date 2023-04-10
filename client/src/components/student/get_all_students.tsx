@@ -1,13 +1,13 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Student } from "../../util/student";
-import CreateStudent from "./create_student";
 import { Link } from "react-router-dom";
+//import "../../util/css/buttons.css";
 
 export const Students = () => {
     const [students, setStudents] = useState<Student>({} as Student);
     const [selectedStudent, setSelectedStudent] = useState<Student>({} as Student);
-    
+
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -46,7 +46,7 @@ export const Students = () => {
             <h1>Students Login</h1>
             <label htmlFor="student-select">Select a student:</label>
             {/*  a dropdown to select a student */}
-            <select 
+            <select
                 value={selectedStudent ? selectedStudent.id : ""}
                 onChange={handleStudentSelection}
                 style={{ width: "200px", height: "30px", marginBottom: "10px" }}
@@ -60,12 +60,16 @@ export const Students = () => {
             </select>
             {/*  a link to create a new student and to student profile */}
             <div className="create_student">
-            <Link to="/create"> Create Student</Link>
+                <Link to="/create">
+                    <button className="button">Create Student</button>
+                </Link>
             </div>
             <div className="student_profile">
-            <Link to={`/student/${selectedStudent.id}`} >Profile Student  </Link>
+                <Link to={`/student/${selectedStudent.id}`}>
+                    <button className="button secondary">Profile Student</button>
+                </Link>
             </div>
-           
+
 
         </div>
 

@@ -56,9 +56,16 @@ export const StudentById = (props: {selectedCourse: Course  | null}) => {
       </h3>
       
       <DeleteStudent student={student} />
-      <UpdateStudent student={student} />
+      <Link to={`/student/update/${student.id}`}>
+        <button className='button'>Update Student</button>
+      </Link>
+      <Link to={`/student/courses/${student.id}`}>
+        <button className='button'>View Courses</button>
+      </Link>
 
-      <Link to={`/enrollments/${student.id}`}>View Enrollments</Link>
+      <Link to={`/student/enrollments/${student.id}`}>
+        <button className='secoundButton'>View Enrollments</button>
+      </Link>
 
 
     </div>

@@ -17,12 +17,12 @@ function App() {
     <Router>
       <div className="App">
 
-        <StudentNavbar/>
+        <StudentNavbar />
         <Routes >
           <Route path="/allstudent" element={<Students/>} />
           <Route path="/create" element={<CreateStudent/>} />
           <Route path="/student/*" element={<Parent_studentComponent/>} />
-          <Route path="/enrollments/:studentId" element={<Enrollmen/>} />
+          
         </Routes >
 
         <UniNavbar/>
