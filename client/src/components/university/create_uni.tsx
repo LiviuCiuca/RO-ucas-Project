@@ -64,7 +64,7 @@ const CreateUniversity = () => {
                 value={university[field.name]}
                 onChange={handleChange}
               />
-            )}
+            )}``
           </div>
         ))}
         <button type="button" onClick={handleSubmit} disabled={loading || submitted}>

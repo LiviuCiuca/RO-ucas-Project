@@ -12,6 +12,9 @@ export const Parent_studentComponent = () => {
   const [selectedCourse, setSelectedCourse] = useState<Course>({} as Course);
   const [selectedStudent, setSelectedStudent] = useState<Student>({} as Student);
 
+  // function updateData(student: Student) {
+  //   setSelectedStudent(student);
+  // } 
   return (
     <>
       <Routes>

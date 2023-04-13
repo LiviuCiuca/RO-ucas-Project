@@ -2,10 +2,11 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { University } from "../../util/university";
 import { University_formFields  } from "../../util/formFields/Univerity_formField";
+import { Link, useParams } from "react-router-dom";
 
 const UpdateUniversity = (props: { university: University }) => {
   const [updatedUniversity, setUpdatedUniversity] = useState<University>(props.university);
- 
+  const { uniId } = useParams<{ uniId: string }>(); 
   
   const updateUniversity = async (id: number) => {
     try {
@@ -18,7 +19,7 @@ const UpdateUniversity = (props: { university: University }) => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    updateUniversity(props.university.id);
+    updateUniversity(Number(uniId));
   };
 
   const handleChange = (e: any) => {
@@ -53,6 +54,10 @@ const UpdateUniversity = (props: { university: University }) => {
           Update
         </button>
       </form>
+      <Link to={`/university/${uniId}`}>
+        <button>Back</button>
+      </Link>
+
     </div>
   );
 };

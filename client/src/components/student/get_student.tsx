@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Student } from '../../util/student';
 import DeleteStudent from './delete_student';
-import UpdateStudent from './update_student';
 import { Course } from '../../util/course';
 import { Link, useParams } from "react-router-dom";
 
@@ -38,9 +37,6 @@ export const StudentById = (props: {selectedCourse: Course  | null}) => {
   if (error) {
     return <div>{error}</div>;
   }
-
-  
-
 
   return (
     <div>

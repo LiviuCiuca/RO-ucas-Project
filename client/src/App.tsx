@@ -11,6 +11,7 @@ import { CoursesById } from './components/courses/get_course';
 import { Enrollmen } from './components/enrollments/get_enrollments';
 import CreateStudent from './components/student/create_student';
 import { Parent_universityComponent } from './components/parents/university';
+import CreateUniversity from './components/university/create_uni';
 
 
 function App() {
@@ -26,12 +27,11 @@ function App() {
           
         </Routes >
 
-        <UniNavbar/>
+        
         <Routes>
           <Route path='/university' element={<Universities/>}/>
           <Route path='/university/*' element={<Parent_universityComponent/>}/>
-          <Route path='/courses' element={<CoursesById/>}/>
-          <Route path='/enrollments' element={<Enrollments/>}/>
+          <Route path='/createUni' element={<CreateUniversity/>}/>
         </Routes>
       </div>
     </Router>

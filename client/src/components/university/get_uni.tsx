@@ -3,9 +3,12 @@ import { useEffect, useState } from "react";
 import { University } from "../../util/university";
 import { DeleteUniversity } from "./delete_uni";
 import UpdateUniversity from "./update_uni";
+import { Link, useParams } from "react-router-dom";
 
 export const UniversityById = () => {
     const [university,setUniversity] = useState<University>({} as University);
+    const { uniId } = useParams<{ uniId: string }>(); 
+
     const [loading,setLoading] = useState(true);
     const [error,setError] = useState(null);
 
@@ -21,8 +24,7 @@ export const UniversityById = () => {
         }
     }
     useEffect(() => {
-        const id = 2; 
-        getUniversity(id);
+        getUniversity(Number(uniId));
     }, []);
     
     if (loading) {
@@ -47,8 +49,17 @@ export const UniversityById = () => {
                     )
                 ))}
             </h3>
-            <DeleteUniversity university={university}/>
-            <UpdateUniversity university={university}/>
+            <DeleteUniversity  />
+            <Link to={`/university/update/${university.id}`}>
+                <button className='button'>Update University</button>
+            </Link>
+            <Link to={`/university/courses/${university.id}`}>
+                <button className='button'>My Courses</button>
+            </Link>
+            <Link to={`/university/enrollments/${university.id}`}>
+                <button className='button'>My Students</button>
+            </Link>
+            
         </div>
     );
     

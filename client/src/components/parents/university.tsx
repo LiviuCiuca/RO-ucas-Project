@@ -5,6 +5,7 @@ import UpdateUniversity from '../university/update_uni';
 import { useState } from 'react';
 import { University } from '../../util/university';
 import { Enrollments } from '../enrollments/get_all_enrollments';
+import { CoursesById } from '../courses/get_course';
 
 export const Parent_universityComponent = () => {
     const [selectedUniversity, setSelectedUniversity] = useState<University>({} as University);
@@ -18,15 +19,19 @@ return (
             />
             <Route 
             path="/delete/:uniId" 
-            element={<DeleteUniversity university={selectedUniversity} />} 
+            element={<DeleteUniversity/>} 
             />
             <Route 
             path="/update/:uniId" 
             element={<UpdateUniversity university={selectedUniversity} />} 
             />
             <Route
-            path="/:enrollments/:uniId"
+            path="/enrollments/:uniId"
             element={<Enrollments />}
+            />
+            <Route
+            path="/courses/:uniId"
+            element={<CoursesById />}
             />
         </Routes>
     </>

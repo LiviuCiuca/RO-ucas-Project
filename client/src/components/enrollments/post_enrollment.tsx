@@ -1,8 +1,10 @@
 import axios from "axios";
+import { useState } from "react";
 import { Course } from "../../util/course";
 import { Student } from "../../util/student";
 
 export const CreateEnrollment = (props: { student: Student; course: Course }) => {
+  const [submitted, setSubmitted] = useState(false);
 
   const createEnrollment = async () => {
     try {
@@ -11,14 +13,16 @@ export const CreateEnrollment = (props: { student: Student; course: Course }) =>
         course: props.course,
       });
       console.log(response.data);
+      setSubmitted(true);
     } catch (error: any) {
       console.error("Error creating enrollment:", error.message);
     }
   };
 
   return (
-    <button onClick={createEnrollment}>
-      Apply
+    <button onClick={createEnrollment} disabled={submitted}>
+      {submitted ? "Applied" : "Apply"}
     </button>
   );
 };
+// possible error: if i refresh then i can apply again to the same course

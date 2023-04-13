@@ -58,7 +58,7 @@ export const Universities = () => {
         ))}
       </select>
       <div className="create_university">
-        <Link to="/create-university">
+        <Link to="/createUni">
           <button>Create University</button>
         </Link>
       </div>
@@ -67,7 +67,6 @@ export const Universities = () => {
           <button disabled={!selectedUniversity}>Profile University</button>
         </Link>
       </div>
-      <CreateUniversity />
     </div>
   );
 };

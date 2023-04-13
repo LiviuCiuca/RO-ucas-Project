@@ -1,10 +1,9 @@
 import axios from "axios"
-import { University } from "../../util/university";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 
-export const DeleteUniversity = (props: {university :University}) => {
-
-    const {university} = props;
+export const DeleteUniversity = () => {
+    const { uniId } = useParams<{ uniId: string }>(); 
     const [deleteStatus, setDeleteStatus] = useState("");
     
     const deleteUniversity = async (id: number) => {
@@ -19,7 +18,8 @@ export const DeleteUniversity = (props: {university :University}) => {
     
     return (
         <div className="deleteUniversity">
-        <button onClick={() => deleteUniversity(university.id)}>Delete</button>
+
+        <button onClick={() => deleteUniversity(Number(uniId))}>Delete</button>
         <p>{deleteStatus}</p>
         </div>
     );

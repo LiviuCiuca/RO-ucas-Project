@@ -4,13 +4,14 @@ import { Course } from "../../util/course";
 import UpdateCourse from "./update_course";
 import { DeleteCourse } from "./delete_course";
 import { CreateCourse } from "./create_course";
+import { useParams } from "react-router-dom";
 
 export const CoursesById = () => {
     const [course,setCourse] = useState<Course>({} as Course);
     const [loading,setLoading] = useState(true);
     const [error,setError] = useState(null);
     const [selectedCourse, setSelectedCourse] = useState<Course>({} as Course);
-
+    const { uniId } = useParams<{ uniId: string }>(); 
     const getCourses = async (id:number) => {
         try {
             const response = await axios.get(`/api/course/${id}`);
