@@ -10,6 +10,7 @@ import { Universities } from './components/university/get_all_unis';
 import { CoursesById } from './components/courses/get_course';
 import { Enrollmen } from './components/enrollments/get_enrollments';
 import CreateStudent from './components/student/create_student';
+import { Parent_universityComponent } from './components/parents/university';
 
 
 function App() {
@@ -28,7 +29,7 @@ function App() {
         <UniNavbar/>
         <Routes>
           <Route path='/university' element={<Universities/>}/>
-          <Route path='/profile' element={<UniversityById/>}/>
+          <Route path='/university/*' element={<Parent_universityComponent/>}/>
           <Route path='/courses' element={<CoursesById/>}/>
           <Route path='/enrollments' element={<Enrollments/>}/>
         </Routes>

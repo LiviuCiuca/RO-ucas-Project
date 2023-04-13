@@ -9,6 +9,7 @@ function StudentNavbar() {
         {/* <Link to="/student">Profile</Link>
         <Link to="/student/courses">Courses</Link>
         <Link to="/enrollments/:studentId">Enrollments</Link> */}
+        <Link to="/university">University</Link>
       </nav>
     );
   }
