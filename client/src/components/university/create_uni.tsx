@@ -14,14 +14,23 @@ const CreateUniversity = () => {
     image: "",
     rating: 0,
   });
- 
+
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+  const [submitted, setSubmitted] = useState(false);
 
   const createUniversity = async () => {
+    setLoading(true);
     try {
       const response = await axios.post("/api/university", university);
       console.log("Response data:", response.data);
+      setMessage("University created successfully!");
     } catch (error: any) {
       console.log(error.message);
+      setMessage("Failed to create university. Please try again.");
+    } finally {
+      setLoading(false);
+      setSubmitted(true);
     }
   };
 
@@ -58,10 +67,11 @@ const CreateUniversity = () => {
             )}
           </div>
         ))}
-        <button type="button" onClick={handleSubmit}>
-          Create
+        <button type="button" onClick={handleSubmit} disabled={loading || submitted}>
+          {loading ? "Creating..." : "Create"}
         </button>
       </form>
+      {message && <p>{message}</p>}
     </div>
   );
 };

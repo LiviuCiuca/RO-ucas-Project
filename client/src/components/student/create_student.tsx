@@ -4,77 +4,78 @@ import { Student } from "../../util/student";
 import { Student_formFields } from "../../util/formFields/Student_formField";
 
 const CreateStudent = () => {
-    const [student, setStudent] = useState<Omit<Student,"id">>({
-        name: "",
-        username: "",
-        password: "",
-        age: 0,
-        address: "",
-        phone: "",
-        email: "",
-        contactDetails: "",
-        personalStatement: "",
-        whyTheCourse: "",
-        education: "",
-        workExperience: "",
-        skills: "",
-        interests: "",
-        references: "",
-      });
+  const [student, setStudent] = useState<Omit<Student, "id">>({
+    name: "",
+    username: "",
+    password: "",
+    age: 0,
+    address: "",
+    phone: "",
+    email: "",
+    contactDetails: "",
+    personalStatement: "",
+    whyTheCourse: "",
+    education: "",
+    workExperience: "",
+    skills: "",
+    interests: "",
+    references: "",
+  });
 
-      
-    const createStudent = async () => {
-        try {
-          const response = await axios.post("/api/student",student);
-            
-          console.log("Response data:", response.data);
-        } catch (error: any) {
-          console.log(error.message);
-        }
-    };
+  const [submitted, setSubmitted] = useState(false);
 
-    const handleSubmit = (e: any) => {
-        e.preventDefault();
-        createStudent();
-    };
+  const createStudent = async () => {
+    try {
+      const response = await axios.post("/api/student", student);
+      console.log("Response data:", response.data);
+      setSubmitted(true);
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  };
 
-    const handleChange = (e :any ) => {
-        const { name, value } = e.target;
-        setStudent({ ...student, [name]: value });
-    };
-    
-    
-    return (
-        <div>
-          <h1>Create Student</h1>
-          <form>
-                {Student_formFields.map((field) => (
-                    <div key={field.name}>
-                        <label htmlFor={field.name}>{field.label}</label>
-                        {field.type === "textarea" ? (
-                            <textarea
-                                name={field.name}
-                                value={student[field.name]}
-                                onChange={handleChange}
-                            />
-                        ) : (
-                            <input
-                                type={field.type}
-                                name={field.name}
-                                value={student[field.name]}
-                                onChange={handleChange}
-                            />
-                        )}
-                    </div>
-                ))}
-                <button type="button" onClick={handleSubmit}>
-                    Create
-                </button>
-            </form>
-        </div>
-      );
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    createStudent();
+  };
+
+  const handleChange = (e: any) => {
+    const { name, value } = e.target;
+    setStudent({ ...student, [name]: value });
+  };
+
+  return (
+    <div>
+      <h1>Create Student</h1>
+      <form>
+        {Student_formFields.map((field) => (
+          <div key={field.name}>
+            <label htmlFor={field.name}>{field.label}</label>
+            {field.type === "textarea" ? (
+              <textarea
+                name={field.name}
+                value={student[field.name]}
+                onChange={handleChange}
+              />
+            ) : (
+              <input
+                type={field.type}
+                name={field.name}
+                value={student[field.name]}
+                onChange={handleChange}
+              />
+            )}
+          </div>
+        ))}
+        <button type="button" onClick={handleSubmit} disabled={submitted}>
+          {submitted ? "Created" : "Create"}
+        </button>
+      </form>
+    </div>
+  );
 };
 export default CreateStudent;
+
 // //https://www.youtube.com/watch?v=IkMND33x0qQ&list=PL4cUxeGkcC9gZD-Tvwfod2gaISzfRiP9d&index=27&ab_channel=TheNetNinja
 
 // In the above code, we have added a handleChange function which is triggered whenever any input field changes.
