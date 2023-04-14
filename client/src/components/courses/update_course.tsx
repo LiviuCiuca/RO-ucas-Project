@@ -2,12 +2,13 @@ import axios from "axios";
 import { useState } from "react";
 import { Course } from "../../util/course";
 import { Course_formFields } from "../../util/formFields/Course_formField";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const UpdateCourse = (props: { selectedCourse: Course }) => {
   const [updatedCourse, setUpdatedCourse] = useState<Omit<Course, "enrollments">>(props.selectedCourse);
   const [formFields, setFormFields] = useState<Omit<Course, "enrollments">>(props.selectedCourse);
   const [submitted, setSubmitted] = useState(false);
+  const { uniId } = useParams<{ uniId: string }>();
 
   const updateCourse = async (id: number) => {
     try {
@@ -60,7 +61,7 @@ const UpdateCourse = (props: { selectedCourse: Course }) => {
           {submitted ? "Updated" : "Update"}
         </button>
       </form>
-      <Link to={`/university/courses/${props.selectedCourse.id - 1}`}>
+      <Link to={`/university/courses/${uniId}`}>
         <button className='button'>Back</button>
       </Link>
     </div>

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Course } from "../../util/course";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { CoursesByIdProps } from "../../util/interface/courses_interface";
+import { DeleteCourse } from "./delete_course";
 
 export const CoursesById: React.FC<CoursesByIdProps> = ({ setSelectedCourse }) => {
     const [course, setCourse] = useState<Course[]>([]);
@@ -56,6 +57,7 @@ export const CoursesById: React.FC<CoursesByIdProps> = ({ setSelectedCourse }) =
             <p>description: {course.description}</p>
             <p>duration: {course.duration}</p>
             <p>price: {course.price}</p><br/>
+           
         </div>
     ));
 
