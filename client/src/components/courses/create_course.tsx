@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Course } from "../../util/course";
 import { Course_formFields } from "../../util/formFields/Course_formField";
+import { Link, useParams } from "react-router-dom";
 
 export const CreateCourse = () => {
   const [course, setCourse] = useState<Omit<Course, "enrollments">>({
@@ -12,6 +13,7 @@ export const CreateCourse = () => {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const { uniId } = useParams<{ uniId: string }>();
 
   const createCourse = async (id: number) => {
     try {
@@ -25,8 +27,7 @@ export const CreateCourse = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    const uniId = 2;
-    createCourse(uniId);
+    createCourse(Number(uniId));
   };
 
   const handleChange = (e: any) => {
@@ -61,6 +62,9 @@ export const CreateCourse = () => {
           {submitted ? "Submitted" : "Create"}
         </button>
       </form>
+      <Link to="/university/courses/:uniId">
+        <button>Back</button>
+      </Link>
     </div>
   );
 };

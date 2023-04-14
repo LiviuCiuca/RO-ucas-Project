@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { University } from '../../util/university';
 import { Enrollments } from '../enrollments/get_all_enrollments';
 import { CoursesById } from '../courses/get_course';
+import { Parent_CourseComponent } from './courses';
 
 export const Parent_universityComponent = () => {
     const [selectedUniversity, setSelectedUniversity] = useState<University>({} as University);
@@ -30,8 +31,8 @@ return (
             element={<Enrollments />}
             />
             <Route
-            path="/courses/:uniId"
-            element={<CoursesById />}
+            path="/courses/:uniId/*"
+            element={<Parent_CourseComponent />}
             />
         </Routes>
     </>
