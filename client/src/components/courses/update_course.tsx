@@ -2,15 +2,18 @@ import axios from "axios";
 import { useState } from "react";
 import { Course } from "../../util/course";
 import { Course_formFields } from "../../util/formFields/Course_formField";
+import { Link } from "react-router-dom";
 
 const UpdateCourse = (props: { selectedCourse: Course }) => {
   const [updatedCourse, setUpdatedCourse] = useState<Omit<Course, "enrollments">>(props.selectedCourse);
   const [formFields, setFormFields] = useState<Omit<Course, "enrollments">>(props.selectedCourse);
+  const [submitted, setSubmitted] = useState(false);
 
   const updateCourse = async (id: number) => {
     try {
       const response = await axios.put(`/api/course/${id}`, updatedCourse);
       console.log("Response:", response.data);
+      setSubmitted(true);
     } catch (error: any) {
       console.log(error.message);
     }
@@ -44,7 +47,7 @@ const UpdateCourse = (props: { selectedCourse: Course }) => {
                 onChange={handleChange}
               />
             ) : (
-              <input 
+              <input
                 type={field.type}
                 name={field.name}
                 value={formFields[field.name]}
@@ -53,9 +56,15 @@ const UpdateCourse = (props: { selectedCourse: Course }) => {
             )}
           </div>
         ))}
-        <button type="submit">Update</button>
+        <button type="submit" disabled={submitted}>
+          {submitted ? "Updated" : "Update"}
+        </button>
       </form>
+      <Link to={`/university/courses/${props.selectedCourse.id - 1}`}>
+        <button className='button'>Back</button>
+      </Link>
     </div>
+
   );
 };
 export default UpdateCourse;

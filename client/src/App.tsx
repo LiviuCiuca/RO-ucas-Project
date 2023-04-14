@@ -1,14 +1,8 @@
-
 import {Parent_studentComponent} from './components/parents/student';
 import { BrowserRouter as Router, Route, Routes  } from 'react-router-dom';
-import { Enrollments } from './components/enrollments/get_all_enrollments';
-import { UniversityById } from './components/university/get_uni';
 import { Students } from './components/student/get_all_students';
 import StudentNavbar from './components/navbars/student_navbar';
-import UniNavbar from './components/navbars/uni_navbar';
 import { Universities } from './components/university/get_all_unis';
-import { CoursesById } from './components/courses/get_course';
-import { Enrollmen } from './components/enrollments/get_enrollments';
 import CreateStudent from './components/student/create_student';
 import { Parent_universityComponent } from './components/parents/university';
 import CreateUniversity from './components/university/create_uni';

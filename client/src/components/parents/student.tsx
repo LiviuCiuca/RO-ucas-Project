@@ -30,9 +30,9 @@ export const Parent_studentComponent = () => {
           path="/update/:studentId"
           element={<UpdateStudent student={selectedStudent} />}
         />
-        <Route 
-        path="/enrollments/:studentId" 
-        element={<Enrollmen/>} />
+        <Route
+          path="/enrollments/:studentId"
+          element={<Enrollmen />} />
       </Routes>
     </>
   );

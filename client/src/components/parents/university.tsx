@@ -11,29 +11,30 @@ import { Parent_CourseComponent } from './courses';
 export const Parent_universityComponent = () => {
     const [selectedUniversity, setSelectedUniversity] = useState<University>({} as University);
 
-return (
-    <>
-        <Routes>
-            <Route 
-            path="/:uniId" 
-            element={<UniversityById />} 
-            />
-            <Route 
-            path="/delete/:uniId" 
-            element={<DeleteUniversity/>} 
-            />
-            <Route 
-            path="/update/:uniId" 
-            element={<UpdateUniversity university={selectedUniversity} />} 
-            />
-            <Route
-            path="/enrollments/:uniId"
-            element={<Enrollments />}
-            />
-            <Route
-            path="/courses/:uniId/*"
-            element={<Parent_CourseComponent />}
-            />
-        </Routes>
-    </>
-)};
+    return (
+        <>
+            <Routes>
+                <Route
+                    path="/:uniId"
+                    element={<UniversityById />}
+                />
+                <Route
+                    path="/delete/:uniId"
+                    element={<DeleteUniversity />}
+                />
+                <Route
+                    path="/update/:uniId"
+                    element={<UpdateUniversity university={selectedUniversity} />}
+                />
+                <Route
+                    path="/enrollments/:uniId"
+                    element={<Enrollments />}
+                />
+                <Route
+                    path="/courses/:uniId/*"
+                    element={<Parent_CourseComponent />}
+                />
+            </Routes>
+        </>
+    )
+};

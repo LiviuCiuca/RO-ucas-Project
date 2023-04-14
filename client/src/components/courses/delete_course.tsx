@@ -18,8 +18,6 @@ export const DeleteCourse = (props: { selectedCourse: Course }) => {
 
     return (
         <div className="courseDelete">
-        <h1>Delete Course</h1>
-
         <button onClick={() => deleteCourse(props.selectedCourse.id)}>Delete</button>
         <p>{deleteStatus}</p>
         </div>
