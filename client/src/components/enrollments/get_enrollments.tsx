@@ -47,7 +47,7 @@ export const Enrollmen = () => {
             ))}</h3>
             <p> Here we see all the applications the student has, currently not working due to a 400 error on server</p>
              <Link to={`/student/${studentId}`}>
-                <button>Cancel</button>
+                <button>Back</button>
             </Link>
         </div>
     );

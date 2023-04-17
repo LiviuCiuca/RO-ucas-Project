@@ -1,4 +1,4 @@
-.student_Navbar, .uni_Navbar {
+.Navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -7,12 +7,12 @@
   padding: 10px;
 }
 
-.student_Navbar a, .uni_Navbar a {
+.Navbar a{
   color: white;
   text-decoration: none;
   margin-right: 10px;
 }
 
-.student_Navbar a:hover, .uni_Navbar a:hover {
+.Navbar a:hover {
   text-decoration: underline;
 }

@@ -1,11 +1,11 @@
 import {Parent_studentComponent} from './components/parents/student';
 import { BrowserRouter as Router, Route, Routes  } from 'react-router-dom';
 import { Students } from './components/student/get_all_students';
-import StudentNavbar from './components/navbars/student_navbar';
 import { Universities } from './components/university/get_all_unis';
 import CreateStudent from './components/student/create_student';
 import { Parent_universityComponent } from './components/parents/university';
 import CreateUniversity from './components/university/create_uni';
+import Navbar from './navbars/navbar';
 
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
     <Router>
       <div className="App">
 
-        <StudentNavbar />
+        <Navbar />
         <Routes >
           <Route path="/allstudent" element={<Students/>} />
           <Route path="/create" element={<CreateStudent/>} />
