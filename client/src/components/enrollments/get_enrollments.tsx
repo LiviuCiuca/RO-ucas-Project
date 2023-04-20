@@ -22,7 +22,6 @@ export const Enrollmen = () => {
             setLoading(false);
         }
     };
-    console.log("studentId:", studentId);
 
     useEffect(() => {
         getEnrollment(Number(studentId));
@@ -41,11 +40,11 @@ export const Enrollmen = () => {
             <h1>Enrollments</h1>
             <h3>{enrollments.map((enrollment:Enrollment) => (
                 <div key={enrollment.id}>
-                    <p>enrollment.course.name:{enrollment.course.name}</p>
-                    <p>enrollment.status:{enrollment.status}</p>
+                    <p>Course name: {enrollment.course.name}</p>
+                    <p>status: {enrollment.status}</p>
+                    <br/>
                 </div>
             ))}</h3>
-            <p> Here we see all the applications the student has, currently not working due to a 400 error on server</p>
              <Link to={`/student/${studentId}`}>
                 <button>Back</button>
             </Link>

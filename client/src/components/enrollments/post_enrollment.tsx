@@ -14,8 +14,12 @@ export const CreateEnrollment = (props: { student: Student; course: Course }) =>
       });
       console.log(response.data);
       setSubmitted(true);
+      
+
     } catch (error: any) {
       console.error("Error creating enrollment:", error.message);
+      console.log("student:", props.student);
+      console.log("course:", props.course);
     }
   };
 

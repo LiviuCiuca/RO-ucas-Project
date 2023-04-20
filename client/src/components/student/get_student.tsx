@@ -19,7 +19,7 @@ export const StudentById:React.FC<StudentByIdProps> = ({setSelectedStudent}) => 
       console.log('Response data:', response.data);
       setStudent(response.data);
       setLoading(false);
-      setSelectedStudent(student);
+      setSelectedStudent(response.data);
     } catch (error: any) {
       setError(error.message);
       setLoading(false);
@@ -53,7 +53,7 @@ export const StudentById:React.FC<StudentByIdProps> = ({setSelectedStudent}) => 
         ))}
       </h3>
       
-      <DeleteStudent student={student} />
+      <DeleteStudent student={student}  />
       <Link to={`/student/update/${student.id}`}>
         <button className='button'>Update Student</button>
       </Link>
