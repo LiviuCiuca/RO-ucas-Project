@@ -1,26 +1,31 @@
 import axios from "axios";
 import { Student } from "../../util/student";
-import { useState } from "react";
+import { Link } from "react-router-dom";
 
+// The component receives a student object as a prop from get_student.tsx
 const DeleteStudent = (props:{student:Student}) => {
     const {student} = props;
-    //for feedback purposes
-    const [deleteStatus, setDeleteStatus] = useState("");
 
+    // function sends a DELETE request to the API with the student's ID
     const deleteStudent = async (id: number) => {
         try {
             const response = await axios.delete(`/api/student/${id}`);
-            setDeleteStatus("Delete successful.");
+            console.log('Response data:', response.data);
         } catch (error : any) {
-            setDeleteStatus(`Delete failed: ${error.message}`);
+            console.log(error.message);
         }
     };
     
     return (
         <div>
-            <button onClick={() => deleteStudent(student.id)}>Delete</button>
-            <p>{deleteStatus}</p>
+            {/* When the Delete button is clicked, it calls the deleteStudent function with the student's ID and then navigates to the /allstudent page */}
+            <Link to={`/allstudent`}>
+                <button onClick={() => deleteStudent(student.id)}>Delete</button>
+            </Link>
         </div>
     );
 };
+
 export default DeleteStudent;
+
+// noticed a bug , after clicking delete button , the page needs refresh to show the updated list of students
