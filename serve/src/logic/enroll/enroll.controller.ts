@@ -21,6 +21,11 @@ export class EnrollmentController {
         return this.enrollmentService.getEnrollmentsByStudentId(id);
     }
 
+    @Get('/course/:courseId')
+    getEnrollmentsByCourseId(@Body('courseId') courseId: number) {
+        return this.enrollmentService.getEnrollmentsByCourseId(courseId);
+    }
+
     @Post()
     apply(@Body() data: { student: Student; course: Courses }) {
         const { student, course } = data;

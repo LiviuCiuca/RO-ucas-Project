@@ -22,9 +22,20 @@ export class EnrollService {
 
 
     getEnrollmentsByStudentId(studentId: number): Promise<Enrollment[]> {
-
+        if (!studentId) {
+            throw new NotFoundException('Student not found');
+        }
         return this.enrollmentRepository.find({
             where: { student: { id: studentId } },
+            relations: ['student', 'course']
+        });
+    }
+    getEnrollmentsByCourseId(courseId: number): Promise<Enrollment[]> {
+        if (!courseId) {
+            throw new NotFoundException('Course not found');
+        }
+        return this.enrollmentRepository.find({
+            where: { course: { id: courseId } },
             relations: ['student', 'course']
         });
     }
