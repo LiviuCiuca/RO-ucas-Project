@@ -37,7 +37,7 @@ AppModule = __decorate([
                 password: process.env.DB_PASSWORD,
                 database: process.env.DB_DATABASE,
                 entities: [Student_1.Student, Universities_1.Universities, Enrollments_1.Enrollment, Courses_1.Courses],
-                synchronize: true,
+                synchronize: true
             }),
         ],
         controllers: [app_controller_1.AppController],

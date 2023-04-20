@@ -1,13 +1,11 @@
 {
   "dependencies": {
     "@nestjs/typeorm": "^9.0.1",
+    "@types/axios": "^0.14.0",
+    "axios": "^0.21.4",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
-<<<<<<< HEAD
-    "axios": "^0.21.1",
-=======
     "dotenv": "^16.0.3",
->>>>>>> main
     "mysql2": "^2.3.3",
     "typeorm": "^0.3.11"
   },

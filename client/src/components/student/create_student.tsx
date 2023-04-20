@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Student } from "../../util/student";
 import { Student_formFields } from "../../util/formFields/Student_formField";
+import { Link } from "react-router-dom";
 
 const CreateStudent = () => {
   const [student, setStudent] = useState<Omit<Student, "id">>({
@@ -71,6 +72,9 @@ const CreateStudent = () => {
           {submitted ? "Created" : "Create"}
         </button>
       </form>
+      <Link to={`/allstudent`}>
+        <button >Back</button>
+      </Link>
     </div>
   );
 };
@@ -82,6 +86,6 @@ export default CreateStudent;
 // It updates the corresponding property in the student object using setStudent function.
 // Then, we have added a form with input fields for all the properties of the Student interface.
 // We have set the value of each input field to the corresponding property of the student object and the onChange event to the handleChange function
-// Finally, we have added a button that triggers the createStudent function when clicked. 
+// Finally, we have added a button that triggers the createStudent function when clicked.
 //This function sends a POST request to the server with the student object as the payload.
 // The response data is logged to the console on success and any error message is logged on failure.

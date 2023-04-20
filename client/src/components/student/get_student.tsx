@@ -2,10 +2,11 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Student } from '../../util/student';
 import DeleteStudent from './delete_student';
-import { Course } from '../../util/course';
 import { Link, useParams } from "react-router-dom";
+import React from 'react';
+import { StudentByIdProps } from '../../util/interface/student_interface';
 
-export const StudentById = (props: {selectedCourse: Course  | null}) => {
+export const StudentById:React.FC<StudentByIdProps> = ({setSelectedStudent}) => {
  
   const [student, setStudent] = useState<Student>({} as Student);
   const [loading, setLoading] = useState(true);
@@ -18,6 +19,7 @@ export const StudentById = (props: {selectedCourse: Course  | null}) => {
       console.log('Response data:', response.data);
       setStudent(response.data);
       setLoading(false);
+      setSelectedStudent(student);
     } catch (error: any) {
       setError(error.message);
       setLoading(false);
@@ -25,7 +27,7 @@ export const StudentById = (props: {selectedCourse: Course  | null}) => {
   };
 
   useEffect(() => {
-   
+      
       getStudentById(Number(studentId));
   
   }, [studentId]);

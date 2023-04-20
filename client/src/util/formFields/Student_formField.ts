@@ -1,7 +1,5 @@
 export const Student_formFields = [
     { name: "name", label: "Name:", type: "text" },
-    { name: "username", label: "Username:", type: "text" },
-    { name: "password", label: "Password:", type: "password" },
     { name: "age", label: "Age:", type: "number" },
     { name: "address", label: "Address:", type: "text" },
     { name: "phone", label: "Phone:", type: "string" },

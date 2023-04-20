@@ -4,36 +4,36 @@ import { Student } from "../../util/student";
 import { Student_formFields } from "../../util/formFields/Student_formField";
 import { Link, useLocation, useParams } from "react-router-dom";
 
-  const UpdateStudent = (props: { student: Student }) => {
+const UpdateStudent = (props: { student: Student }) => {
     const [updatedStudent, setUpdatedStudent] = useState<Student>(props.student);
-    const { studentId } = useParams<{ studentId: string }>(); 
+    const { studentId } = useParams<{ studentId: string }>();
 
     const updateStudent = async (id: number) => {
         try {
-        const response = await axios.put(`/api/student/${id}`, updatedStudent);
-        console.log('Response data:', response.data);
-        } catch (error : any) {
-        console.log(error.message);
+            const response = await axios.put(`/api/student/${id}`, updatedStudent);
+            console.log('Response data:', response.data);
+        } catch (error: any) {
+            console.log(error.message);
         }
     };
 
     const handleSubmit = (e: any) => {
-      
-        updateStudent(Number(studentId));
-        
-        };
+
+        updateStudent(props.student.id);
+
+    };
 
     const handleChange = (e: any) => {
         const { name, value } = e.target;
-        console.log("target:",e.target)
+        console.log("target:", e.target)
         setUpdatedStudent({ ...updatedStudent, [name]: value });
-        
-      };
+
+    };
 
     return (
         <div>
-          <h1>Update Student</h1>
-          <form>
+            <h1>Update Student</h1>
+            <form>
                 {Student_formFields.map((field) => (
                     <div key={field.name}>
                         <label htmlFor={field.name}>{field.label}</label>
@@ -58,10 +58,10 @@ import { Link, useLocation, useParams } from "react-router-dom";
                 </button>
             </form>
             <Link to={`/student/${studentId}`}>
-                <button>Cancel</button>
+                <button>Back</button>
             </Link>
-    </div>
-  );
+        </div>
+    );
 };
 
 export default UpdateStudent;

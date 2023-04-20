@@ -1,8 +1,6 @@
 export interface Student {
   id: number,
   name: string,
-  username: string,
-  password: string,
   age: number,
   address: string,
   phone: string,

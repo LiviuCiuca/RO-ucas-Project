@@ -9,9 +9,9 @@ import { Enrollmen } from '../enrollments/get_enrollments';
 
 
 export const Parent_studentComponent = () => {
-  const [selectedCourse, setSelectedCourse] = useState<Course>({} as Course);
   const [selectedStudent, setSelectedStudent] = useState<Student>({} as Student);
 
+  console.log('Selected Student:', selectedStudent);
   // function updateData(student: Student) {
   //   setSelectedStudent(student);
   // } 
@@ -20,7 +20,7 @@ export const Parent_studentComponent = () => {
       <Routes>
         <Route
           path="/:studentId"
-          element={<StudentById selectedCourse={selectedCourse} />}
+          element={<StudentById setSelectedStudent={setSelectedStudent} />}
         />
         <Route
           path="/courses/:studentId"
