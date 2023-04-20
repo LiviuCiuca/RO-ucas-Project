@@ -31,18 +31,17 @@ let EnrollService = class EnrollService {
         });
     }
     async apply(student, course) {
-        const enroll = this.enrollmentRepository.create(Object.assign(Object.assign({}, student), course));
+        const enroll = this.enrollmentRepository.create({ student, course });
         enroll.studentId = student.id;
         enroll.status = 'Applied';
-        switch (true) {
-            case !student:
-                throw new common_1.NotFoundException('Student does not exist');
-            case !course:
-                throw new common_1.NotFoundException('Course ' + course + ' does not exist');
-            default:
-                const savedEnrollment = await this.enrollmentRepository.save(enroll);
-                return savedEnrollment;
+        if (!student) {
+            throw new common_1.NotFoundException('Student does not exist');
         }
+        if (!course) {
+            throw new common_1.NotFoundException('Course ' + course + ' does not exist');
+        }
+        const savedEnrollment = await this.enrollmentRepository.save(enroll);
+        return savedEnrollment;
     }
     async deleteEnrollmentsByStudentId(studentId) {
         const id = studentId;

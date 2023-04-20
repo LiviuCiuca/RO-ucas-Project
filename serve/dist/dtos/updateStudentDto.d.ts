@@ -1,7 +1,5 @@
 export declare class updateStudentDto {
     name: string;
-    username: string;
-    password: string;
     age: number;
     enrollments: any;
     address: string;

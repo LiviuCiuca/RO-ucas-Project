@@ -8,14 +8,6 @@ export class CreateStudentDto {
     name: string;
 
     @IsNotEmpty()
-    @IsString()
-    username: string;
-    
-    @IsNotEmpty()
-    @IsString()
-    password: string;
-
-    @IsNotEmpty()
     @IsNumber()
     age: number;
     enrollments: any;

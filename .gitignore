@@ -4,6 +4,8 @@
 # Mac Cancer
 */.DS_Store
 
+.env
+
 **/__pycache__
 
 # npm/javascript Cancer
