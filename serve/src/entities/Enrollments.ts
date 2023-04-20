@@ -5,10 +5,10 @@ import { Student } from './Student';
 
 @Entity()
 export class Enrollment {
-
+   
     @PrimaryGeneratedColumn()
     id: number;
-
+   
     @ManyToOne(type => Student, student => student.enrollments)
     student: Student;
 
@@ -17,10 +17,7 @@ export class Enrollment {
 
     @ManyToOne(type => Courses, course => course.enrollments)
     course: Courses;
-
-    @Column()
-    courseId: number;
-
+    
 
     @Column()
     status: string;

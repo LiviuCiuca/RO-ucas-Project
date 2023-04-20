@@ -5,6 +5,5 @@ export declare class Enrollment {
     student: Student;
     studentId: number;
     course: Courses;
-    courseId: number;
     status: string;
 }

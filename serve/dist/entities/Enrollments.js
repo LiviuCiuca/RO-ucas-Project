@@ -33,10 +33,6 @@ __decorate([
 ], Enrollment.prototype, "course", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
-], Enrollment.prototype, "courseId", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Enrollment.prototype, "status", void 0);
 Enrollment = __decorate([
