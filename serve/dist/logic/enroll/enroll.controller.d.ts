@@ -5,6 +5,13 @@ export declare class EnrollmentController {
     constructor(enrollmentService: EnrollService);
     getEnrollments(): Promise<import("../../entities/Enrollments").Enrollment[]>;
     getEnrollmentsByStudentId(id: number): Promise<import("../../entities/Enrollments").Enrollment[]>;
+<<<<<<< HEAD
     create(createEnrollmentDto: CreateEnrollmentDto): Promise<import("../../entities/Enrollments").Enrollment>;
     updateEnrollment(id: number, status: string): void;
+=======
+    apply(data: {
+        student: Student;
+        course: Courses;
+    }): Promise<import("../../entities/Enrollments").Enrollment>;
+>>>>>>> main
 }

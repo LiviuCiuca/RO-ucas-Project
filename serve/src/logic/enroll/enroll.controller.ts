@@ -1,14 +1,15 @@
 import { Controller, Post, Body, ParseIntPipe } from '@nestjs/common';
 import { Get, Param, Put } from '@nestjs/common/decorators';
-import { CreateEnrollmentDto } from 'src/dtos/createEnrollmentDto';
 import { EnrollService } from './enroll.service';
+import { Courses } from 'src/entities/Courses';
+import { Student } from 'src/entities/Student';
 
 @Controller('/enrollment')
 export class EnrollmentController {
 
     constructor(
         private enrollmentService: EnrollService
-        ) {}
+    ) { }
 
     @Get()
     getEnrollments() {
@@ -20,15 +21,15 @@ export class EnrollmentController {
     return this.enrollmentService.getEnrollmentsByStudentId(id);
     }
 
-    @Post()
-    async create(@Body() createEnrollmentDto: CreateEnrollmentDto) {
-        console.log('Creating enrollment:', createEnrollmentDto);
-      return await this.enrollmentService.create(createEnrollmentDto);
+    @Get('/course/:courseId')
+    getEnrollmentsByCourseId(@Body('courseId') courseId: number) {
+        return this.enrollmentService.getEnrollmentsByCourseId(courseId);
     }
 
-    @Put()
-    updateEnrollment(@Param('id', ParseIntPipe) id: number, @Body('status') status: string) {
-        return this.enrollmentService.updateStatus(id, status);
+    @Post()
+    apply(@Body() data: { student: Student; course: Courses }) {
+        const { student, course } = data;
+        return this.enrollmentService.apply(student, course);
     }
 
 }

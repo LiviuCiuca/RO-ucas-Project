@@ -1,8 +1,6 @@
 export type createStudentParams = {
     id: number;
     name: string;
-    username: string;
-    password: string;
     age: number;
     address: string;
     phone: string;
@@ -19,8 +17,6 @@ export type createStudentParams = {
 
 export type updateStudentParams = {
     name: string;
-    username: string;
-    password: string;
     age: number;
     address: string;
     phone: string;

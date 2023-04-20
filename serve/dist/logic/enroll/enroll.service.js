@@ -34,6 +34,7 @@ let EnrollService = class EnrollService {
             relations: ['student', 'course']
         });
     }
+<<<<<<< HEAD
     async create(createEnrollmentDto) {
         console.log('Creating enrollment:', createEnrollmentDto);
         const { student, course, status } = createEnrollmentDto;
@@ -49,6 +50,19 @@ let EnrollService = class EnrollService {
         enrollment.status = status;
         const savedEnrollment = await this.enrollmentRepository.save(enrollment);
         console.log('Enrollment created:', savedEnrollment);
+=======
+    async apply(student, course) {
+        const enroll = this.enrollmentRepository.create({ student, course });
+        enroll.studentId = student.id;
+        enroll.status = 'Applied';
+        if (!student) {
+            throw new common_1.NotFoundException('Student does not exist');
+        }
+        if (!course) {
+            throw new common_1.NotFoundException('Course ' + course + ' does not exist');
+        }
+        const savedEnrollment = await this.enrollmentRepository.save(enroll);
+>>>>>>> main
         return savedEnrollment;
     }
     async deleteEnrollmentsByStudentId(studentId) {

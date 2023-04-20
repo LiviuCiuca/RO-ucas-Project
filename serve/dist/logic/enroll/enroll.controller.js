@@ -15,7 +15,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.EnrollmentController = void 0;
 const common_1 = require("@nestjs/common");
 const decorators_1 = require("@nestjs/common/decorators");
+<<<<<<< HEAD
 const createEnrollmentDto_1 = require("../../dtos/createEnrollmentDto");
+=======
+>>>>>>> main
 const enroll_service_1 = require("./enroll.service");
 let EnrollmentController = class EnrollmentController {
     constructor(enrollmentService) {
@@ -27,12 +30,18 @@ let EnrollmentController = class EnrollmentController {
     getEnrollmentsByStudentId(id) {
         return this.enrollmentService.getEnrollmentsByStudentId(id);
     }
+<<<<<<< HEAD
     async create(createEnrollmentDto) {
         console.log('Creating enrollment:', createEnrollmentDto);
         return await this.enrollmentService.create(createEnrollmentDto);
     }
     updateEnrollment(id, status) {
         return this.enrollmentService.updateStatus(id, status);
+=======
+    apply(data) {
+        const { student, course } = data;
+        return this.enrollmentService.apply(student, course);
+>>>>>>> main
     }
 };
 __decorate([
@@ -52,6 +61,7 @@ __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
+<<<<<<< HEAD
     __metadata("design:paramtypes", [createEnrollmentDto_1.CreateEnrollmentDto]),
     __metadata("design:returntype", Promise)
 ], EnrollmentController.prototype, "create", null);
@@ -61,6 +71,9 @@ __decorate([
     __param(1, (0, common_1.Body)('status')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, String]),
+=======
+    __metadata("design:paramtypes", [Object]),
+>>>>>>> main
     __metadata("design:returntype", void 0)
 ], EnrollmentController.prototype, "updateEnrollment", null);
 EnrollmentController = __decorate([

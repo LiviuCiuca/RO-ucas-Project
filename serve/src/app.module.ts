@@ -11,29 +11,28 @@ import { Universities } from './entities/Universities';
 import { Courses } from './entities/Courses';
 import { Enrollment } from './entities/Enrollments';
 
-
+// Load environment variables
+import 'dotenv/config';
 
 @Module({
+  // Declare the imported modules and typeORM configuration
   imports: [
-   
     CourseModule,
     EnrollModule,
     UniversityModule,
     StudentModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'database-1.cqdl1zrwe7h3.us-east-1.rds.amazonaws.com',
-      port: 3306,
-      username: 'root',
-      password: 'Tastatura1!',
-      database: 'roUcas',
-      entities: [Student, Universities, Enrollment, Courses],
-      synchronize: true,
+      host: process.env.DB_HOST, 
+      port: Number(process.env.DB_PORT), 
+      username: process.env.DB_USERNAME, 
+      password: process.env.DB_PASSWORD, 
+      database: process.env.DB_DATABASE, 
+      entities: [Student, Universities, Enrollment, Courses], // entities to be mapped
+      synchronize: true, // automatically synchronize database schema with entity schema
     }),
   ],
   controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule { }
-
-

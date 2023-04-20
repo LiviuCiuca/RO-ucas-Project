@@ -1,8 +1,6 @@
 export declare class CreateStudentDto {
     id: number;
     name: string;
-    username: string;
-    password: string;
     age: number;
     enrollments: any;
     address: string;

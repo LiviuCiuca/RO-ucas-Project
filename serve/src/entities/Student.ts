@@ -9,12 +9,6 @@ export class Student {
     @Column()
     name: string;
 
-    @Column( )
-    username: string;
-
-    @Column()
-    password: string;
-
     @Column()
     age: number;
 
