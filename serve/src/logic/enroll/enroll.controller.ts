@@ -9,7 +9,7 @@ export class EnrollmentController {
 
     constructor(
         private enrollmentService: EnrollService
-        ) {}
+    ) { }
 
     @Get()
     getEnrollments() {
@@ -22,7 +22,8 @@ export class EnrollmentController {
     }
 
     @Post()
-    apply(@Body('student') student: Student, @Body('course') course: Courses ) {
+    apply(@Body() data: { student: Student; course: Courses }) {
+        const { student, course } = data;
         return this.enrollmentService.apply(student, course);
     }
 

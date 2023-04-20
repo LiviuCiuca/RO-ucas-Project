@@ -15,21 +15,21 @@ import { Enrollment } from './entities/Enrollments';
 import 'dotenv/config';
 
 @Module({
+  // Declare the imported modules and typeORM configuration
   imports: [
-   
     CourseModule,
     EnrollModule,
     UniversityModule,
     StudentModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: process.env.DB_HOST,
-      port: Number(process.env.DB_PORT),
-      username: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_DATABASE,
-      entities: [Student, Universities, Enrollment, Courses],
-      synchronize: true,
+      host: process.env.DB_HOST, 
+      port: Number(process.env.DB_PORT), 
+      username: process.env.DB_USERNAME, 
+      password: process.env.DB_PASSWORD, 
+      database: process.env.DB_DATABASE, 
+      entities: [Student, Universities, Enrollment, Courses], // entities to be mapped
+      synchronize: true, // automatically synchronize database schema with entity schema
     }),
   ],
   controllers: [AppController],
