@@ -1,26 +1,30 @@
 import axios from "axios"
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { University } from "../../util/interface/university";
 
-export const DeleteUniversity = () => {
-    const { uniId } = useParams<{ uniId: string }>(); 
-    const [deleteStatus, setDeleteStatus] = useState("");
-    
+export const DeleteUniversity = (props: { university: University }) => {
+    const { university } = props;
+    const [deleteStatus, setDeleteStatus] = useState(false);
+
     const deleteUniversity = async (id: number) => {
         try {
-        const response = await axios.delete(`/api/university/${id}`);
-            setDeleteStatus("Delete successful.");
-        } catch (error : any) {
-            setDeleteStatus(`Delete failed: ${error.message}`);
+            const response = await axios.delete(`/api/university/${id}`);
+            setDeleteStatus(true);
+            console.log(response.data);
+        } catch (error: any) {
+            console.log(error.message);
         }
     };
-    
-    
+
     return (
         <div className="deleteUniversity">
-
-        <button onClick={() => deleteUniversity(Number(uniId))}>Delete</button>
-        <p>{deleteStatus}</p>
+            <Link to={`/university`}>
+                <button onClick={() => deleteUniversity(university.id)} disabled={deleteStatus} >
+                    {deleteStatus ? "Deleted" : "Delete"}
+                </button>
+            </Link>
+            <p>{deleteStatus}</p>
         </div>
     );
 };

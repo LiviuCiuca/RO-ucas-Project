@@ -3,9 +3,7 @@ import { DeleteUniversity } from '../university/delete_uni';
 import { UniversityById } from '../university/get_uni';
 import UpdateUniversity from '../university/update_uni';
 import { useState } from 'react';
-import { University } from '../../util/university';
-import { Enrollments } from '../enrollments/get_all_enrollments';
-import { CoursesById } from '../courses/get_course';
+import { University } from '../../util/interface/university';
 import { Parent_CourseComponent } from './courses';
 
 export const Parent_universityComponent = () => {
@@ -15,20 +13,13 @@ export const Parent_universityComponent = () => {
         <>
             <Routes>
                 <Route
+                //this populates the selectedUniversity state with the university object
                     path="/:uniId"
-                    element={<UniversityById />}
-                />
-                <Route
-                    path="/delete/:uniId"
-                    element={<DeleteUniversity />}
+                    element={<UniversityById setSelectedUniversity={setSelectedUniversity}/>}
                 />
                 <Route
                     path="/update/:uniId"
                     element={<UpdateUniversity university={selectedUniversity} />}
-                />
-                <Route
-                    path="/enrollments/:uniId"
-                    element={<Enrollments />}
                 />
                 <Route
                     path="/courses/:uniId/*"

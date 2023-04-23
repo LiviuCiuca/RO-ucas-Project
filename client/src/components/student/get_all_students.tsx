@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Student } from "../../util/student";
+import { Student } from "../../util/interface/student";
 import { Link } from "react-router-dom";
 //import "../../util/css/buttons.css";
 

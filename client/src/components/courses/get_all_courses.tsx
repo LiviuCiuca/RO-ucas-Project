@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Course } from "../../util/course";
-import { Student } from "../../util/student";
+import { Course } from "../../util/interface/course";
+import { Student } from "../../util/interface/student";
 import { CreateEnrollment } from "../enrollments/post_enrollment";
 import { Link, useParams } from "react-router-dom";
 

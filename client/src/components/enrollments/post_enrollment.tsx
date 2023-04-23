@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
-import { Course } from "../../util/course";
-import { Student } from "../../util/student";
+import { Course } from "../../util/interface/course";
+import { Student } from "../../util/interface/student";
 
 export const CreateEnrollment = (props: { student: Student; course: Course }) => {
   const [submitted, setSubmitted] = useState(false);

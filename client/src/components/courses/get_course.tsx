@@ -1,11 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Course } from "../../util/course";
+import { Course } from "../../util/interface/course";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import { CoursesByIdProps } from "../../util/interface/courses_interface";
+import { CoursesByIdProps } from "../../util/interface/courses_props";
 import { DeleteCourse } from "./delete_course";
 
-export const CoursesById: React.FC<CoursesByIdProps> = ({ setSelectedCourse }) => {
+export const CoursesById: React.FC<CoursesByIdProps> = ({ SelectedCourse,setSelectedCourse }) => {
     const [course, setCourse] = useState<Course[]>([]);
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
@@ -34,7 +34,6 @@ export const CoursesById: React.FC<CoursesByIdProps> = ({ setSelectedCourse }) =
 
     const handleCourseSelect = (course: Course) => {
         setSelectedCourse(course);
-        
     };
 
     if (loading) {
@@ -53,20 +52,22 @@ export const CoursesById: React.FC<CoursesByIdProps> = ({ setSelectedCourse }) =
             key={course.id}
             onClick={() => handleCourseSelect(course)}
         >
-            <p>name: {course.name}</p>
-            <p>description: {course.description}</p>
-            <p>duration: {course.duration}</p>
-            <p>price: {course.price}</p><br/>
-           
+            <p>Course name: {course.name}</p>
+            <p>Description: {course.description}</p>
+            <p>Duration: {course.duration} Months</p>
+            <p>Total price: {course.price} RON</p><br />
+
         </div>
     ));
 
     return (
         <div>
             <h1>My Courses</h1>
-            <h2>Please click to select a course:</h2><br/>
+            <h2>Please click to select a course:</h2><br />
 
-            <h3>{displayCourse}</h3>
+            <div>{displayCourse}</div>
+
+            <DeleteCourse selectedCourse={SelectedCourse} />
 
             <Link to={`/university/courses/${uniId}/create`}>
                 <button>Create Course</button>
@@ -74,11 +75,12 @@ export const CoursesById: React.FC<CoursesByIdProps> = ({ setSelectedCourse }) =
             <Link to={`/university/courses/${uniId}/update`}>
                 <button>Update</button>
             </Link>
-            <Link to={`/university/courses/${uniId}/delete`}>
-                <button>Delete</button>
-            </Link>
+
             <Link to={`/university/${uniId}`}>
                 <button>Back</button>
+            </Link>
+            <Link to={`/university/courses/${uniId}/enrollments/${SelectedCourse.id}`}>
+                <button className='button'>My Students</button>
             </Link>
 
         </div>

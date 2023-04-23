@@ -11,4 +11,5 @@ export declare class EnrollmentController {
         student: Student;
         course: Courses;
     }): Promise<import("../../entities/Enrollments").Enrollment>;
+    updateEnrollmentStatus(id: number, status: string): Promise<import("../../entities/Enrollments").Enrollment>;
 }

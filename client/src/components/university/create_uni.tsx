@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
-import { University } from "../../util/university";
+import { University } from "../../util/interface/university";
 import { University_formFields } from "../../util/formFields/Univerity_formField";
+import { Link } from "react-router-dom";
 
 const CreateUniversity = () => {
   const [university, setUniversity] = useState<Omit<University, "id">>({
@@ -72,6 +73,9 @@ const CreateUniversity = () => {
         </button>
       </form>
       {message && <p>{message}</p>}
+      <Link to="/university">
+        <button>Back</button>
+      </Link>
     </div>
   );
 };

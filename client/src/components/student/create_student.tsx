@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { Student } from "../../util/student";
+import { Student } from "../../util/interface/student";
 import { Student_formFields } from "../../util/formFields/Student_formField";
 import { Link } from "react-router-dom";
 

@@ -18,11 +18,11 @@ export class EnrollmentController {
 
     @Get(':id')
     getEnrollmentsByStudentId(@Param('id', ParseIntPipe) id: number) {
-    return this.enrollmentService.getEnrollmentsByStudentId(id);
+        return this.enrollmentService.getEnrollmentsByStudentId(id);
     }
 
     @Get('/course/:courseId')
-    getEnrollmentsByCourseId(@Body('courseId') courseId: number) {
+    getEnrollmentsByCourseId(@Param('courseId') courseId: number) {
         return this.enrollmentService.getEnrollmentsByCourseId(courseId);
     }
 
@@ -30,6 +30,10 @@ export class EnrollmentController {
     apply(@Body() data: { student: Student; course: Courses }) {
         const { student, course } = data;
         return this.enrollmentService.apply(student, course);
+    }
+    @Put(':id/status')
+    updateEnrollmentStatus(@Param('id', ParseIntPipe) id: number,@Body('status') status: string) {
+        return this.enrollmentService.updateEnrollmentStatus(id, status);
     }
 
 }

@@ -63,11 +63,13 @@ let EnrollService = class EnrollService {
         }
         this.enrollmentRepository.delete(id);
     }
-    updateStatus(id, status) {
-        if (!id) {
+    async updateEnrollmentStatus(id, status) {
+        const enrollment = await this.enrollmentRepository.findOne({ where: { id } });
+        if (!enrollment) {
             throw new common_1.NotFoundException('Enrollment not found');
         }
-        this.enrollmentRepository.update(id, { status: status });
+        enrollment.status = status;
+        return this.enrollmentRepository.save(enrollment);
     }
 };
 EnrollService = __decorate([

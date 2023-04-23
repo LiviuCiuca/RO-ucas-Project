@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Student } from "../../util/student";
+import { Student } from "../../util/interface/student";
 import { Link } from "react-router-dom";
 
 // The component receives a student object as a prop from get_student.tsx

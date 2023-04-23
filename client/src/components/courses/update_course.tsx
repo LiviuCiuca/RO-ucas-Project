@@ -1,12 +1,11 @@
 import axios from "axios";
 import { useState } from "react";
-import { Course } from "../../util/course";
+import { Course } from "../../util/interface/course";
 import { Course_formFields } from "../../util/formFields/Course_formField";
 import { Link, useParams } from "react-router-dom";
 
 const UpdateCourse = (props: { selectedCourse: Course }) => {
-  const [updatedCourse, setUpdatedCourse] = useState<Omit<Course, "enrollments">>(props.selectedCourse);
-  const [formFields, setFormFields] = useState<Omit<Course, "enrollments">>(props.selectedCourse);
+  const [updatedCourse, setUpdatedCourse] = useState<Course>(props.selectedCourse);
   const [submitted, setSubmitted] = useState(false);
   const { uniId } = useParams<{ uniId: string }>();
 
@@ -17,12 +16,13 @@ const UpdateCourse = (props: { selectedCourse: Course }) => {
       setSubmitted(true);
     } catch (error: any) {
       console.log(error.message);
+      console.log("Error:", updatedCourse);
+      console.log("Error2:", props.selectedCourse);
     }
   };
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    setUpdatedCourse(formFields);
     updateCourse(props.selectedCourse.id);
   };
 
@@ -31,7 +31,7 @@ const UpdateCourse = (props: { selectedCourse: Course }) => {
   const handleChange = (e: any) => {
     const { name, value } = e.target;
     console.log("target:", e.target);
-    setFormFields({ ...formFields, [name]: value });
+    setUpdatedCourse({ ...updatedCourse, [name]: value });
   };
 
   return (
@@ -44,14 +44,14 @@ const UpdateCourse = (props: { selectedCourse: Course }) => {
             {field.type === "textarea" ? (
               <textarea
                 name={field.name}
-                value={formFields[field.name]}
+                value={updatedCourse[field.name]}
                 onChange={handleChange}
               />
             ) : (
               <input
                 type={field.type}
                 name={field.name}
-                value={formFields[field.name]}
+                value={updatedCourse[field.name]}
                 onChange={handleChange}
               />
             )}

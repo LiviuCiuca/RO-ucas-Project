@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Enrollment } from "../../util/enrollment";
+import { Enrollment } from "../../util/interface/enrollment";
 import { Link, useParams } from "react-router-dom";
 
 //shows all enrollments of a student

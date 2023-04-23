@@ -67,10 +67,12 @@ export class EnrollService {
     }
 
     //this uni should do
-    updateStatus(id: number, status: string) {
-        if (!id) {
+    async updateEnrollmentStatus(id: number, status: string): Promise<Enrollment> {
+        const enrollment = await this.enrollmentRepository.findOne({where: {id}});
+        if (!enrollment) {
             throw new NotFoundException('Enrollment not found');
         }
-        this.enrollmentRepository.update(id, { status: status });
+        enrollment.status = status;
+        return this.enrollmentRepository.save(enrollment);
     }
 }

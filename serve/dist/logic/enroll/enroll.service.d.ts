@@ -10,5 +10,5 @@ export declare class EnrollService {
     getEnrollmentsByCourseId(courseId: number): Promise<Enrollment[]>;
     apply(student: createStudentParams, course: createCoursesParams): Promise<Enrollment>;
     deleteEnrollmentsByStudentId(studentId: number): Promise<void>;
-    updateStatus(id: number, status: string): void;
+    updateEnrollmentStatus(id: number, status: string): Promise<Enrollment>;
 }

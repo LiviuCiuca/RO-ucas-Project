@@ -1,8 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { University } from "../../util/university";
+import { University } from "../../util/interface/university";
 import { Link } from "react-router-dom";
-import CreateUniversity from "./create_uni";
 
 export const Universities = () => {
   const [universities, setUniversities] = useState<University>({} as University);

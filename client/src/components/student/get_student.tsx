@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Student } from '../../util/student';
+import { Student } from '../../util/interface/student';
 import DeleteStudent from './delete_student';
 import { Link, useParams } from "react-router-dom";
 import React from 'react';
-import { StudentByIdProps } from '../../util/interface/student_interface';
+import { StudentByIdProps } from '../../util/interface/student_props';
 
 export const StudentById:React.FC<StudentByIdProps> = ({setSelectedStudent}) => {
  

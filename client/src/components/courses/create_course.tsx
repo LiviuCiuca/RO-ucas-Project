@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { Course } from "../../util/course";
+import { Course } from "../../util/interface/course";
 import { Course_formFields } from "../../util/formFields/Course_formField";
 import { Link, useParams } from "react-router-dom";
 
@@ -59,7 +59,7 @@ export const CreateCourse = () => {
                     </div>
                 ))}
                 <button type="submit" disabled={submitted}>
-                    {submitted ? "Submitted" : "Create"}
+                    {submitted ? "Created" : "Create"}
                 </button>
             </form>
             <Link to={`/university/courses/${uniId}`}>
