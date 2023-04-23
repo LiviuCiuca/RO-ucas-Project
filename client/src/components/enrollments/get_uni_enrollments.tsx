@@ -9,6 +9,7 @@ export const Enrollments = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const { courseId } = useParams<{ courseId: string }>();
+    const { uniId }= useParams<{uniId: string}>();
 
     //this should return all the students who enrolled to the uni  
     //uni sees this and will accpet or reject students
@@ -27,6 +28,11 @@ export const Enrollments = () => {
         getEnrollment();
     }, []);
 
+    //to rerender the component when i click update button
+    const handleEnrollmentUpdate = () => {
+        getEnrollment();
+    };
+
     if (loading) {
         return <div>
             <h1>Loading...</h1>
@@ -42,7 +48,7 @@ export const Enrollments = () => {
             <p>Student name: {enroll.student.name}</p>
             <p>Course Name: {enroll.course.name}</p>
             <p>Status: {enroll.status}</p>
-            <UpdateEnrollment enrollment={enroll} />
+            <UpdateEnrollment enrollment={enroll} onEnrollmentUpdate={handleEnrollmentUpdate} />
         </div>
     ));
 
@@ -54,7 +60,7 @@ export const Enrollments = () => {
             <div className="UniSide_Enrollments">
                 {displayenrollment}
             </div>
-            <Link to={`/university/${courseId}`}>
+            <Link to={`/university/courses/${uniId}`}>
                 <button>Back</button>
             </Link>
         </div>
