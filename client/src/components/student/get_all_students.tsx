@@ -65,8 +65,8 @@ export const Students = () => {
                 </Link>
             </div>
             <div className="student_profile">
-                <Link to={`/student/${selectedStudent.id}`}>
-                    <button disabled={!selectedStudent}>Profile Student</button>
+                <Link to={`/student/${selectedStudent?.id}`}>
+                    <button disabled={!selectedStudent?.id}>Profile Student</button>
                 </Link>
             </div>
 
