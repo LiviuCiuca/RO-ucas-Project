@@ -8,9 +8,10 @@ export default {
   server: {
     proxy: {
       '/api': {
-        target: 'http://server:3000',
+        target: 'http://localhost:3000',
         changeOrigin: true,
         //rewrite: (path) => path.replace(/^\/api/, ''),
+        fallback: 'http://server:3000'
       },
     },
   },
