@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Enrollment } from "../../util/interface/enrollment";
-import { UpdateEnrollmentProps } from "../../util/interface/update_enrollment";
+import { UpdateEnrollmentProps } from "../../util/types/update_enrollment_type";
 
 const UpdateEnrollment = (props: UpdateEnrollmentProps) => {
     const [updatedEnrollment, setUpdatedEnrollment] = useState<Enrollment>(
