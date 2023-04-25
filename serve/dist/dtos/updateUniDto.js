@@ -50,7 +50,6 @@ __decorate([
 ], updateUniDto.prototype, "image", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
-    (0, class_validator_1.IsNumber)(),
     __metadata("design:type", Number)
 ], updateUniDto.prototype, "rating", void 0);
 exports.updateUniDto = updateUniDto;

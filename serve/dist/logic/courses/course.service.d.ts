@@ -16,6 +16,6 @@ export declare class CourseService {
     }>;
     updateCourseById(id: number, courseDetails: createCoursesParams): Promise<{
         message: string;
-        course: import("typeorm").UpdateResult;
+        course: Courses;
     }>;
 }

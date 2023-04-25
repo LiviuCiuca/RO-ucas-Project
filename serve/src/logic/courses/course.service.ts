@@ -68,12 +68,18 @@ export class CourseService {
     }
 
     async updateCourseById(id: number, courseDetails: createCoursesParams){
-        const course = await this.findCourse(id);
-
-        const updatedCourse = await this.courseRepository.update({ id }, {...courseDetails});
-       
-        return {message: 'updated succesfully', course: updatedCourse};
-    }
+      const { enrollments, ...updatedDetails } = courseDetails;
+      await this.courseRepository.update({ id }, updatedDetails);
+  
+      const updatedCourse = await this.courseRepository.findOne({ where: { id } });
+  
+      if (!updatedCourse) {
+          throw new NotFoundException('Course not found');
+      }
+  
+      return { message: 'updated succesfully', course: updatedCourse };
+  }
+  
 
    
 

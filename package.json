@@ -1,10 +1,17 @@
 {
   "dependencies": {
     "@nestjs/typeorm": "^9.0.1",
+    "@types/axios": "^0.14.0",
+    "axios": "^0.21.4",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
     "dotenv": "^16.0.3",
     "mysql2": "^2.3.3",
     "typeorm": "^0.3.11"
+  },
+  "devDependencies": {
+    "cypress": "^12.10.0",
+    "dotenv": "^16.0.3",
+    "dotenv-webpack": "^8.0.1"
   }
 }

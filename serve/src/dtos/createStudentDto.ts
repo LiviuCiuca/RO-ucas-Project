@@ -8,7 +8,6 @@ export class CreateStudentDto {
     name: string;
 
     @IsNotEmpty()
-    @IsNumber()
     age: number;
     enrollments: any;
 
@@ -17,7 +16,6 @@ export class CreateStudentDto {
     address: string;
 
     @IsNotEmpty()
-    @IsString()
     phone: string;
 
     @IsNotEmpty()

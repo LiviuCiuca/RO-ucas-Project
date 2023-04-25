@@ -25,12 +25,10 @@ __decorate([
 ], CreateCourseDto.prototype, "description", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
-    (0, class_validator_1.IsNumber)(),
     __metadata("design:type", Number)
 ], CreateCourseDto.prototype, "price", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
-    (0, class_validator_1.IsNumber)(),
     __metadata("design:type", Number)
 ], CreateCourseDto.prototype, "duration", void 0);
 exports.CreateCourseDto = CreateCourseDto;

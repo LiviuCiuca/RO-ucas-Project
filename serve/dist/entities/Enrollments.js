@@ -21,6 +21,7 @@ __decorate([
 ], Enrollment.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(type => Student_1.Student, student => student.enrollments),
+    (0, typeorm_1.JoinColumn)({ name: 'studentId' }),
     __metadata("design:type", Student_1.Student)
 ], Enrollment.prototype, "student", void 0);
 __decorate([
@@ -29,8 +30,13 @@ __decorate([
 ], Enrollment.prototype, "studentId", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(type => Courses_1.Courses, course => course.enrollments),
+    (0, typeorm_1.JoinColumn)({ name: 'courseId' }),
     __metadata("design:type", Courses_1.Courses)
 ], Enrollment.prototype, "course", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], Enrollment.prototype, "courseId", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)

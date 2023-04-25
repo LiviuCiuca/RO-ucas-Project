@@ -3,7 +3,7 @@ import requests
 import json
 
 def setup():
-    url = "http://localhost:3000/university"
+    url = "http://localhost:3000/api/university"
     
     payload = {"name": "Test University of testing", 
     "email": "test@university.com", 

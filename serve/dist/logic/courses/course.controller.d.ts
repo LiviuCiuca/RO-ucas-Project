@@ -8,7 +8,7 @@ export declare class CourseController {
     addCourse(id: number, course: CreateCourseDto): Promise<import("../../entities/Courses").Courses>;
     updateCourseById(id: number, course: CreateCourseDto): Promise<{
         message: string;
-        course: import("typeorm").UpdateResult;
+        course: import("../../entities/Courses").Courses;
     }>;
     deleteCourse(id: number): Promise<{
         message: string;

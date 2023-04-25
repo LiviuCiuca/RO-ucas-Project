@@ -26,9 +26,15 @@ let EnrollmentController = class EnrollmentController {
     getEnrollmentsByStudentId(id) {
         return this.enrollmentService.getEnrollmentsByStudentId(id);
     }
+    getEnrollmentsByCourseId(courseId) {
+        return this.enrollmentService.getEnrollmentsByCourseId(courseId);
+    }
     apply(data) {
         const { student, course } = data;
         return this.enrollmentService.apply(student, course);
+    }
+    updateEnrollmentStatus(id, status) {
+        return this.enrollmentService.updateEnrollmentStatus(id, status);
     }
 };
 __decorate([
@@ -38,12 +44,19 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], EnrollmentController.prototype, "getEnrollments", null);
 __decorate([
-    (0, decorators_1.Get)('/:id'),
-    __param(0, (0, common_1.Body)('id')),
+    (0, decorators_1.Get)(':id'),
+    __param(0, (0, decorators_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
 ], EnrollmentController.prototype, "getEnrollmentsByStudentId", null);
+__decorate([
+    (0, decorators_1.Get)('/course/:courseId'),
+    __param(0, (0, decorators_1.Param)('courseId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", void 0)
+], EnrollmentController.prototype, "getEnrollmentsByCourseId", null);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
@@ -51,6 +64,14 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], EnrollmentController.prototype, "apply", null);
+__decorate([
+    (0, decorators_1.Put)(':id/status'),
+    __param(0, (0, decorators_1.Param)('id', common_1.ParseIntPipe)),
+    __param(1, (0, common_1.Body)('status')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, String]),
+    __metadata("design:returntype", void 0)
+], EnrollmentController.prototype, "updateEnrollmentStatus", null);
 EnrollmentController = __decorate([
     (0, common_1.Controller)('/enrollment'),
     __metadata("design:paramtypes", [enroll_service_1.EnrollService])

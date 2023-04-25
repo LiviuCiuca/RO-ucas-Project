@@ -7,7 +7,8 @@ export declare class EnrollService {
     constructor(enrollmentRepository: Repository<Enrollment>);
     getAll(): Promise<Enrollment[]>;
     getEnrollmentsByStudentId(studentId: number): Promise<Enrollment[]>;
+    getEnrollmentsByCourseId(courseId: number): Promise<Enrollment[]>;
     apply(student: createStudentParams, course: createCoursesParams): Promise<Enrollment>;
     deleteEnrollmentsByStudentId(studentId: number): Promise<void>;
-    updateStatus(id: number, status: string): void;
+    updateEnrollmentStatus(id: number, status: string): Promise<Enrollment>;
 }

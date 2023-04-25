@@ -29,7 +29,7 @@ import 'dotenv/config';
       password: process.env.DB_PASSWORD, 
       database: process.env.DB_DATABASE, 
       entities: [Student, Universities, Enrollment, Courses], // entities to be mapped
-      synchronize: true, // automatically synchronize database schema with entity schema
+      synchronize: true // automatically synchronize database schema with entity schema
     }),
   ],
   controllers: [AppController],

@@ -10,12 +10,14 @@ export class Enrollment {
     id: number;
    
     @ManyToOne(type => Student, student => student.enrollments)
+    @JoinColumn({ name: 'studentId' })
     student: Student;
 
     @Column()
     studentId: number;
 
     @ManyToOne(type => Courses, course => course.enrollments)
+    @JoinColumn({ name: 'courseId' })
     course: Courses;
     
     @Column()

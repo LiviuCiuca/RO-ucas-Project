@@ -3,7 +3,7 @@ import requests
 import json
 
 def setup_courses():
-    url = "http://localhost:3000/course"
+    url = "http://localhost:3000/api/course"
     payload = {"name": "Test Course", "description": "Test Description", "price": 9000, "duration": 3}
     headers = {"Content-Type": "application/json"}
 

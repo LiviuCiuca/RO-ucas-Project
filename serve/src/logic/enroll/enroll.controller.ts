@@ -1,8 +1,8 @@
 import { Controller, Post, Body, ParseIntPipe } from '@nestjs/common';
-import { Get, Param } from '@nestjs/common/decorators';
+import { Get, Param, Put } from '@nestjs/common/decorators';
+import { EnrollService } from './enroll.service';
 import { Courses } from 'src/entities/Courses';
 import { Student } from 'src/entities/Student';
-import { EnrollService } from './enroll.service';
 
 @Controller('/enrollment')
 export class EnrollmentController {
@@ -16,13 +16,13 @@ export class EnrollmentController {
         return this.enrollmentService.getAll();
     }
 
-    @Get('/:id')
-    getEnrollmentsByStudentId(@Body('id') id: number) {
+    @Get(':id')
+    getEnrollmentsByStudentId(@Param('id', ParseIntPipe) id: number) {
         return this.enrollmentService.getEnrollmentsByStudentId(id);
     }
 
     @Get('/course/:courseId')
-    getEnrollmentsByCourseId(@Body('courseId') courseId: number) {
+    getEnrollmentsByCourseId(@Param('courseId') courseId: number) {
         return this.enrollmentService.getEnrollmentsByCourseId(courseId);
     }
 
@@ -30,6 +30,10 @@ export class EnrollmentController {
     apply(@Body() data: { student: Student; course: Courses }) {
         const { student, course } = data;
         return this.enrollmentService.apply(student, course);
+    }
+    @Put(':id/status')
+    updateEnrollmentStatus(@Param('id', ParseIntPipe) id: number,@Body('status') status: string) {
+        return this.enrollmentService.updateEnrollmentStatus(id, status);
     }
 
 }

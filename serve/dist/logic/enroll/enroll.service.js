@@ -25,8 +25,20 @@ let EnrollService = class EnrollService {
         return this.enrollmentRepository.find({ relations: ['student', 'course'] });
     }
     getEnrollmentsByStudentId(studentId) {
+        if (!studentId) {
+            throw new common_1.NotFoundException('Student not found');
+        }
         return this.enrollmentRepository.find({
             where: { student: { id: studentId } },
+            relations: ['student', 'course']
+        });
+    }
+    getEnrollmentsByCourseId(courseId) {
+        if (!courseId) {
+            throw new common_1.NotFoundException('Course not found');
+        }
+        return this.enrollmentRepository.find({
+            where: { course: { id: courseId } },
             relations: ['student', 'course']
         });
     }
@@ -51,11 +63,13 @@ let EnrollService = class EnrollService {
         }
         this.enrollmentRepository.delete(id);
     }
-    updateStatus(id, status) {
-        if (!id) {
+    async updateEnrollmentStatus(id, status) {
+        const enrollment = await this.enrollmentRepository.findOne({ where: { id } });
+        if (!enrollment) {
             throw new common_1.NotFoundException('Enrollment not found');
         }
-        this.enrollmentRepository.update(id, { status: status });
+        enrollment.status = status;
+        return this.enrollmentRepository.save(enrollment);
     }
 };
 EnrollService = __decorate([

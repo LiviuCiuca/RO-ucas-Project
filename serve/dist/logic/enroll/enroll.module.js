@@ -12,13 +12,15 @@ const enroll_service_1 = require("./enroll.service");
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const Enrollments_1 = require("../../entities/Enrollments");
+const Student_1 = require("../../entities/Student");
+const Courses_1 = require("../../entities/Courses");
 let EnrollModule = class EnrollModule {
 };
 EnrollModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([Enrollments_1.Enrollment])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([Enrollments_1.Enrollment, Student_1.Student, Courses_1.Courses])],
         controllers: [enroll_controller_1.EnrollmentController],
-        providers: [enroll_service_1.EnrollService,],
+        providers: [enroll_service_1.EnrollService],
     })
 ], EnrollModule);
 exports.EnrollModule = EnrollModule;
