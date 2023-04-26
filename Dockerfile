@@ -14,3 +14,7 @@ RUN npm install
 
 # Start Cypress
 CMD ["npm", "run", "test"]
+
+#docker build -t my-cypress-tests .
+#docker run --rm --network="host" -v "$(pwd)/cypress/videos:/app/cypress/videos" my-cypress-tests
+

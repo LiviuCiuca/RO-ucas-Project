@@ -3,6 +3,6 @@
     "viewportWidth": 1280,
     "viewportHeight": 720,
     "video": true,
-    "videoCompression": false
-
+    "videoCompression": false,
+    "videoUploadOnPasses": true
 }
