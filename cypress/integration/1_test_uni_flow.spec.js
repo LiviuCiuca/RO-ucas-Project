@@ -15,7 +15,7 @@ describe('Website', () => {
 
     it('Create University', () => {
         cy.contains('Create University').click()
-        cy.wait(1000)
+        cy.wait(100)
 
         // Fill in the form fields
         cy.get('input[name="name"]').type('Cypress Test University')
@@ -25,11 +25,12 @@ describe('Website', () => {
         cy.get('input[name="website"]').type('https://www.Cypress.com')
         cy.get('textarea[name="description"]').type('Example University offers a wide range of courses and has an excellent reputation for its academic and research activities.')
         cy.get('input[name="image"]').type('https://www.Cypress.com/image.jpg')
-        cy.get('input[name="rating"]').type('4')
+        cy.get('input[name="rating"]').clear().type('4')
 
         // Click the "Create" button
         cy.contains('Create').click()
-        cy.wait(100)
+        cy.get('button[type="button"]').click();
+        cy.wait(1000)
 
         // Check if the new university has been created
         cy.contains('University created successfully!').should('be.visible')
@@ -61,6 +62,7 @@ describe('Website', () => {
 
         // Click the "Update" button
         cy.contains('Update').click()
+        cy.get('button[type="submit"]').click();
         cy.wait(100)
         //checking if uni been uptaded
         cy.contains('Updated').should('be.visible')
@@ -81,13 +83,14 @@ describe('Website', () => {
 
         // Fill in the form fields
         cy.get('input[name="name"]').type('Cypress Test Course')
-        cy.get('input[name="description"]').type('CYPRESS101 bla bla')
+        cy.get('textarea[name="description"]').type('CYPRESS101 bla bla')
         cy.get('input[name="duration"]').type('12')
         cy.get('input[name="price"]').type('9000')
 
 
         // Click the "Create" button
         cy.contains('Create').click()
+        cy.get('button[type="submit"]').click();
         cy.wait(100)
 
         // Check if the new course has been created
@@ -105,23 +108,27 @@ describe('Website', () => {
         cy.contains('Create Course').click()
         // Fill in the form fields
         cy.get('input[name="name"]').type('Test Delete Course')
-        cy.get('input[name="description"]').type('CYPRESS101 bla bla')
+        cy.get('textarea[name="description"]').type('CYPRESS101 bla bla')
         cy.get('input[name="duration"]').type('12')
         cy.get('input[name="price"]').type('9000')
 
         // Click the "Create" button
         cy.contains('Create').click()
-        cy.wait(100)
+        cy.get('button[type="submit"]').click();
+        cy.wait(1000)
 
         // Check if the new course has been created
         cy.contains('Created').should('be.visible')
         cy.contains('Back').click()
-        cy.wait(100)
+        cy.wait(1000)
+        
         //this selects course
         cy.contains('Test Delete Course').should('be.visible').click()
+        
         //this deletes course
         cy.contains('Delete').click()
-        cy.wait(100)
+        cy.get('button:contains("Delete")').click()
+        cy.wait(1000)
         cy.contains('Delete successful.').should('be.visible')
     })
 
@@ -131,10 +138,11 @@ describe('Website', () => {
 
         cy.contains('Update').click() // Click on the "update" button
 
-        cy.get('input[name="description"]').clear().type('cypres Update Test)') // Update the description
+        cy.get('textarea[name="description"]').clear().type('cypres Update Test)') // Update the description
 
         // Click the "Update" button
         cy.contains('Update').click()
+        cy.get('button[type="submit"]').click();
         cy.wait(100)
         //checking if course been uptaded
         cy.contains('Updated').should('be.visible')

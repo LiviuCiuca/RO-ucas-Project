@@ -20,7 +20,7 @@ const DeleteStudent = (props:{student:Student}) => {
         <div>
             {/* When the Delete button is clicked, it calls the deleteStudent function with the student's ID and then navigates to the /allstudent page */}
             <Link to={`/allstudent`}>
-                <button onClick={() => deleteStudent(student.id)}>Delete</button>
+                <button name="delete" onClick={() => deleteStudent(student.id)}>Delete</button>
             </Link>
         </div>
     );

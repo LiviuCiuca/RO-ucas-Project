@@ -56,6 +56,8 @@ describe('Website', () => {
 
     it('Delete university', () => {
         cy.contains('Delete').click()
+       
+        cy.contains('Universities').should('be.visible')
     })
 
     //now ill delete created student by cypress
@@ -77,6 +79,8 @@ describe('Website', () => {
 
     it('Delete student', () => {
         cy.contains('Delete').click()
+       
+        cy.contains('Students Login').should('be.visible')
     })
     
    

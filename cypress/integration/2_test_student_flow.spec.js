@@ -20,7 +20,7 @@ describe('Website', () => {
         cy.get('input[name="address"]').type('123 Main St, Example City')
         cy.get('input[name="phone"]').type('+1 (555) 123-4567')
         cy.get('input[name="email"]').type('test@example.com')
-        cy.get('textarea[name="contactDetails"]').type('Available via phone and email.')
+        cy.get('input[name="contactDetails"]').type('Available via phone and email.')
         cy.get('textarea[name="personalStatement"]').type('I am a dedicated and hardworking individual seeking to expand my knowledge in the field of computer science.')
         cy.get('textarea[name="whyTheCourse"]').type('I want to gain expertise in software development and learn about the latest industry trends.')
         cy.get('textarea[name="education"]').type('Bachelor of Computer Science, Example University')
@@ -31,6 +31,7 @@ describe('Website', () => {
 
         // Click the "Create" button
         cy.contains('Create').click()
+        cy.get('button[type="button"]').click();
         cy.wait(100)
         cy.contains('Created').should('be.visible')
 
@@ -76,7 +77,7 @@ describe('Website', () => {
     })
 
     it('Apply for a course', () => {
-        cy.contains('View Courses').click()
+        cy.contains('Courses')
         cy.wait(1000)
 
         // Find the div containing the text "name: test"
