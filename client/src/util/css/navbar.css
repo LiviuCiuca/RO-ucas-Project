@@ -1,18 +1,32 @@
-.Navbar {
+body {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #333;
-  color: white;
-  padding: 10px;
+  flex-direction: row;
+}
+.Navbar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 150px;
+  height: 100%;
+  background-color: #1d1c1c;
+  color: #fff;
+  padding: 20px;
+  box-sizing: border-box;
+  text-align: center;
+  line-height: 100px;
 }
 
 .Navbar a{
-  color: white;
+  display: block;
+  color: rgb(146, 107, 107);
   text-decoration: none;
   margin-right: 10px;
+  border-radius: 5px;
+  padding: 5px 10px;
 }
 
 .Navbar a:hover {
-  text-decoration: underline;
+  background-color: rgb(146, 107, 107);
+  color: #fff;
+  transition: background-color 0.3s ease;
 }

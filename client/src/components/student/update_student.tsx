@@ -4,6 +4,7 @@ import { Student } from "../../util/interface/student";
 import { Student_formFields } from "../../util/formFields/Student_formField";
 import { Link, useParams } from "react-router-dom";
 
+import "../../util/css/all_style.css";
 const UpdateStudent = (props: { student: Student }) => {
     const [updatedStudent, setUpdatedStudent] = useState<Student>(props.student);
     const { studentId } = useParams<{ studentId: string }>();
@@ -58,7 +59,7 @@ const UpdateStudent = (props: { student: Student }) => {
                 </button>
             </form>
             <Link to={`/student/${studentId}`}>
-                <button>Back</button>
+                <button type="button">Back</button>
             </Link>
         </div>
     );

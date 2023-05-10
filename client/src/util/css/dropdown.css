@@ -1,0 +1,34 @@
+
+
+select {
+    appearance: none;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    box-sizing: border-box;
+    color: #555;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    width: 200px;
+  }
+
+  
+  select:focus {
+    outline: none;
+    border-color: #313239;
+    box-shadow: 0 0 5px rgba(110, 129, 234, 0.5);
+  }
+  .dropdown-container {
+    position: relative;
+    margin-bottom: 10px;
+  }
+  
+  .dropdown-label {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    font-size: 14px;
+    font-weight: bold;
+    color: #555;
+  }
+  

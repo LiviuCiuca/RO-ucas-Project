@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Student } from "../../util/interface/student";
 import { Student_formFields } from "../../util/formFields/Student_formField";
 import { Link } from "react-router-dom";
+import "../../util/css/all_style.css";
+import "../../util/css/form.css"
 
 const CreateStudent = () => {
   const [student, setStudent] = useState<Omit<Student, "id">>({
@@ -73,7 +75,7 @@ const CreateStudent = () => {
         </button>
       </form>
       <Link to={`/allstudent`}>
-        <button >Back</button>
+        <button type="button" >Back</button>
       </Link>
     </div>
   );

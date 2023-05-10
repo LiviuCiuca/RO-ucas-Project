@@ -41,15 +41,20 @@ export const UniversityById: React.FC<UniversityByIdProps> = ({ setSelectedUnive
     return (
         <div>
             <h1>University</h1>
-            <h3>
+            <div className="info-container">
                 {Object.keys(university).map((key: any) => (
                     key !== "id" && (
-                        <div key={key}>
-                            {key}: {university[key]}
+                        <div key={key} className="info-item">
+                            {/* transforming first letter to Capital */}
+                            <label htmlFor={key}>{key.charAt(0).toUpperCase() + key.slice(1)}</label>
+                            <div id={key} className="info-value">
+                                {university[key]}
+                            </div>
                         </div>
                     )
                 ))}
-            </h3>
+            </div>
+            
             <DeleteUniversity university={university} />
             <Link to={`/university/update/${university.id}`}>
                 <button className='button'>Update University</button>
@@ -57,7 +62,7 @@ export const UniversityById: React.FC<UniversityByIdProps> = ({ setSelectedUnive
             <Link to={`/university/courses/${university.id}`}>
                 <button className='button'>My Courses</button>
             </Link>
-          
+
 
         </div>
     );

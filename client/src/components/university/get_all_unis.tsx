@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { University } from "../../util/interface/university";
 import { Link } from "react-router-dom";
+import "../../util/css/all_style.css";
 
 export const Universities = () => {
   const [universities, setUniversities] = useState<University>({} as University);
@@ -42,7 +43,7 @@ export const Universities = () => {
 
   return (
     <div>
-      <h1>Universities</h1>
+      <h1>Universities Login</h1>
       <label htmlFor="university-select">Select a university:</label>
       <select
         value={selectedUniversity ? selectedUniversity.id : ""}
@@ -58,12 +59,12 @@ export const Universities = () => {
       </select>
       <div className="create_university">
         <Link to="/createUni">
-          <button>Create University</button>
+          <button type="button">Create University</button>
         </Link>
       </div>
       <div className="university_profile">
         <Link to={`/university/${selectedUniversity?.id}`}>
-          <button disabled={!selectedUniversity}>Profile University</button>
+          <button type="button" disabled={!selectedUniversity}>Profile University</button>
         </Link>
       </div>
     </div>

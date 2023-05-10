@@ -22,7 +22,7 @@ export const DeleteCourse = (props: { selectedCourse: Course }) => {
         <div className="courseDelete">
            
             <p>Are you sure you want to delete {props.selectedCourse.name}?</p>
-            <button disabled={!props.selectedCourse} onClick={() => deleteCourse(props.selectedCourse.id)}>Delete</button>
+            <button type="button" disabled={!props.selectedCourse} onClick={() => deleteCourse(props.selectedCourse.id)}>Delete</button>
             <p>{deleteStatus}</p>
         
         </div>

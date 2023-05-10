@@ -6,13 +6,17 @@ import { Link, useParams } from "react-router-dom";
 import React from 'react';
 import { StudentByIdProps } from '../../util/interface/student_props';
 
-export const StudentById:React.FC<StudentByIdProps> = ({setSelectedStudent}) => {
- 
+import "../../util/css/all_style.css";
+import "../../util/css/info_display.css"
+
+
+export const StudentById: React.FC<StudentByIdProps> = ({ setSelectedStudent }) => {
+
   const [student, setStudent] = useState<Student>({} as Student);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { studentId } = useParams<{ studentId: string }>(); 
-  
+  const { studentId } = useParams<{ studentId: string }>();
+
   const getStudentById = async (id: number) => {
     try {
       const response = await axios.get(`/api/student/${id}`);
@@ -27,9 +31,9 @@ export const StudentById:React.FC<StudentByIdProps> = ({setSelectedStudent}) => 
   };
 
   useEffect(() => {
-      
-      getStudentById(Number(studentId));
-  
+
+    getStudentById(Number(studentId));
+
   }, [studentId]);
 
   if (loading) {
@@ -43,17 +47,21 @@ export const StudentById:React.FC<StudentByIdProps> = ({setSelectedStudent}) => 
   return (
     <div>
       <h1>Student</h1>
-      <h3>
+      <div className="info-container">
         {Object.keys(student).map((key: any) => (
           key !== "id" && (
-            <div key={key}>
-              {key}: {student[key]}
+            <div key={key} className="info-item">
+              {/* transforming first letter to Capital */}
+              <label htmlFor={key}>{key.charAt(0).toUpperCase() + key.slice(1)}</label>
+              <div id={key} className="info-value">
+                {student[key]}
+              </div>
             </div>
           )
         ))}
-      </h3>
-      
-      <DeleteStudent student={student}  />
+      </div>
+
+      <DeleteStudent student={student} />
       <Link to={`/student/update/${student.id}`}>
         <button className='button'>Update Student</button>
       </Link>
@@ -62,7 +70,7 @@ export const StudentById:React.FC<StudentByIdProps> = ({setSelectedStudent}) => 
       </Link>
 
       <Link to={`/student/enrollments/${student.id}`}>
-        <button className='secoundButton'>View Enrollments</button>
+        <button className='button'>View Enrollments</button>
       </Link>
 
 

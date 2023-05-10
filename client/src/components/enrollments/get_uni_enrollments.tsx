@@ -61,7 +61,7 @@ export const Enrollments = () => {
                 {displayenrollment}
             </div>
             <Link to={`/university/courses/${uniId}`}>
-                <button>Back</button>
+                <button type="button">Back</button>
             </Link>
         </div>
     );

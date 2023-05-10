@@ -2,7 +2,8 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { Student } from "../../util/interface/student";
 import { Link } from "react-router-dom";
-//import "../../util/css/buttons.css";
+import "../../util/css/all_style.css";
+import "../../util/css/dropdown.css";
 
 export const Students = () => {
     const [students, setStudents] = useState<Student>({} as Student);
@@ -42,8 +43,9 @@ export const Students = () => {
     };
 
     return (
-        <div>
+        <div className="students-container">
             <h1>Students Login</h1>
+            <div className="dropdown-container">
             <label htmlFor="student-select">Select a student:</label>
             {/*  a dropdown to select a student */}
             <select
@@ -58,6 +60,7 @@ export const Students = () => {
                     </option>
                 ))}
             </select>
+            </div>
             {/*  a link to create a new student and to student profile */}
             <div className="create_student">
                 <Link to="/create">
@@ -66,7 +69,7 @@ export const Students = () => {
             </div>
             <div className="student_profile">
                 <Link to={`/student/${selectedStudent?.id}`}>
-                    <button disabled={!selectedStudent?.id}>Profile Student</button>
+                    <button className="button" disabled={!selectedStudent?.id}>Profile Student</button>
                 </Link>
             </div>
 

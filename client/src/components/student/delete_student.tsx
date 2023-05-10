@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Student } from "../../util/interface/student";
 import { Link } from "react-router-dom";
+import "../../util/css/all_style.css";
 
 // The component receives a student object as a prop from get_student.tsx
 const DeleteStudent = (props:{student:Student}) => {
@@ -20,7 +21,7 @@ const DeleteStudent = (props:{student:Student}) => {
         <div>
             {/* When the Delete button is clicked, it calls the deleteStudent function with the student's ID and then navigates to the /allstudent page */}
             <Link to={`/allstudent`}>
-                <button name="delete" onClick={() => deleteStudent(student.id)}>Delete</button>
+                <button className="button" name="delete" onClick={() => deleteStudent(student.id)}>Delete</button>
             </Link>
         </div>
     );

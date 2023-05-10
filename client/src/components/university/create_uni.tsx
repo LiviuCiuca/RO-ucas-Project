@@ -65,7 +65,7 @@ const CreateUniversity = () => {
                 value={university[field.name]}
                 onChange={handleChange}
               />
-            )}``
+            )}
           </div>
         ))}
         <button type="button" onClick={handleSubmit} disabled={loading || submitted}>
@@ -74,7 +74,7 @@ const CreateUniversity = () => {
       </form>
       {message && <p>{message}</p>}
       <Link to="/university">
-        <button>Back</button>
+        <button type="button">Back</button>
       </Link>
     </div>
   );

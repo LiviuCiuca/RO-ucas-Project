@@ -20,7 +20,7 @@ export const DeleteUniversity = (props: { university: University }) => {
     return (
         <div className="deleteUniversity">
             <Link to={`/university`}>
-                <button name="delete" onClick={() => deleteUniversity(university.id)} disabled={deleteStatus} >
+                <button type="button" name="delete" onClick={() => deleteUniversity(university.id)} disabled={deleteStatus} >
                     {deleteStatus ? "Deleted" : "Delete"}
                 </button>
             </Link>

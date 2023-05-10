@@ -11,7 +11,7 @@ export const Enrollmen = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const getEnrollment = async (id : number) => {
+    const getEnrollment = async (id: number) => {
         try {
             const response = await axios.get(`/api/enrollment/${id}`);
             console.log("Response data:", response.data);
@@ -37,16 +37,17 @@ export const Enrollmen = () => {
 
     return (
         <div>
-            <h1>Enrollments</h1>
-            <h3>{enrollments.map((enrollment:Enrollment) => (
-                <div key={enrollment.id}>
+            <h1>My Applications</h1>
+            <div className="enrollment">{enrollments.map((enrollment: Enrollment) => (
+                <div className="enrollment2"key={enrollment.id}>
                     <p>Course name: {enrollment.course.name}</p>
-                    <p>status: {enrollment.status}</p>
-                    <br/>
+                    <p>Application status: {enrollment.status}</p>
+                    <br />
                 </div>
-            ))}</h3>
-             <Link to={`/student/${studentId}`}>
-                <button>Back</button>
+            ))}
+            </div>
+            <Link to={`/student/${studentId}`}>
+                <button type="button">Back</button>
             </Link>
         </div>
     );

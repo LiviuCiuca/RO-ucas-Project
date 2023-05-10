@@ -24,7 +24,7 @@ export const CreateEnrollment = (props: { student: Student; course: Course }) =>
   };
 
   return (
-    <button onClick={createEnrollment} disabled={submitted}>
+    <button  type="button" onClick={createEnrollment} disabled={submitted}>
       {submitted ? "Applied" : "Apply"}
     </button>
   );
