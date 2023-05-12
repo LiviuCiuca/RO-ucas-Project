@@ -14,7 +14,8 @@ const UpdateEnrollment = (props: UpdateEnrollmentProps) => {
             const response = await axios.put(
                 `/api/enrollment/${updatedEnrollment.id}/status`,
                 enrollment
-            );
+            ); // Sending a PUT request to update the enrollment status
+
             console.log("Response data:", response.data);
             props.onEnrollmentUpdate();
         } catch (error: any) {
@@ -31,7 +32,7 @@ const UpdateEnrollment = (props: UpdateEnrollmentProps) => {
         setUpdatedEnrollment((prevState) => ({
             ...prevState,
             status: "Accepted",
-        }));
+        })); // Updating the status to "Accepted" when the Accept button is clicked
     };
 
     const handleReject = () => {
@@ -39,7 +40,7 @@ const UpdateEnrollment = (props: UpdateEnrollmentProps) => {
         setUpdatedEnrollment((prevState) => ({
             ...prevState,
             status: "Rejected",
-        }));
+        })); // Updating the status to "Rejected" when the Reject button is clicked
     };
 
     return (

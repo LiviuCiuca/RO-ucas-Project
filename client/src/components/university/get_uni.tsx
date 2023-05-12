@@ -14,6 +14,7 @@ export const UniversityById: React.FC<UniversityByIdProps> = ({ setSelectedUnive
 
     const getUniversity = async (id: number) => {
         try {
+            // Send a GET request to retrieve the university details
             const response = await axios.get(`/api/university/${id}`);
             console.log('Response:', response.data);
             setUniversity(response.data);
@@ -25,6 +26,7 @@ export const UniversityById: React.FC<UniversityByIdProps> = ({ setSelectedUnive
         }
     }
     useEffect(() => {
+        // Fetch the university details when the component mounts
         getUniversity(Number(uniId));
     }, []);
 
@@ -36,31 +38,37 @@ export const UniversityById: React.FC<UniversityByIdProps> = ({ setSelectedUnive
     if (error) {
         return <div>{error}</div>;
     }
-    //map through the university object and display the key and value
-    //key !== "id" && part checks if the current key is not equal to "id", and only renders the div element if it's true.
+
     return (
         <div>
             <h1>University</h1>
-            <h3>
+            <div className="info-container">
+                {/* Render the university details */}
                 {Object.keys(university).map((key: any) => (
                     key !== "id" && (
-                        <div key={key}>
-                            {key}: {university[key]}
+                        <div key={key} className="info-item">
+                            {/* Transform the first letter of the key to capital */}
+                            <label htmlFor={key}>{key.charAt(0).toUpperCase() + key.slice(1)}</label>
+                            <div id={key} className="info-value">
+                                {university[key]}
+                            </div>
                         </div>
                     )
                 ))}
-            </h3>
+            </div>
+            
+            {/* Render the delete button */}
             <DeleteUniversity university={university} />
+
+            {/* Render a link to update the university */}
             <Link to={`/university/update/${university.id}`}>
                 <button className='button'>Update University</button>
             </Link>
+
+            {/* Render a link to view the courses of the university */}
             <Link to={`/university/courses/${university.id}`}>
                 <button className='button'>My Courses</button>
             </Link>
-          
-
         </div>
     );
-
-
 }

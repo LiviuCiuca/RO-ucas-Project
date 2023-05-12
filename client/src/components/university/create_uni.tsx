@@ -23,6 +23,7 @@ const CreateUniversity = () => {
   const createUniversity = async () => {
     setLoading(true);
     try {
+      // Send a POST request to create a new university with the provided data
       const response = await axios.post("/api/university", university);
       console.log("Response data:", response.data);
       setMessage("University created successfully!");
@@ -49,6 +50,7 @@ const CreateUniversity = () => {
     <div>
       <h1>Create University</h1>
       <form>
+        {/* Render input fields for each property in the university object */}
         {University_formFields.map((field) => (
           <div key={field.name}>
             <label htmlFor={field.name}>{field.label}</label>
@@ -65,7 +67,7 @@ const CreateUniversity = () => {
                 value={university[field.name]}
                 onChange={handleChange}
               />
-            )}``
+            )}
           </div>
         ))}
         <button type="button" onClick={handleSubmit} disabled={loading || submitted}>
@@ -74,7 +76,7 @@ const CreateUniversity = () => {
       </form>
       {message && <p>{message}</p>}
       <Link to="/university">
-        <button>Back</button>
+        <button className="back">Back</button>
       </Link>
     </div>
   );

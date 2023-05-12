@@ -7,6 +7,9 @@ import UpdateCourse from "../courses/update_course";
 import { DeleteCourse } from "../courses/delete_course";
 import { Enrollments } from "../enrollments/get_uni_enrollments";
 
+// /The selected course state is managed in this component and passed down to the child components as props. 
+// The Routes component from react-router-dom is used to define the different routes and the corresponding components to render.
+
 export const Parent_CourseComponent = () => {
     const [selectedCourse, setSelectedCourse] = useState<Course>({} as Course);
     

@@ -4,6 +4,7 @@ import { Course } from "../../util/interface/course";
 import { Student } from "../../util/interface/student";
 import { CreateEnrollment } from "../enrollments/post_enrollment";
 import { Link, useParams } from "react-router-dom";
+import "../../util/css/info_display.css"
 
 export const Courses = (props: { student: Student }) => {
     const [courses, setCourses] = useState<Course>({} as Course);
@@ -50,10 +51,10 @@ export const Courses = (props: { student: Student }) => {
         <div className="allCourses"
             key={course.id}
             onClick={() => handleCourseSelect(course)}>
-            <p>name: {course.name}</p>
-            <p>description: {course.description}</p>
-            <p>duration: {course.duration}</p>
-            <p>price: {course.price}</p>
+            <p>Course name: {course.name}</p>
+            <p>Description: {course.description}</p>
+            <p>Duration: {course.duration} Months</p>
+            <p>Price: {course.price} RON</p>
             <CreateEnrollment student={props.student} course={selectedCourse} />
         </div>
     ));
@@ -64,7 +65,7 @@ export const Courses = (props: { student: Student }) => {
             <h1>Courses</h1>
             <div>{displayCourses}</div>
             <Link to={`/student/${studentId}`}>
-                <button>Back</button>
+                <button className="back">Back</button>
             </Link>
         </div>
     );

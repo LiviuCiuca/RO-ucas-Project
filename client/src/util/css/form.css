@@ -1,0 +1,62 @@
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  form > div {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  
+  form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  form input[type="text"],
+  form input[type="number"],
+  form input[type="string"],
+  form input[type="email"],
+  form textarea {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    transition: border-color 0.2s ease-in-out;
+  }
+  
+  form input[type="text"]:focus,
+  form input[type="number"]:focus,
+  form input[type="string"]:focus,
+  form input[type="email"]:focus,
+  form textarea:focus {
+    outline: none;
+    border-color: #6e81ea;
+    box-shadow: 0 0 10px rgba(110, 129, 234, 0.5);
+  }
+  .back,
+  form button[type="button"],
+  form button[type="submit"] {
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    border-radius: 10px;
+    background-color: #596b77;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+ 
+  form button[type="button"]:hover,
+  form button[type="submit"]:hover {
+    background-color: #5569d4;
+  }
+  

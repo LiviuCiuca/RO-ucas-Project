@@ -3,9 +3,12 @@ import { useState } from "react";
 import { Student } from "../../util/interface/student";
 import { Student_formFields } from "../../util/formFields/Student_formField";
 import { Link } from "react-router-dom";
+import "../../util/css/all_style.css";
+import "../../util/css/form.css"
 
 const CreateStudent = () => {
   const [student, setStudent] = useState<Omit<Student, "id">>({
+    // Initialize student state with empty values
     name: "",
     username: "",
     password: "",
@@ -27,9 +30,10 @@ const CreateStudent = () => {
 
   const createStudent = async () => {
     try {
+      // Send a POST request to create a new student
       const response = await axios.post("/api/student", student);
       console.log("Response data:", response.data);
-      setSubmitted(true);
+      setSubmitted(true); // Set submitted state to true after successful creation
     } catch (error: any) {
       console.log(error.message);
     }
@@ -42,13 +46,14 @@ const CreateStudent = () => {
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
-    setStudent({ ...student, [name]: value });
+    setStudent({ ...student, [name]: value }); // Update the student state with the changed input value
   };
 
   return (
     <div>
       <h1>Create Student</h1>
       <form>
+        {/* Render input fields for each property in the student object */}
         {Student_formFields.map((field) => (
           <div key={field.name}>
             <label htmlFor={field.name}>{field.label}</label>
@@ -57,6 +62,7 @@ const CreateStudent = () => {
                 name={field.name}
                 value={student[field.name]}
                 onChange={handleChange}
+                required // Added required attribute to make the field mandatory
               />
             ) : (
               <input
@@ -64,6 +70,7 @@ const CreateStudent = () => {
                 name={field.name}
                 value={student[field.name]}
                 onChange={handleChange}
+                required // Added required attribute to make the field mandatory
               />
             )}
           </div>
@@ -73,12 +80,14 @@ const CreateStudent = () => {
         </button>
       </form>
       <Link to={`/allstudent`}>
-        <button >Back</button>
+        <button className="back">Back</button>
       </Link>
     </div>
   );
 };
+
 export default CreateStudent;
+
 
 // //https://www.youtube.com/watch?v=IkMND33x0qQ&list=PL4cUxeGkcC9gZD-Tvwfod2gaISzfRiP9d&index=27&ab_channel=TheNetNinja
 

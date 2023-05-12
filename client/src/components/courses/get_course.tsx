@@ -5,6 +5,7 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import { CoursesByIdProps } from "../../util/interface/courses_props";
 import { DeleteCourse } from "./delete_course";
 
+
 export const CoursesById: React.FC<CoursesByIdProps> = ({ SelectedCourse, setSelectedCourse }) => {
     const [course, setCourse] = useState<Course[]>([]);
     const navigate = useNavigate();
@@ -72,17 +73,19 @@ export const CoursesById: React.FC<CoursesByIdProps> = ({ SelectedCourse, setSel
 
             <DeleteCourse selectedCourse={SelectedCourse} />
 
-            <Link to={`/university/courses/${uniId}/create`}>
-                <button>Create Course</button>
-            </Link>
-            <Link to={`/university/courses/${uniId}/update`}>
-                <button disabled={!SelectedCourse}>Update</button>
-            </Link>
-
 
             <Link to={`/university/${uniId}`}>
-                <button>Back</button>
+                <button className="back" >Back</button>
             </Link>
+
+            <Link to={`/university/courses/${uniId}/create`}>
+                <button className='button'>Create Course</button>
+            </Link>
+
+            <Link to={`/university/courses/${uniId}/update`}>
+                <button className='button' disabled={!SelectedCourse?.id}>Update</button>
+            </Link>
+
             <Link to={`/university/courses/${uniId}/enrollments/${SelectedCourse?.id}`}>
                 <button className='button' disabled={!SelectedCourse?.id}>My Students</button>
             </Link>

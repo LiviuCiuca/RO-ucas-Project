@@ -9,14 +9,14 @@ export class Enrollment {
     @PrimaryGeneratedColumn()
     id: number;
    
-    @ManyToOne(type => Student, student => student.enrollments)
+    @ManyToOne(type => Student, student => student.enrollments, { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'studentId' })
     student: Student;
 
     @Column()
     studentId: number;
 
-    @ManyToOne(type => Courses, course => course.enrollments)
+    @ManyToOne(type => Courses, course => course.enrollments, { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'courseId' })
     course: Courses;
     
