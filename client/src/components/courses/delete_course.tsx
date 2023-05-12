@@ -1,7 +1,6 @@
 import axios from "axios";
 import { Course } from "../../util/interface/course";
 import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
 
 export const DeleteCourse = (props: { selectedCourse: Course }) => {
     const [deleteStatus, setDeleteStatus] = useState("");

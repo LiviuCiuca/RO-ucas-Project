@@ -62,7 +62,7 @@ const UpdateCourse = (props: { selectedCourse: Course }) => {
         </button>
       </form>
       <Link to={`/university/courses/${uniId}`}>
-        <button className='button'>Back</button>
+        <button className="back">Back</button>
       </Link>
     </div>
 

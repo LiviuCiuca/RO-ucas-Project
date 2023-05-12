@@ -76,7 +76,7 @@ const CreateUniversity = () => {
       </form>
       {message && <p>{message}</p>}
       <Link to="/university">
-        <button type="button">Back</button>
+        <button className="back">Back</button>
       </Link>
     </div>
   );

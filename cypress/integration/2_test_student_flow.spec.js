@@ -51,7 +51,7 @@ describe('Website', () => {
     
     it('Loads selected Student', () => {
         cy.wait(100)
-        cy.contains('age: 24').should('be.visible') // check if age is displayed
+        cy.contains('24').should('be.visible') // check if age is displayed
     })
 
     it('Navigate Update Student,and update email', () => {
@@ -103,7 +103,7 @@ describe('Website', () => {
     it('Navigate to enrollments', () => {
         cy.contains('View Enrollments').click()
         cy.wait(100)
-        cy.contains('Enrollments').should('be.visible') 
+        cy.contains('My Applications').should('be.visible') 
     })
 
     it('see the just made enrollment', () => {

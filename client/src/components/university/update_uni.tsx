@@ -61,7 +61,7 @@ const UpdateUniversity = (props: { university: University }) => {
         </button>
       </form>
       <Link to={`/university/${uniId}`}>
-        <button type="button">Back</button>
+        <button className="back">Back</button>
       </Link>
     </div>
   );

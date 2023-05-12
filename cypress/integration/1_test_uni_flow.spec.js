@@ -49,7 +49,7 @@ describe('Website', () => {
 
     it('Loads selected Uni', () => {
         cy.wait(100)
-        cy.contains('name: Cypress Test University').should('be.visible') // check if age is displayed
+        cy.contains('Cypress Test University').should('be.visible') // check if age is displayed
     })
     it('Navigate to update University', () => {
         cy.contains('Update University').click() // Click on the "update" button

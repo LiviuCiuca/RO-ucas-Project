@@ -40,7 +40,7 @@ form {
     border-color: #6e81ea;
     box-shadow: 0 0 10px rgba(110, 129, 234, 0.5);
   }
-  button[type="button"],
+  .back,
   form button[type="button"],
   form button[type="submit"] {
     padding: 10px;

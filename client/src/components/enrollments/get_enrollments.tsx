@@ -48,7 +48,7 @@ export const Enrollmen = () => {
         ))}
       </div>
       <Link to={`/student/${studentId}`}>
-        <button type="button">Back</button>
+        <button className="back">Back</button>
       </Link>
     </div>
   );

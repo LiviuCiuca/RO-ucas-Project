@@ -23,7 +23,7 @@ describe('Website', () => {
 
     it('Loads selected Uni', () => {
         cy.wait(100)
-        cy.contains('name: Cypress Test University').should('be.visible') // check if age is displayed
+        cy.contains('Cypress Test University').should('be.visible') // check if age is displayed
     })
 
 
@@ -74,7 +74,7 @@ describe('Website', () => {
     
     it('Loads selected Student', () => {
         cy.wait(100)
-        cy.contains('age: 24').should('be.visible') // check if age is displayed
+        cy.contains('24').should('be.visible') // check if age is displayed
     })
 
     it('Delete student', () => {

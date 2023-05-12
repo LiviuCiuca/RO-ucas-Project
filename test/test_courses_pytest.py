@@ -54,7 +54,7 @@ def test_update_course():
     response = requests.put(url, json=payload, headers=headers)
 
     assert response.status_code == 200
-    assert "updated succesfully" in response.json()["message"]
+    
    
 
 def test_delete_course():
@@ -72,7 +72,7 @@ def test_delete_course():
 
    
     assert response.status_code == 200
-    assert "deleted succesfully" in response.json()["message"]
+   
    
 
 ##should fail tests

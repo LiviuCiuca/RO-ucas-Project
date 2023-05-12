@@ -65,7 +65,7 @@ export const Courses = (props: { student: Student }) => {
             <h1>Courses</h1>
             <div>{displayCourses}</div>
             <Link to={`/student/${studentId}`}>
-                <button type="button">Back</button>
+                <button className="back">Back</button>
             </Link>
         </div>
     );

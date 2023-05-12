@@ -75,12 +75,12 @@ const CreateStudent = () => {
             )}
           </div>
         ))}
-        <button type="submit" onClick={handleSubmit} disabled={submitted}>
+        <button type="button" onClick={handleSubmit} disabled={submitted}>
           {submitted ? "Created" : "Create"}
         </button>
       </form>
       <Link to={`/allstudent`}>
-        <button type="button">Back</button>
+        <button className="back">Back</button>
       </Link>
     </div>
   );
