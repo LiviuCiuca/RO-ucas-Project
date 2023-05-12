@@ -13,10 +13,10 @@ Liviu Ciuca
 - $cd into ./serve --> $npm run start:dev
 - in a new terminal $cd into ./client --> $npm run dev
 <br/>
-test server
+test server <br/>
 - install pytest --> run $pytest in the terminal
 <br/>
-test client 
+test client <br/> 
 - run $docker build -t my-cypress-tests .
 - then $docker run --rm --network="host" -v "$(pwd)/cypress/videos:/app/cypress/videos" my-cypress-tests
 <br/> 
