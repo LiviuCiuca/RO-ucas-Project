@@ -1,0 +1,25 @@
+.Contact,
+.About {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+
+  
+  p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    color: #c9c2c2;
+  }
+  
+  a {
+    color: rgb(146, 107, 107);
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }

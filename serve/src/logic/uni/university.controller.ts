@@ -13,24 +13,44 @@ export class UniversityController {
         return this.uniService.getUni();
     }
 
+    /**
+    * Get a university by ID
+    * @param id: number - the ID of the university
+    * @returns Promise<Universities>
+    */
     @Get(":id")
     getUniversityById(@Param('id', ParseIntPipe) id: number) {
         return this.uniService.getUniById(id);
     }
 
+    /**
+    * Create a new university
+    * @param uniCreate: CreateUniDto - the university data to create
+    * @returns Promise<Universities>
+    */
     @Post()
     postUniversity(@Body() uniCreate: CreateUniDto) {
         return this.uniService.postUni(uniCreate);
     }
 
+    /**
+    * Update a university by ID
+    * @param id: number - the ID of the university to update
+    * @param uniUpdate: updateUniDto - the updated university data
+    * @returns Promise<Universities>
+    */
     @Put(":id")
     updateUniversity(@Param('id', ParseIntPipe) id: number, @Body() uniUpdate: updateUniDto) {
-       return this.uniService.updateUniById(id, uniUpdate);
+        return this.uniService.updateUniById(id, uniUpdate);
     }
     
+    /**
+    * Delete a university by ID
+    * @param id: number - the ID of the university to delete
+    * @returns void
+    */
     @Delete(':id')
-    deleteUniversity(@Param('id',ParseIntPipe) id: number){
+    deleteUniversity(@Param('id', ParseIntPipe) id: number){
         return this.uniService.deleteUni(id);
     }
-    
 }

@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Student } from "../../util/interface/student";
 import { Student_formFields } from "../../util/formFields/Student_formField";
 import { Link, useParams } from "react-router-dom";
-
 import "../../util/css/all_style.css";
 const UpdateStudent = (props: { student: Student }) => {
     const [updatedStudent, setUpdatedStudent] = useState<Student>(props.student);
@@ -11,6 +10,7 @@ const UpdateStudent = (props: { student: Student }) => {
 
     const updateStudent = async (id: number) => {
         try {
+            // Send a PUT request to update the student with the given ID
             const response = await axios.put(`/api/student/${id}`, updatedStudent);
             console.log('Response data:', response.data);
         } catch (error: any) {
@@ -19,22 +19,19 @@ const UpdateStudent = (props: { student: Student }) => {
     };
 
     const handleSubmit = (e: any) => {
-
-        updateStudent(props.student.id);
-
+        updateStudent(props.student.id); // Call the updateStudent function with the student ID
     };
 
     const handleChange = (e: any) => {
         const { name, value } = e.target;
-        console.log("target:", e.target)
-        setUpdatedStudent({ ...updatedStudent, [name]: value });
-
+        setUpdatedStudent({ ...updatedStudent, [name]: value }); // Update the updatedStudent state with the changed input value
     };
 
     return (
         <div>
             <h1>Update Student</h1>
             <form>
+                {/* Render input fields for each property in the student object */}
                 {Student_formFields.map((field) => (
                     <div key={field.name}>
                         <label htmlFor={field.name}>{field.label}</label>
@@ -43,6 +40,7 @@ const UpdateStudent = (props: { student: Student }) => {
                                 name={field.name}
                                 value={updatedStudent[field.name]}
                                 onChange={handleChange}
+                                required // Added required attribute to make the field mandatory
                             />
                         ) : (
                             <input
@@ -50,6 +48,7 @@ const UpdateStudent = (props: { student: Student }) => {
                                 name={field.name}
                                 value={updatedStudent[field.name]}
                                 onChange={handleChange}
+                                required // Added required attribute to make the field mandatory
                             />
                         )}
                     </div>

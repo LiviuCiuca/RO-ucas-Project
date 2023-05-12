@@ -18,15 +18,20 @@ body {
 
 .Navbar a{
   display: block;
-  color: rgb(146, 107, 107);
+  color: #fdee79;
   text-decoration: none;
   margin-right: 10px;
   border-radius: 5px;
   padding: 5px 10px;
+  background: linear-gradient(to right, #ac8400 30%, #fdee79 70%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.Navbar a:hover {
-  background-color: rgb(146, 107, 107);
-  color: #fff;
-  transition: background-color 0.3s ease;
+
+
+img {
+  border-radius: 50%;
+  width: 100px;
 }

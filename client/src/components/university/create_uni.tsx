@@ -23,6 +23,7 @@ const CreateUniversity = () => {
   const createUniversity = async () => {
     setLoading(true);
     try {
+      // Send a POST request to create a new university with the provided data
       const response = await axios.post("/api/university", university);
       console.log("Response data:", response.data);
       setMessage("University created successfully!");
@@ -49,6 +50,7 @@ const CreateUniversity = () => {
     <div>
       <h1>Create University</h1>
       <form>
+        {/* Render input fields for each property in the university object */}
         {University_formFields.map((field) => (
           <div key={field.name}>
             <label htmlFor={field.name}>{field.label}</label>

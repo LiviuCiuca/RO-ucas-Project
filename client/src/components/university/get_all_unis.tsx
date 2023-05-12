@@ -12,6 +12,7 @@ export const Universities = () => {
 
   const getAllUniversities = async () => {
     try {
+      // Send a GET request to retrieve the list of universities
       const response = await axios.get("/api/university");
       console.log("Response data:", response.data);
       setUniversities(response.data);
@@ -23,6 +24,7 @@ export const Universities = () => {
   };
 
   useEffect(() => {
+    // Fetch the universities when the component mounts
     getAllUniversities();
   }, []);
 
@@ -36,7 +38,7 @@ export const Universities = () => {
 
   const handleUniversitySelection = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedId = parseInt(e.target.value);
-    const selectedUniversity = universities.find((university : University) => university.id === selectedId) || null;
+    const selectedUniversity = universities.find((university: University) => university.id === selectedId) || null;
     setSelectedUniversity(selectedUniversity);
     console.log(selectedUniversity);
   };
@@ -44,6 +46,7 @@ export const Universities = () => {
   return (
     <div>
       <h1>Universities Login</h1>
+      {/* Render a dropdown to select a university */}
       <label htmlFor="university-select">Select a university:</label>
       <select
         value={selectedUniversity ? selectedUniversity.id : ""}
@@ -51,17 +54,19 @@ export const Universities = () => {
         style={{ width: "200px", height: "30px", marginBottom: "10px" }}
       >
         <option value="">Select a university</option>
-        {universities.map((university :University) => (
+        {universities.map((university: University) => (
           <option key={university.id} value={university.id}>
             {university.name}
           </option>
         ))}
       </select>
+      {/* Render a link to create a new university */}
       <div className="create_university">
         <Link to="/createUni">
           <button type="button">Create University</button>
         </Link>
       </div>
+      {/* Render a link to view the profile of the selected university */}
       <div className="university_profile">
         <Link to={`/university/${selectedUniversity?.id}`}>
           <button type="button" disabled={!selectedUniversity}>Profile University</button>

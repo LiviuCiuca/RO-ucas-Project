@@ -6,6 +6,8 @@ import CreateStudent from './components/student/create_student';
 import { Parent_universityComponent } from './components/parents/university';
 import CreateUniversity from './components/university/create_uni';
 import Navbar from './navbars/navbar';
+import About from './components/standard/aboutPage';
+import Contact from './components/standard/contactPage';
 
 
 function App() {
@@ -26,6 +28,11 @@ function App() {
           <Route path='/university' element={<Universities/>}/>
           <Route path='/university/*' element={<Parent_universityComponent/>}/>
           <Route path='/createUni' element={<CreateUniversity/>}/>
+        </Routes>
+
+        <Routes>
+          <Route path="/about" element={<About/>}/>
+          <Route path="/contact" element={<Contact/>}/>
         </Routes>
       </div>
     </Router>

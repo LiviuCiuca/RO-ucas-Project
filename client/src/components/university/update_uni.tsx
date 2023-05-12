@@ -11,6 +11,7 @@ const UpdateUniversity = (props: { university: University }) => {
 
   const updateUniversity = async (id: number) => {
     try {
+      // Send a PUT request to update the university details
       const response = await axios.put(`/api/university/${id}`, updatedUniversity);
       console.log('Response data:', response.data);
     } catch (error: any) {
@@ -33,6 +34,7 @@ const UpdateUniversity = (props: { university: University }) => {
     <div>
       <h1>Update University</h1>
       <form>
+         {/* Render input fields for each property in the student object */}
         {University_formFields.map((field) => (
           <div key={field.name}>
             <label htmlFor={field.name}>{field.label}</label>
@@ -41,6 +43,7 @@ const UpdateUniversity = (props: { university: University }) => {
                 name={field.name}
                 value={updatedUniversity[field.name]}
                 onChange={handleChange}
+                required // Added required attribute to make the field mandatory
               />
             ) : (
               <input
@@ -48,6 +51,7 @@ const UpdateUniversity = (props: { university: University }) => {
                 name={field.name}
                 value={updatedUniversity[field.name]}
                 onChange={handleChange}
+                required // Added required attribute to make the field mandatory
               />
             )}
           </div>
@@ -59,7 +63,6 @@ const UpdateUniversity = (props: { university: University }) => {
       <Link to={`/university/${uniId}`}>
         <button type="button">Back</button>
       </Link>
-
     </div>
   );
 };

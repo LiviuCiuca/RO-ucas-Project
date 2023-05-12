@@ -6,6 +6,9 @@ import { useState } from 'react';
 import { University } from '../../util/interface/university';
 import { Parent_CourseComponent } from './courses';
 
+//The selected university state is managed in this component and passed down to the child components as props. 
+//The Routes component from react-router-dom is used to define the different routes and the corresponding components to render.
+
 export const Parent_universityComponent = () => {
     const [selectedUniversity, setSelectedUniversity] = useState<University>({} as University);
 

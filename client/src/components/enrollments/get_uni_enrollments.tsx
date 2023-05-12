@@ -9,13 +9,13 @@ export const Enrollments = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const { courseId } = useParams<{ courseId: string }>();
-    const { uniId }= useParams<{uniId: string}>();
+    const { uniId } = useParams<{ uniId: string }>();// Accessing the uni from the URL parameter
 
-    //this should return all the students who enrolled to the uni  
+    //this should return all the students who enrolled to the uni course  
     //uni sees this and will accpet or reject students
     const getEnrollment = async () => {
         try {
-            const response = await axios.get(`/api/enrollment/course/${courseId}`);
+            const response = await axios.get(`/api/enrollment/course/${courseId}`);// Fetching the enrollments for the specific uni course
             console.log('Response:', response.data);
             setEnrollment(response.data);
             setLoading(false);
@@ -42,6 +42,7 @@ export const Enrollments = () => {
         return <div>{error}</div>;
     }
 
+    //display each course sepparately with the buttons imported from enrollments component
     const displayenrollment = enrollment.map((enroll: Enrollment) => (
         <div className="enrollments"
             key={enroll.id}>
@@ -53,7 +54,7 @@ export const Enrollments = () => {
     ));
 
 
-
+    //display results
     return (
         <div>
             <h1>Enrollment</h1>

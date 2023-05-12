@@ -15,12 +15,22 @@ export class EnrollService {
     ) { }
 
 
+    /*
+    * Get all enrollments with their associated student and course information
+    * @returns Promise<Enrollment[]>
+    */
     getAll(): Promise<Enrollment[]> {
-        //behind the scenes, typeorm will do a join query to get the student and course info
+        // behind the scenes, TypeORM will do a join query to get the student and course info
         return this.enrollmentRepository.find({ relations: ['student', 'course'] });
     }
 
 
+    /**
+    * Get enrollments by student ID
+    * @param studentId: number - the ID of the student
+    * @returns Promise<Enrollment[]>
+    * @throws NotFoundException if the student is not found
+    */
     getEnrollmentsByStudentId(studentId: number): Promise<Enrollment[]> {
         if (!studentId) {
             throw new NotFoundException('Student not found');
@@ -30,6 +40,13 @@ export class EnrollService {
             relations: ['student', 'course']
         });
     }
+
+    /**
+    * Get enrollments by course ID
+    * @param courseId: number - the ID of the course
+    * @returns Promise<Enrollment[]>
+    * @throws NotFoundException if the course is not found
+    */
     getEnrollmentsByCourseId(courseId: number): Promise<Enrollment[]> {
         if (!courseId) {
             throw new NotFoundException('Course not found');
@@ -40,6 +57,13 @@ export class EnrollService {
         });
     }
 
+    /**
+    * Apply for enrollment in a course
+    * @param student: createStudentParams - the student details
+    * @param course: createCoursesParams - the course details
+    * @returns Promise<Enrollment>
+    * @throws NotFoundException if the student or course is not found
+    */
     async apply(student: createStudentParams, course: createCoursesParams): Promise<Enrollment> {
         const enroll = this.enrollmentRepository.create({ student, course });
         enroll.studentId = student.id;
@@ -54,8 +78,12 @@ export class EnrollService {
         return savedEnrollment;
     }
 
-
-    //this not useful due to the cascade
+    /**
+    * Delete enrollments by student ID
+    * @param studentId: number - the ID of the student
+    * @returns void
+    * @throws NotFoundException if the student is not found
+    */
     async deleteEnrollmentsByStudentId(studentId: number) {
         const id = studentId;
         const enrolledStudent = await this.enrollmentRepository.findOne({ where: { id: studentId } });
@@ -66,9 +94,15 @@ export class EnrollService {
         this.enrollmentRepository.delete(id);
     }
 
-    //this uni should do
+    /**
+    * Update the status of an enrollment
+    * @param id: number - the ID of the enrollment
+    * @param status: string - the new status value
+    * @returns Promise<Enrollment>
+    * @throws NotFoundException if the enrollment is not found
+    */
     async updateEnrollmentStatus(id: number, status: string): Promise<Enrollment> {
-        const enrollment = await this.enrollmentRepository.findOne({where: {id}});
+        const enrollment = await this.enrollmentRepository.findOne({ where: { id } });
         if (!enrollment) {
             throw new NotFoundException('Enrollment not found');
         }
@@ -76,3 +110,4 @@ export class EnrollService {
         return this.enrollmentRepository.save(enrollment);
     }
 }
+

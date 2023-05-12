@@ -73,7 +73,7 @@ let CourseService = class CourseService {
         const course = await this.courseRepository.findOne({ where: { id } });
         if (course) {
             const deleted = await this.courseRepository.delete({ id });
-            return { message: 'deleted succesfully', course: deleted };
+            return { message: 'deleted successfully', course: deleted };
         }
         else {
             throw new common_1.NotFoundException('Course not found');
@@ -86,7 +86,7 @@ let CourseService = class CourseService {
         if (!updatedCourse) {
             throw new common_1.NotFoundException('Course not found');
         }
-        return { message: 'updated succesfully', course: updatedCourse };
+        return { message: 'updated successfully', course: updatedCourse };
     }
 };
 CourseService = __decorate([

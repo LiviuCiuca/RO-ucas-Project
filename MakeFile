@@ -1,0 +1,4 @@
+ build:
+	docker build -t my-cypress-tests .
+ run:
+	docker run --rm --network="host" -v "$(pwd)/cypress/videos:/app/cypress/videos" my-cypress-tests
